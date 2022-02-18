@@ -1,0 +1,64 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "stmhub"
+		}
+	],
+	"settings": {
+		// "editor.fontFamily": "Fira Code Light",
+		"editor.fontFamily": "JetBrains Mono Thin",
+		"editor.fontLigatures": true,
+		"editor.fontSize": 16,
+		"editor.tabSize": 2,
+		"editor.insertSpaces": true,
+		"editor.hover.enabled": true,
+		"editor.hover.sticky": false,
+		"editor.cursorStyle": "line-thin",
+		"highlightLine.borderColor": "#65EAB9",
+		"highlightLine.borderStyle": "groove",
+		"highlightLine.borderWidth": "1px",
+		"workbench.hover.delay": 500,
+		"workbench.tree.indent": 12,
+		"workbench.colorTheme": "Eva Dark Bold",
+		"workbench.iconTheme": "vscode-icons-mac",
+    "files.autoSave": "onFocusChange",
+		"editor.tokenColorCustomizations": {
+			"[Eva Dark Bold]": {
+				"comments": {
+					"fontStyle": "",
+				},
+			}
+		},
+		"[go]": {
+			"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+			},
+			"editor.formatOnSave": true,
+			"editor.insertSpaces": false,
+			"editor.suggest.snippetsPreventQuickSuggestions": false,
+			"editor.comments.ignoreEmptyLines": false,
+		},
+        "todohighlight.keywords": [
+        {
+            "text": "TIPS:",
+            "color": "#FFFFFF",
+            "backgroundColor": "#00bf4d",
+            "isWholeLine": true
+        },
+        {
+            "text": "FIXME:",
+            "color": "#FFFFFF",
+            "backgroundColor": "#7f404d",
+            "isWholeLine": true
+        },
+        {
+            "text": "TODO:",
+            "color": "#FFFFFF",
+            "backgroundColor": "#0040cc",
+            "isWholeLine": true
+        }
+    ],
+    "todohighlight.isEnable": true
+	}
+}
