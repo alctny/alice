@@ -1,7 +1,5 @@
-[core]
-        editor = \"D:\\programming\\vscode\\Code.exe\" --wait
 [user]
-        name = lwifez
+        name = lwifew
         email = gfiszhang@gmail.com
 [color]
         ui = true
