@@ -1,6 +1,6 @@
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {"command":"closeTab","keys": "ctrl+w"},
         {"command":"newTab", "keys":"ctrl+t"}
