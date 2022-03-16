@@ -1,6 +1,6 @@
 [user]
-        name = lwifew
-        email = gfiszhang@gmail.com
+        name = 尸府主任
+        email = 44720162+lwifew@users.noreply.github.com
 [color]
         ui = true
 [https]
@@ -11,3 +11,10 @@
         dog = log --all --decorate --oneline --graph
 [core]
         quotepath = false
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+[init]
+        defaultBranch = main
