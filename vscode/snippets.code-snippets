@@ -1,5 +1,5 @@
 {
-	// golang
+	// go.map
 	"map-string-interface": {
 		"scope": "go",
 		"prefix": "msi",
@@ -20,6 +20,8 @@
 		"prefix": "msint",
 		"body":"map[string]int{$0}",
 	},
+
+	// go.fmt
 	"fmt-prlntln":{
 		"scope": "go",
 		"prefix": "pln",
@@ -35,15 +37,21 @@
 		"prefix": "spf",
 		"body": "fmt.Sprintf(\"$0\",)",
 	},
+
+	// go.key-world
 	"return":{
 		"scope": "go",
 		"prefix": "re",
 		"body": "return $0",
 	},
-	// string
+	"nil":{
+		"scope": "go",
+		"prefix": "ni",
+		"body": "nil",
+	},
 	"string":{
 		"scope": "go",
-		"prefix": "str",
+		"prefix": "string",
 		"body": "string$0",
 	},
 	"if-err":{
@@ -54,23 +62,28 @@
 	"for-range-i-v":{
 		"scope": "go",
 		"prefix": "friv",
-		"body": "for i, v := range data$0 {\n\n}",
+		"body": "for i, v := range $0 {\n\n}",
 	},
 	"for-range-i":{
 		"scope": "go",
 		"prefix": "fri",
-		"body": "for i := range data$0 {\n\n}",
+		"body": "for i := range $0 {\n\n}",
 	},
 	"for-range-v":{
 		"scope": "go",
 		"prefix": "frv",
-		"body": "for _, v := range data$0 {\n\n}",
+		"body": "for _, v := range $0 {\n\n}",
 	},
 
-	// Markdown
-	"div-center":{
+	// Markdown.html
+	"img-center":{
 		"scope": "markdown",
 		"prefix": "div",
 		"body": "<div align=center> <img src=\"$0\"> </div>",
+	},
+	"p-center":{
+		"scope": "markdown",
+		"prefix": "p",
+		"body": "<p align=\"center\">$0</p>",
 	},
 }

@@ -1,97 +1,65 @@
 {
-  "[go]": {
-      "editor.codeActionsOnSave": {
-          "source.organizeImports": true
-      },
-      "editor.formatOnSave": true,
-      "editor.insertSpaces": false,
-      "editor.suggest.snippetsPreventQuickSuggestions": false
-  },
-  "editor.fontFamily": "JetBrains Mono",
-  // "editor.fontFamily": "Fira Code Light",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 16,
-  "editor.largeFileOptimizations": false,
-  "editor.suggestSelection": "first",
-  "editor.insertSpaces": true,
-  
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "files.autoSave": "onFocusChange",
-  "files.eol": "\n",
-  "files.exclude": {
-      "**/.classpath": true,
-      "**/.factorypath": true,
-      "**/.project": true,
-      "**/.settings": true
-  },
-  "go.addTags": {
-      "options": "json=omitempty,bson=omitempty",
-      "promptForTags": true,
-      "tags": "json,bson",
-      //  // snakecase:下划线分隔， camelcase:驼峰命名
-      "transform": "camelcase"
-  },
-  "go.toolsManagement.autoUpdate": true,
-  "highlightLine.borderColor": "#65EAB9",
-  "highlightLine.borderStyle": "ridge",
-  "highlightLine.borderWidth": "1px",
-  "security.workspace.trust.untrustedFiles": "open",
-  "terminal.explorerKind": "external",
-  "terminal.external.windowsExec": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-  "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
-  "terminal.integrated.fontFamily": "monospace",
-  "terminal.integrated.profiles.windows": {
-      "Command Prompt": {
-          "args": [],
-          "icon": "terminal-cmd",
-          "path": [
-              "${env:windir}\\Sysnative\\cmd.exe",
-              "${env:windir}\\System32\\cmd.exe"
-          ]
-      },
-      "Git Bash": {
-          "source": "Git Bash"
-      },
-      "PowerShell": {
-          "icon": "terminal-powershell",
-          "source": "PowerShell"
-      },
-      "Windows PowerShell": {
-          "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
-      }
-  },
-  "terminal.integrated.tabs.enabled": true,
-  "workbench.colorTheme": "Eva Dark Italic",
-  "workbench.startupEditor": "none",
-  "workbench.tree.indent": 8,
-  "workbench.iconTheme": "vscode-icons-mac",
-  "editor.tabSize": 2,
-  "editor.hover.sticky": false,
-  "bracket-pair-colorizer-2.depreciation-notice": false,
-  "vsicons.projectDetection.disableDetect": true,
-  "git.enableSmartCommit": true,
-  "editor.lineNumbers": "on",
-  "todohighlight.keywords": ["FIX:", "TIPS:","WORING:"],
-  "todohighlight.isEnable": true,
-  "git.autofetch": true,
-  "timeline.excludeSources": [
-      "git-history"
-  ],
-  "markdownlint.focusMode": true,
-  "markdownlint.config": {
-      "no-inline-html": {"allowed_elements": ["div" ,"img"]}
-  },
-  "cSpell.userWords": [
-      "bson",
-      "emicklei",
-      "stmhub"
-  ],
-
-  "[markdown]": {
-      "editor.unicodeHighlight.ambiguousCharacters": false,
-      "editor.unicodeHighlight.invisibleCharacters": false,
-      "editor.wordWrap": "on",
-      "editor.quickSuggestions": true
-  }
+    "[go]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.suggest.snippetsPreventQuickSuggestions": false
+    },
+    "editor.fontFamily": "JetBrains Mono",
+    // "editor.fontFamily": "Fira Code Light",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    "editor.largeFileOptimizations": false,
+    "editor.suggestSelection": "first",
+    "editor.insertSpaces": true,
+    
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true
+    },
+    "go.addTags": {
+        "options": "json=omitempty,bson=omitempty",
+        "promptForTags": true,
+        "tags": "json,bson",
+        "transform": "camelcase" // snakecase:下划线分隔， camelcase:驼峰命名
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "highlightLine.borderColor": "#65EAB9",
+    "highlightLine.borderStyle": "ridge",
+    "highlightLine.borderWidth": "1px",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.explorerKind": "external",
+    "terminal.integrated.fontFamily": "Fira Code Light",
+    "terminal.integrated.tabs.enabled": true,
+    "workbench.colorTheme": "Eva Dark Italic",
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 8,
+    "workbench.iconTheme": "vscode-icons-mac",
+    "editor.tabSize": 2,
+    "editor.hover.sticky": false,
+    "bracket-pair-colorizer-2.depreciation-notice": false,
+    "vsicons.projectDetection.disableDetect": true,
+    "git.enableSmartCommit": true,
+    "editor.lineNumbers": "on",
+    "todohighlight.keywords": ["FIX:", "TIPS:","WORING:"],
+    "todohighlight.isEnable": true,
+    "git.autofetch": true,
+    "markdownlint.focusMode": true,
+    "markdownlint.config": {
+        "no-inline-html": {"allowed_elements": ["div" ,"img", "p"]}
+    },
+    "[markdown]": {
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.unicodeHighlight.invisibleCharacters": false,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": true
+    }
 }
