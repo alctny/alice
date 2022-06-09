@@ -1,12 +1,11 @@
 {
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 15, 
+    "editor.fontSize": 15,
     "editor.hover.sticky": false,
     "editor.insertSpaces": true,
     "editor.largeFileOptimizations": false,
     "editor.lineNumbers": "on",
-    "editor.minimap.enabled": false,
     "editor.suggestSelection": "first",
     "editor.tabSize": 2,
     "files.autoSave": "onFocusChange",
@@ -24,13 +23,15 @@
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 8,
     "synthwave84.brightness": 100,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active",
     "synthwave84.disableGlow": false,
     "highlightLine.borderColor": "#65EAB9",
     "highlightLine.borderStyle": "ridge",
     "highlightLine.borderWidth": "1px",
     "todohighlight.isEnable": true,
     "todohighlight.keywords": ["FIX:", "TIPS:","WARNING:"],
-    "markdownlint.focusMode": true,
+
     "go.toolsManagement.autoUpdate": true,
     "[markdown]": {
         "editor.unicodeHighlight.ambiguousCharacters": false,
@@ -57,7 +58,8 @@
         "promptForTags": true,
         "tags": "json,bson",
     },
+    "markdownlint.focusMode": true,
     "markdownlint.config": {
         "no-inline-html": {"allowed_elements": ["div" ,"img", "p"]}
-    }
+    },
 }

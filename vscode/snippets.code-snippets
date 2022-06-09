@@ -86,4 +86,18 @@
 		"prefix": "p",
 		"body": "<p align=\"center\">$0</p>",
 	},
+
+	// annotation
+	"fixme":{
+		"prefix": "fix",
+		"body": "// FIXME: ",
+	},
+	"todo":{
+		"prefix": "todo",
+		"body": "// TODO: ",
+	},
+	"warning":{
+		"prefix": "warning",
+		"body": "// WARNING: ",
+	},
 }
