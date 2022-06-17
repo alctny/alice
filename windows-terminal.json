@@ -1,17 +1,34 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions":
-    [
-        {"command":"closeTab","keys": "ctrl+w"},
-        {"command":"newTab", "keys":"ctrl+t"}
-    ],
     "alwaysShowTabs": true,
     "copyOnSelect": true,
     "defaultProfile": "{14ad203f-52cc-4110-90d6-d96e0f41b64d}",
     "disableAnimations": false,
-    "initialCols": 120,
-    "initialRows": 30,
+    "initialCols": 79,
+    "initialRows": 19,
     "launchMode": "default",
+    "showTabsInTitlebar": true,
+    "showTerminalTitleInTitlebar": true,
+    "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502",
+    "centerOnLaunch": true,
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "closeTab"
+            },
+            "keys": "ctrl+w"
+        },
+        {
+            "command": 
+            {
+                "action": "newTab"
+            },
+            "keys": "ctrl+t"
+        }
+    ],
     "profiles": 
     {
         "defaults": 
@@ -20,145 +37,54 @@
             "experimental.retroTerminalEffect": false,
             "font": 
             {
-                "face": "Consolas"
+                "face": "Fira Code",
+                "size": 17
             },
             "scrollbarState": "hidden",
             "suppressApplicationTitle": true,
-            "useAcrylic": true
+            "useAcrylic": true,
+            "background": "#373B3E",
+            "backgroundImage": "ms-appdata:///local/miku.png",
+            "backgroundImageAlignment": "bottomRight",
+            "backgroundImageOpacity": 1,
+            "backgroundImageStretchMode": "uniform",
+            "cursorShape": "bar",
+            "cursorColor": "#FFFFFF",
+            "historySize": 9001,
+            "startingDirectory": "D:/home",
+            "padding": "0, 0, 0, 0"
         },
         "list": 
         [
             {
-                "acrylicOpacity": 0.85000002384185791,
-                "background": "#373B3E",
-                "backgroundImage": "ms-appdata:///local/miku.png",
-                "backgroundImageAlignment": "bottomRight",
-                "backgroundImageOpacity": 0.30000001192092896,
-                "backgroundImageStretchMode": "uniform",
-                "closeOnExit": "graceful",
-                "colorScheme": "Dark+",
-                "commandline": "powershell.exe",
-                "cursorColor": "#FFFFFF",
-                "cursorShape": "filledBox",
-                "font": 
-                {
-                    "face": "Consolas",
-                    "size": 13
-                },
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "historySize": 9001,
-                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-                "name": "Windows Powershell",
-                "padding": "0, 0, 0, 0",
-                "snapOnInput": true,
-                "startingDirectory": "D:/project/workspaseorkSpase",
-                "tabTitle": "Poweshell",
-                "useAcrylic": true
-            },
-            {
-                "acrylicOpacity": 0.85000002384185791,
-                "background": "#373B3E",
-                "backgroundImage": "ms-appdata:///local/miku.png",
-                "backgroundImageAlignment": "bottomRight",
-                "backgroundImageOpacity": 0.30000001192092896,
-                "backgroundImageStretchMode": "uniform",
                 "closeOnExit": "graceful",
                 "colorScheme": "One Half Dark",
-                "commandline": "cmd.exe",
-                "cursorColor": "#FFFFFF",
-                "cursorShape": "bar",
-                "font": 
-                {
-                    "face": "Consolas",
-                    "size": 13
-                },
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "historySize": 9001,
-                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
-                "name": "cmd",
-                "padding": "0, 0, 0, 0",
-                "snapOnInput": true,
-                "startingDirectory": "D:/project/workspase",
-                "tabTitle": "cmd",
-                "useAcrylic": true
-            },
-            {
-                "acrylicOpacity": 0.85000002384185791,
-                "background": "#373B3E",
-                "backgroundImage": "ms-appdata:///local/miku.png",
-                "backgroundImageAlignment": "bottomRight",
-                "backgroundImageOpacity": 0.30000001192092896,
-                "backgroundImageStretchMode": "uniform",
-                "closeOnExit": "graceful",
-                "colorScheme": "One Half Dark",
-                "commandline": "D:/environment/git/bin/bash.exe",
-                "cursorColor": "#FFFFFF",
-                "cursorShape": "bar",
-                "font": 
-                {
-                    "face": "Consolas",
-                    "size": 13
-                },
+                "commandline": "D:/env/git/bin/bash.exe",
                 "guid": "{14ad203f-52cc-4110-90d6-d96e0f41b64d}",
-                "historySize": 9001,
                 "icon": "ms-appdata:///local/git-bash.png",
-                "name": "Git Bash",
-                "padding": "0, 0, 0, 0",
+                "name": "git-bash",
                 "snapOnInput": true,
-                "startingDirectory": "D:/project/workspase",
-                "tabTitle": "Git Bash",
+                "suppressApplicationTitle": false,
+                "tabTitle": "GIT_BASH",
+                "useAcrylic": true
+            },
+            {
+                "closeOnExit": "graceful",
+                "colorScheme": "One Half Dark",
+                "commandline": "ssh root@192.168.1.45",
+                "cursorColor": "#FFFFFF",
+                "guid": "{55090a6a-b723-977a-b02e-fc534b0994b6}",
+                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+                "name": "45",
+                "opacity": 85,
+                "snapOnInput": true,
+                "tabTitle": "10.2.1.45",
                 "useAcrylic": true
             }
         ]
     },
     "schemes": 
     [
-        {
-            "background": "#0C0C0C",
-            "black": "#0C0C0C",
-            "blue": "#0037DA",
-            "brightBlack": "#767676",
-            "brightBlue": "#3B78FF",
-            "brightCyan": "#61D6D6",
-            "brightGreen": "#16C60C",
-            "brightPurple": "#B4009E",
-            "brightRed": "#E74856",
-            "brightWhite": "#F2F2F2",
-            "brightYellow": "#F9F1A5",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#3A96DD",
-            "foreground": "#CCCCCC",
-            "green": "#13A10E",
-            "name": "Campbell",
-            "purple": "#881798",
-            "red": "#C50F1F",
-            "selectionBackground": "#FFFFFF",
-            "white": "#CCCCCC",
-            "yellow": "#C19C00"
-        },
-        {
-            "background": "#012456",
-            "black": "#0C0C0C",
-            "blue": "#0037DA",
-            "brightBlack": "#767676",
-            "brightBlue": "#3B78FF",
-            "brightCyan": "#61D6D6",
-            "brightGreen": "#16C60C",
-            "brightPurple": "#B4009E",
-            "brightRed": "#E74856",
-            "brightWhite": "#F2F2F2",
-            "brightYellow": "#F9F1A5",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#3A96DD",
-            "foreground": "#CCCCCC",
-            "green": "#13A10E",
-            "name": "Campbell Powershell",
-            "purple": "#881798",
-            "red": "#C50F1F",
-            "selectionBackground": "#FFFFFF",
-            "white": "#CCCCCC",
-            "yellow": "#C19C00"
-        },
         {
             "background": "#0E0E0E",
             "black": "#000000",
@@ -204,55 +130,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#DCDFE4",
             "yellow": "#E5C07B"
-        },
-        {
-            "background": "#002B36",
-            "black": "#073642",
-            "blue": "#268BD2",
-            "brightBlack": "#002B36",
-            "brightBlue": "#839496",
-            "brightCyan": "#93A1A1",
-            "brightGreen": "#586E75",
-            "brightPurple": "#6C71C4",
-            "brightRed": "#CB4B16",
-            "brightWhite": "#FDF6E3",
-            "brightYellow": "#657B83",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#2AA198",
-            "foreground": "#839496",
-            "green": "#859900",
-            "name": "Solarized Dark",
-            "purple": "#D33682",
-            "red": "#DC322F",
-            "selectionBackground": "#FFFFFF",
-            "white": "#EEE8D5",
-            "yellow": "#B58900"
-        },
-        {
-            "background": "#000000",
-            "black": "#000000",
-            "blue": "#3465A4",
-            "brightBlack": "#555753",
-            "brightBlue": "#729FCF",
-            "brightCyan": "#34E2E2",
-            "brightGreen": "#8AE234",
-            "brightPurple": "#AD7FA8",
-            "brightRed": "#EF2929",
-            "brightWhite": "#EEEEEC",
-            "brightYellow": "#FCE94F",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#06989A",
-            "foreground": "#D3D7CF",
-            "green": "#4E9A06",
-            "name": "Tango Dark",
-            "purple": "#75507B",
-            "red": "#CC0000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#D3D7CF",
-            "yellow": "#C4A000"
         }
-    ],
-    "showTabsInTitlebar": true,
-    "showTerminalTitleInTitlebar": true,
-    "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
+    ]
 }
