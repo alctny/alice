@@ -1,103 +1,63 @@
 {
 	// go.map
 	"map-string-interface": {
-		"scope": "go",
 		"prefix": "msi",
 		"body":"map[string]interface{}{$0}",
 	},
 	"set": {
-		"scope": "go",
 		"prefix": "set",
 		"body": "map[$0]struct{}",
 	},
 	"map-string-string": {
-		"scope": "go",
 		"prefix": "mss",
 		"body":"map[string]string{$0}",
 	},
 	"map-string-int": {
-		"scope": "go",
 		"prefix": "msint",
 		"body":"map[string]int{$0}",
 	},
 
 	// go.fmt
 	"fmt-prlntln":{
-		"scope": "go",
 		"prefix": "pln",
 		"body": "fmt.Println($0)",
 	},
 	"fmt-prlntf":{
-		"scope": "go",
 		"prefix": "plf",
 		"body": "fmt.Printf(\"$0\",)",
 	},
 	"fmt-sprlntf":{
-		"scope": "go",
 		"prefix": "spf",
 		"body": "fmt.Sprintf(\"$0\",)",
 	},
 
 	// go.key-world
 	"return":{
-		"scope": "go",
 		"prefix": "re",
 		"body": "return $0",
 	},
 	"nil":{
-		"scope": "go",
 		"prefix": "ni",
 		"body": "nil",
 	},
 	"string":{
-		"scope": "go",
 		"prefix": "string",
 		"body": "string$0",
 	},
 	"if-err":{
-		"scope": "go",
 		"prefix": "iferr",
 		"body": "if err != nil {\n\t$0\n}",
 	},
 	"for-range-i-v":{
-		"scope": "go",
 		"prefix": "friv",
 		"body": "for i, v := range $0 {\n\n}",
 	},
 	"for-range-i":{
-		"scope": "go",
 		"prefix": "fri",
 		"body": "for i := range $0 {\n\n}",
 	},
 	"for-range-v":{
-		"scope": "go",
 		"prefix": "frv",
 		"body": "for _, v := range $0 {\n\n}",
-	},
-
-	// Markdown.html
-	"img-center":{
-		"scope": "markdown",
-		"prefix": "div",
-		"body": "<div align=center> <img src=\"$0\"> </div>",
-	},
-	"p-center":{
-		"scope": "markdown",
-		"prefix": "p",
-		"body": "<p align=\"center\">$0</p>",
-	},
-
-	// annotation
-	"fixme":{
-		"prefix": "fix",
-		"body": "// FIXME: ",
-	},
-	"todo":{
-		"prefix": "todo",
-		"body": "// TODO: ",
-	},
-	"warning":{
-		"prefix": "warning",
-		"body": "// WARNING: ",
 	},
 }
