@@ -1,6 +1,4 @@
 {
-    "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",    
     "copyOnSelect": true,
     "alwaysShowTabs": true,
     "centerOnLaunch": true,
@@ -10,32 +8,34 @@
     "showTerminalTitleInTitlebar": true,
     "defaultProfile": "{14ad203f-52cc-4110-90d6-d96e0f41b64d}",
     "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "closeTab"
             },
             "keys": "ctrl+w"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "newTab"
             },
             "keys": "ctrl+t"
+        },
+        {
+            "command": 
+            {
+                "action": "clearBuffer"
+            },
+            "keys": "ctrl+l"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "useAcrylic": true,
             "historySize": 9001,
             "cursorShape": "bar",
             "padding": "0, 0, 0, 0",
-            "colorScheme": "Campbell",
+            "colorScheme": "One Half Dark",
             "background": "#373B3E",
             "cursorColor": "#FFFFFF",
             "scrollbarState": "hidden",
@@ -46,66 +46,21 @@
             "backgroundImageAlignment": "bottomRight",
             "experimental.retroTerminalEffect": false,
             "backgroundImage": "ms-appdata:///local/746011.png",
-            "font": 
-            {
-                "face": "Fira Code",
+            "font": {
+                // 备选字体: "Fira Code","JetBrains Mono Thin", "IBM 3270"
+                "face": "IBM 3270",
                 "size": 13
             }
         },
-        "list": 
-        [
+        "list": [
             {
                 "name": "git-bash",
-                "useAcrylic": true,
-                "snapOnInput": true,
-                "tabTitle": "GIT_BASH",
-                "closeOnExit": "graceful",
-                "colorScheme": "One Half Dark",
-                "suppressApplicationTitle": false,
-                "commandline": "D:/env/git/bin/bash.exe",
-                "icon": "ms-appdata:///local/git-bash.png",
+                "commandline": "D:/env/git/bin/bash.exe -i -l",
                 "guid": "{14ad203f-52cc-4110-90d6-d96e0f41b64d}"
-            },
-            {
-                "name": "45",
-                "opacity": 85,
-                "useAcrylic": true,
-                "snapOnInput": true,
-                "tabTitle": "10.2.1.45",
-                "closeOnExit": "graceful",
-                "cursorColor": "#FFFFFF",
-                "colorScheme": "One Half Dark",
-                "commandline": "ssh root@192.168.1.45",
-                "guid": "{55090a6a-b723-977a-b02e-fc534b0994b6}",
-                "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png"
             }
         ]
     },
-    "schemes": 
-    [
-        {
-            "background": "#0E0E0E",
-            "black": "#000000",
-            "blue": "#2472C8",
-            "brightBlack": "#666666",
-            "brightBlue": "#3B8EEA",
-            "brightCyan": "#29B8DB",
-            "brightGreen": "#23D18B",
-            "brightPurple": "#D670D6",
-            "brightRed": "#F14C4C",
-            "brightWhite": "#E5E5E5",
-            "brightYellow": "#F5F543",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#11A8CD",
-            "foreground": "#CCCCCC",
-            "green": "#0DBC79",
-            "name": "Dark+",
-            "purple": "#BC3FBC",
-            "red": "#CD3131",
-            "selectionBackground": "#FFFFFF",
-            "white": "#E5E5E5",
-            "yellow": "#E5E510"
-        },
+    "schemes": [
         {
             "background": "#282C34",
             "black": "#282C34",

@@ -18,20 +18,19 @@
     "terminal.integrated.cursorWidth": 3,
     "terminal.integrated.fontFamily": "Fira Code Light",
     "terminal.integrated.tabs.enabled": true,
-    "workbench.startupEditor": "none",
     "workbench.tree.indent": 8,
     "editor.bracketPairColorization.enabled": true,
+    "workbench.startupEditor": "none",
     "editor.guides.bracketPairs":"active",
     "highlightLine.borderColor": "#65EAB9",
     "highlightLine.borderStyle": "ridge",
     "highlightLine.borderWidth": "1px",
-
     "go.toolsManagement.autoUpdate": true,
     "[markdown]": {
         "editor.unicodeHighlight.ambiguousCharacters": false,
         "editor.unicodeHighlight.invisibleCharacters": false,
         "editor.wordWrap": "on",
-        "editor.quickSuggestions": true
+        "editor.quickSuggestions": false
     },
     "[go]": {
         "editor.codeActionsOnSave": {
@@ -54,6 +53,6 @@
     },
     "markdownlint.focusMode": true,
     "markdownlint.config": {
-        "no-inline-html": {"allowed_elements": ["div" ,"img", "p"]}
+        "no-inline-html": {"allowed_elements": ["div" ,"img", "p", "center"]}
     },
 }

@@ -1,0 +1,7 @@
+{
+	"string": {
+		"prefix": "sf",
+		"body": "String::from(\"$0\")",
+		"description": "create String from string"
+	}
+}
