@@ -3,10 +3,6 @@
         email = 44720162+lwifew@users.noreply.github.com
 [color]
         ui = true
-[https]
-        proxy = http://127.0.0.1:7890
-[http]
-        proxy = http://127.0.0.1:7890
 [alias]
         dog = log --all --decorate --oneline --graph
 [core]
@@ -17,4 +13,8 @@
         process = git-lfs filter-process
         required = true
 [init]
-        defaultBranch = main:
+        defaultBranch = main
+; [https]
+;         proxy = http://127.0.0.1:7890
+; [http]
+;         proxy = http://127.0.0.1:7890
