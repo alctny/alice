@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			// Rust
+			"vadimcn.vscode-lldb",
+			"rust-lang.rust-analyzer",
+			// Golang
+			"golang.go",
+			// Git
+			"mhutchie.git-graph",
+			// Markdown
+			"yzhang.markdown-all-in-one",
+			"DavidAnson.vscode-markdownlint",
+			// Myself
+			"zhuangtongfa.material-theme",
+			"cliffordfajardo.highlight-line-vscode",
+			"PKief.material-icon-theme",
+			"Tyriar.sort-lines"
+		],
+		"unwantedRecommendations": [
+			// Language Package
+			"MS-CEINTL.vscode-language-pack-zh-hans",
+			"MS-CEINTL.vscode-language-pack-zh-hant"
+		]
+	}
+}

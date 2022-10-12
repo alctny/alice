@@ -5,6 +5,7 @@
 - [Ant's Config](#ants-config)
   - [Visual Studio Code](#visual-studio-code)
     - [各配置文件所在目录](#各配置文件所在目录)
+    - [插件列表](#插件列表)
   - [Rime](#rime)
   - [Windows Terminal](#windows-terminal)
     - [几点说明](#几点说明)
@@ -29,10 +30,14 @@
   - 快捷键配置: `ROOT_PATH/Code/User/keybindings.json`
   - 自定义代码片段: `ROOT_PATH/Code/User/snippets/*.json`
 
+### 插件列表
+
+在本項目的 **vscode** 目錄下有一個名爲 **my-config.code-workspace** 的文件，是一個 VSCode 的工作空間文件，使用 VScode 打開該文件即可在 VSCode 中打開本項目（命令:`code my-config.code-workspace`）。該工作空間已經設置了推薦的插件列表和不要推薦的插件列表（語言包），打開之後 VSCode 會自動推薦你添加擴展，只需要點擊下載即可。或者在擴展頁面的搜索欄輸入 `@recommended` 即可看到本工作空間的推薦擴展列表。
+
 ## Rime
 
 > 关于 Rime 的配置只是最简单的配置,想要获取更好的配置可直接 clone 仓库 [ssnhd/rime](https://github.com/ssnhd/rime)  
-> ⚠️: 该仓库文件内容并不大，但 commit 次数很多，因此整体体积很大，考虑到并不需要查看其提交记录，因此在 clone 的时候添加 `--dep=1` 参数为佳
+> ⚠️: 该仓库文件内容并不多，但 commit 次数很多，所以整体体积很大。考虑到并不需要查看其提交记录，因此在 clone 的时候添加 `--dep=1` 参数为佳。
 
 配制文件所在地址
 
