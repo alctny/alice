@@ -12,6 +12,9 @@
 			"rust-lang.rust-analyzer",
 			// Golang
 			"golang.go",
+			// Database
+			"mongodb.mongodb-vscode",
+			"ppz.ppz",
 			// Git
 			"mhutchie.git-graph",
 			// Markdown
