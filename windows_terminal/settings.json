@@ -1,10 +1,12 @@
 {
+    "initialRows": 40,
+    "initialCols": 150,
     "copyOnSelect": true,
     "alwaysShowTabs": true,
     "centerOnLaunch": true,
-    "launchMode": "default",
     "disableAnimations": false,
     "showTabsInTitlebar": true,
+    "disabledProfileSources": false,
     "showTerminalTitleInTitlebar": true,
     "defaultProfile": "{14ad203f-52cc-4110-90d6-d96e0f41b64d}",
     "wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502",
@@ -22,8 +24,7 @@
             "keys": "ctrl+t"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "clearBuffer"
             },
             "keys": "ctrl+l"
@@ -62,6 +63,7 @@
     },
     "schemes": [
         {
+            "name": "One_Half_Dark",
             "background": "#282C34",
             "black": "#282C34",
             "blue": "#61AFEF",
@@ -77,15 +79,15 @@
             "cyan": "#56B6C2",
             "foreground": "#DCDFE4",
             "green": "#98C379",
-            "name": "One_Half_Dark",
             "purple": "#C678DD",
             "red": "#E06C75",
             "selectionBackground": "#FFFFFF",
+            "source": "https://github.com/DamourYouKnow/windows-terminal-miku",
             "white": "#DCDFE4",
-            "yellow": "#E5C07B",
-            "source": "https://github.com/DamourYouKnow/windows-terminal-miku"
+            "yellow": "#E5C07B"
         },
         {
+            "name": "Cyberpunk SCARLET",
             "background": "#000807",
             "black": "#65737e",
             "blue": "#00a2ff",
@@ -100,12 +102,11 @@
             "cyan": "#00c3ff",
             "foreground": "#ff3270",
             "green": "#9dff00",
-            "name": "Cyberpunk SCARLET",
             "purple": "#a200ff",
             "red": "#ff0000",
+            "source": "https://gist.github.com/hasparus/37f8e6ceb4112a0e33f2223dd1e9dd2e",
             "white": "#ffffff",
-            "yellow": "#ffff00",
-            "source": "https://gist.github.com/hasparus/37f8e6ceb4112a0e33f2223dd1e9dd2e"
+            "yellow": "#ffff00"
         },
         {
             "name": "CyberPunkUmbra",
@@ -127,9 +128,9 @@
             "purple": "#742D8B",
             "red": "#F02C35",
             "selectionBackground": "#5E35B1",
+            "source": "https://github.com/mikevromen/CyberPunk2077-umbra-WindowsTerminal",
             "white": "#D1C5C0",
-            "yellow": "#FDF500",
-            "source": "https://github.com/mikevromen/CyberPunk2077-umbra-WindowsTerminal"
+            "yellow": "#FDF500"
         },
         {
             "name": "Aurelia",
@@ -149,9 +150,9 @@
             "green": "#4EC9B0",
             "purple": "#714896",
             "red": "#E92888",
+            "source": "https://github.com/r-cass/void-scheme/tree/master/WindowsTerminal",
             "white": "#EAEAEA",
-            "yellow": "#CE9178",
-            "source":"https://github.com/r-cass/void-scheme/tree/master/WindowsTerminal"
+            "yellow": "#CE9178"
         }
     ]
 }

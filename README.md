@@ -9,6 +9,7 @@
   - [Rime](#rime)
   - [Windows Terminal](#windows-terminal)
     - [几点说明](#几点说明)
+  - [Sublime Text](#sublime-text)
   - [相关资源下载地址](#相关资源下载地址)
     - [字体](#字体)
     - [Windows Terminal 在线配色方案网站](#windows-terminal-在线配色方案网站)
@@ -36,8 +37,8 @@
 
 ## Rime
 
-> 关于 Rime 的配置只是最简单的配置,想要获取更好的配置可直接 clone 仓库 [ssnhd/rime](https://github.com/ssnhd/rime)  
-> ⚠️: 该仓库文件内容并不多，但 commit 次数很多，所以整体体积很大。考虑到并不需要查看其提交记录，因此在 clone 的时候添加 `--dep=1` 参数为佳。
+> 对于 Rime 明月拼音输入法的配置主要参考 [ssnhd/rime](https://github.com/ssnhd/rime) 修改而来，而五笔则主要使用 [官方](https://github.com/rime/rime-wubi) 的配置。  
+> ⚠️: [ssnhd/rime](https://github.com/ssnhd/rime) 仓库文件内容并不多，但 commit 次数很多，导致项目整体体积很大。考虑到并不需要查看其提交记录，因此在 git clone 的时候最好添加 `--dep=1` 参数或从网页只下载配置文件，不下载 .git 文件。
 
 配制文件所在地址
 
@@ -54,6 +55,14 @@
 2. `ms-appdata:///local/` 指向的路径是为配置文件所所在路径
 3. 几个不错的其他字体: *Fira Code*，*JetBrains Mono Thin*，*IBM 3270*
 4. Windows Terminal 配制文件所在目录为：`~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json`
+
+## Sublime Text
+
+Sublime Text 配置文件所在目录：
+
+- Windows: `C:\Users\USER_NAME\AppData\Roaming\Sublime Text\Packages\User\Preferences.sublime-settings`
+
+---
 
 ## 相关资源下载地址
 
