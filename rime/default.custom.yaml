@@ -1,2 +1,32 @@
 patch:
-  "menu/page_size": 9
+  schema_list:
+    - schema: luna_pinyin_simp # 朙月拼音
+    - schema: wubi_trad        # 五笔-简入繁出
+    - schema: wubi86           # 五笔
+    - schema: wubi_pinyin      # 五笔拼音
+
+  menu/page_size: 9 # 候选词个数
+
+  # 若 caps 切换大小写无效, 打开 Mac 系统偏好设置 > 键盘 > 输入法 > 取消勾选[使用大写锁定键切换“美国”输入模式]
+  ascii_composer/good_old_caps_lock: true # 若为 true， Caps 只切换大小写
+  ascii_composer/switch_key:
+    Caps_Lock: commit_code # Caps 键
+    Shift_L: commit_code # 左 Shift，切换中英文
+    Shift_R: commit_code # 右 Shift，切换中英文
+    Control_L: noop # 左 Control，屏蔽该切换键
+    Control_R: noop # 右 Control，屏蔽该切换键
+
+  key_binder/bindings: # 若开启, 去掉前面#
+    # 翻页
+    #- { when: has_menu, accept: Tab, send: Page_Down }            # "tab" 键翻页, 和 "tab" 键分词只能二选一
+    - { when: composing, accept: Tab, send: Shift+Right } # "tab" 键分词
+    - { when: paging, accept: minus, send: Page_Up } # "-" 上一页
+    - { when: has_menu, accept: equal, send: Page_Down } # "=" 下一页
+    # 快捷键
+    - { when: composing, accept: Control+a, send: Home }          # "Control+a" 光标移至首
+    - { when: composing, accept: Control+e, send: End }           # "Control+e" 光标移至尾
+    - { when: composing, accept: Control+g, send: Escape }        # "Control+g" 清码
+    - { when: composing, accept: Return, send: Escape }           # "Return" 回车清码
+    - { when: always, accept: Control+Shift+f, toggle: simplification } # 繁简体切换
+    #- { when: always, accept: Control+Shift+1, select: .next }             # 切换输入方案
+    #- { when: always, accept: Control+Shift+3, toggle: full_shape }        # 全角/半角切换
