@@ -3,6 +3,10 @@
 		"prefix": "msi",
 		"body": "map[string]interface{}{$0}"
 	},
+	"map-string-any": {
+		"prefix": "msa",
+		"body": "map[string]any{$0}"
+	},
 	"set": {
 		"prefix": "set",
 		"body": "map[$0]struct{}"
