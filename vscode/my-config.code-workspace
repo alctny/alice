@@ -24,7 +24,8 @@
 			"zhuangtongfa.material-theme",
 			"cliffordfajardo.highlight-line-vscode",
 			"PKief.material-icon-theme",
-			"Tyriar.sort-lines"
+			"Tyriar.sort-lines",
+			"MichaellAlavedraMunayco.angular-theme"
 		],
 		"unwantedRecommendations": [
 			// Language Package
