@@ -61,10 +61,12 @@
 
 在 `terminal.integrated.profiles.windows` 中可以配置终端列表，而通过不同的名字配置不同的终端（同一个 shell 可以重复配置）。`path` 参数指定 shell 路径，`args` 指定启动时候的参数。然后通过 `terminal.integrated.defaultProfile.windows` 选择默认开启终端。保存配置后重启终端即可（如果之前已经打开了其他终端程序需要先关闭）。
 
+> 如果能让 VSCode 在 Windows 环境下默认继承 Winodws Terminal 的配置就好了（不过好像也没有必要）
+
 ```json
 "terminal.integrated.profiles.windows": {
     "git-bash": {
-      "path": "D:\\env\\git\\usr\\bin\\bash.exe",
+      "path": "D:\\env\\git\\bin\\bash.exe",
       "args": ["-i", "-l"]
     }
 },

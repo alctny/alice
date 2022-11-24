@@ -1,17 +1,10 @@
 [
-  {
-    "key": "ctrl+o ctrl+w",
-    "command": "workbench.action.closeOtherEditors"
-  },
+  //! enable
   {
     "key": "alt+t",
     "command": "go.add.tags"
   },
-  {
-    "key": "ctrl+f9",
-    "command": "sortLines.sortLines",
-    "when": "editorTextFocus"
-  },
+  // upper lower change
   {
     "key": "shift+l shift+l",
     "command": "editor.action.transformToLowercase"
@@ -20,13 +13,10 @@
     "key": "shift+u shift+u",
     "command": "editor.action.transformToUppercase"
   },
+  // clost editor table
   {
-    "key": "ctrl+shift+3",
-    "command": "go.fill.struct"
-  },
-  {
-    "key": "ctrl+oem_comma",
-    "command": "workbench.action.openSettingsJson"
+    "key": "ctrl+o ctrl+w",
+    "command": "workbench.action.closeOtherEditors"
   },
   {
     "key": "ctrl+r ctrl+w",
@@ -36,23 +26,55 @@
     "key": "ctrl+l ctrl+w",
     "command": "workbench.action.closeEditorsToTheLeft"
   },
+  // just in windows
   {
-    "key": "ctrl+l",
-    "command": "-expandLineSelection",
-    "when": "textInputFocus"
+    "key": "ctrl+oem_7",
+    "command": "workbench.action.openApplicationSettingsJson"
+  },
+  // format
+  {
+    "key": "ctrl+shift+i",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   {
-    "key": "ctrl+l",
-    "command": "-notebook.centerActiveCell",
-    "when": "notebookEditorFocused"
+    "key": "ctrl+shift+i",
+    "command": "notebook.formatCell",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
   },
   {
-    "key": "ctrl+l",
-    "command": "workbench.action.terminal.clearCommandHistory"
+    "key": "ctrl+shift+i",
+    "command": "editor.action.formatDocument.none",
+    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+i", // keep same with linux default format hotkey
+    "command": "notebook.format",
+    "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
+  },
+  // activity bar visibility
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.toggleActivityBarVisibility"
+  },
+  //! ===========================disable===========================
+  {
+    "key": "ctrl+shift+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
+  },
+  {
+    "key": "shift+alt+f",
+    "command": "-editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
   {
     "key": "f9",
     "command": "-sortLines.sortLines",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
   }
 ]
