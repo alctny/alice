@@ -45,7 +45,8 @@
 - Windows: `~/AppData/Roaming/Rime`
 - Linus
   - ibus: `~/.config/ibus/rime/`
-  - fcitx: `~/.config/fcitx/rime/`
+  - fcitx: `~/.local/share/fcitx/rime/`
+  - fcitx5: `~/.local/share/fcitx5/rime/`
 
 ## Windows Terminal
 
