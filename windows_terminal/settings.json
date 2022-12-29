@@ -49,7 +49,7 @@
             "backgroundImage": "ms-appdata:///local/746011.png",
             "font": {
                 // 备选字体: "Fira Code","JetBrains Mono Thin", "IBM 3270"
-                "face": "IBM 3270",
+                "face": "Fira Code",
                 "size": 13
             }
         },
