@@ -1,7 +1,8 @@
 #! /bin/bash
 
 sudo dnf install ibus ibus-rime
-cat <<EOF >>~/.bashrc
+
+cat << EOF >> ~/.bashrc
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
@@ -11,4 +12,5 @@ EOF
 if [ ! -d ~/.config/ibus/rime ]; then
   mkdir -p ~/.config/ibus/rime
 fi
-cp -r ../rime/* ~/.config/ibus/rime/
+
+# copy rime configure file to .config/ibus/rime/

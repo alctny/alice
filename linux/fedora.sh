@@ -18,5 +18,6 @@ sudo flatpak install steam
 
 # 使用清华源
 
-bash fcitx5-chinese-input.sh
 neofetch
+
+echo "all configure susses"

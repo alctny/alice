@@ -1,0 +1,16 @@
+alias c='clear'
+alias e='exit'
+alias l='ls'
+alias ll='ls -l'
+alias vi='vim'
+alias sn='shutdown now'
+alias enable_proxy='export https_proxy=http://127.0.0.1:7890; export http_proxy=http://127.0.0.1:7890; export all_proxy=socks5://127.0.0.1:7890'
+alias disable_peoxy='unset https_proxy; unset http_proxy; unset all_proxy'
+
+if [ -e "/usr/local/bin/mv" ]; then
+  alias mv='mv -ig'
+fi
+
+if [ -e "/usr/local/bin/cp" ]; then
+  alias cp='cp -ig'
+fi
