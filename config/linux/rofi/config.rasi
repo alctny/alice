@@ -1,8 +1,7 @@
 configuration {
-	font: "Inconsolata 14";
 	show-icons: true;
-	icon-theme: "numix-circle";
+	icon-theme: "BigSur-dark";
 	display-drun: "drun";
 }
 
-@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+@theme "theme.rasi"

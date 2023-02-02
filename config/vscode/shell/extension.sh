@@ -12,11 +12,12 @@
 # --inspect-brk-extensions <port>     Allow debugging and profiling of extensions with the extension host being paused after
 
 # set extension download path
-code --extensions-dir ~/.local/shar/vscode/extensions
+code --extensions-dir ~/.local/share/vscode/extensions
 
 # general
 code --install-extension christian-kohler.path-intellisense
 code --install-extension Tyriar.sort-lines
+code --install-extension naumovs.color-highlight
 # theme
 code --install-extension GitHub.github-vscode-theme
 code --install-extension illixion.vscode-vibrancy-continued
