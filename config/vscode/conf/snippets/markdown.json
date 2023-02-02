@@ -1,0 +1,10 @@
+{
+	"img-center": {
+		"prefix": "div",
+		"body": "<div align=center> <img src=\"$0\"> </div>"
+	},
+	"center": {
+		"prefix": "c",
+		"body": "<center>$0</center>"
+	}
+}

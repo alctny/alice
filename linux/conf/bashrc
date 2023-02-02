@@ -1,8 +1,0 @@
-export PS1='\w\n🦚>'
-
-alias c='clear'
-alias e='exit'
-alias l='ls'
-alias ll='ls -l'
-alias vi=vim
-alias sn='shutdown now'

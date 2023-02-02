@@ -1,6 +1,8 @@
 # Ant's Config
 
 > 一个懒人的各种配置文件和一个还没有写的自动部署脚本罢了
+>
+> 目录经过多次调整，以下大部分目录已经失效，待更新
 
 - [Ant's Config](#ants-config)
   - [Visual Studio Code](#visual-studio-code)
@@ -13,6 +15,12 @@
   - [相关资源下载地址](#相关资源下载地址)
     - [字体](#字体)
     - [Windows Terminal 在线配色方案网站](#windows-terminal-在线配色方案网站)
+
+目录结构：
+
+- config: 现成可用的配置文件
+- shell: 软件安装和其他辅助脚本
+- resousrce: 外部文件，如壁纸，字体，主题等
 
 ## Visual Studio Code
 

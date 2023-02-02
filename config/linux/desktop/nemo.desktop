@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=Nemo File Manager
+Exec=/usr/bin/nemo
+Terminal=false
+Type=Application
+Icon=chromium-browser
