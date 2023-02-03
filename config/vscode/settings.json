@@ -1,0 +1,75 @@
+{
+    "debug.onTaskErrors": "abort",
+
+    "editor.accessibilitySupport": "off",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.fontFamily": "Fira Code Light",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 15,
+    "editor.guides.bracketPairs": "active",
+    "editor.hover.sticky": false,
+    "editor.insertSpaces": true,
+    "editor.largeFileOptimizations": false,
+    "editor.lineNumbers": "on",
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 2,
+
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "files.autoSave": "onFocusChange",
+
+    "highlightLine.borderColor": "#65EAB9",
+    "highlightLine.borderStyle": "ridge",
+    "highlightLine.borderWidth": "1px",
+
+    "terminal.explorerKind": "integrated",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 1,
+    "terminal.integrated.fontFamily": "Fira Code SemiBold",
+    "terminal.integrated.gpuAcceleration": "auto",
+
+    "update.mode": "none",
+
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "readme",
+
+    "C_Cpp.clang_format_fallbackStyle": "google",
+    "C_Cpp.clang_format_style": "google",
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true
+    },
+    "[cpp]": {
+        "editor.wordBasedSuggestions": false,
+        "editor.suggest.insertMode": "replace",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true,
+        "editor.formatOnPaste": true
+    },
+
+    "go.toolsManagement.autoUpdate": true,
+    "go.addTags": {
+        "tags": "json,bson",
+        "promptForTags": true,
+        "options": "json=omitempty,bson=omitempty"
+    },
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+
+    "[rust]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+        "editor.formatOnPaste": true
+    }
+}
