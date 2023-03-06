@@ -1,10 +1,5 @@
 [
-  //! enable
-  {
-    "key": "alt+t",
-    "command": "go.add.tags"
-  },
-  // upper lower change
+  // 大小写转换
   {
     "key": "shift+l shift+l",
     "command": "editor.action.transformToLowercase"
@@ -13,7 +8,7 @@
     "key": "shift+u shift+u",
     "command": "editor.action.transformToUppercase"
   },
-  // clost editor table
+  // 标签页管理
   {
     "key": "ctrl+o ctrl+w",
     "command": "workbench.action.closeOtherEditors"
@@ -26,55 +21,16 @@
     "key": "ctrl+l ctrl+w",
     "command": "workbench.action.closeEditorsToTheLeft"
   },
-  // just in windows
-  {
-    "key": "ctrl+oem_7",
-    "command": "workbench.action.openApplicationSettingsJson"
-  },
-  // format
+  // 格式化
   {
     "key": "ctrl+shift+i",
     "command": "editor.action.formatDocument",
     "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
   },
-  {
-    "key": "ctrl+shift+i",
-    "command": "notebook.formatCell",
-    "when": "editorHasDocumentFormattingProvider && editorTextFocus && inCompositeEditor && notebookEditable && !editorReadonly && activeEditor == 'workbench.editor.notebook'"
-  },
-  {
-    "key": "ctrl+shift+i",
-    "command": "editor.action.formatDocument.none",
-    "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
-  },
-  {
-    "key": "ctrl+shift+i", // keep same with linux default format hotkey
-    "command": "notebook.format",
-    "when": "notebookEditable && !editorTextFocus && activeEditor == 'workbench.editor.notebook'"
-  },
-  // activity bar visibility
-  {
-    "key": "ctrl+b",
-    "command": "workbench.action.toggleActivityBarVisibility"
-  },
-  //! ===========================disable===========================
-  {
-    "key": "ctrl+shift+b",
-    "command": "-workbench.action.tasks.build",
-    "when": "taskCommandsRegistered"
-  },
-  {
-    "key": "shift+alt+f",
-    "command": "-editor.action.formatDocument",
-    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
+  // 冲突快捷键
   {
     "key": "f9",
     "command": "-sortLines.sortLines",
     "when": "editorTextFocus"
   },
-  {
-    "key": "ctrl+b",
-    "command": "-workbench.action.toggleSidebarVisibility"
-  }
 ]
