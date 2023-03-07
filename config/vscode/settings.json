@@ -1,8 +1,8 @@
 {
     // 编辑页面
-    "editor.fontFamily": "Jetbrains Mono Thin", // 字体
+    "editor.fontFamily": "FiraCode Nerd Font", // 字体
     "editor.fontLigatures": true,               // 启用连体字
-    "editor.fontSize": 15,                      // 字体大小
+    "editor.fontSize": 17,                      // 字体大小
     "editor.hover.sticky": false,               // 悬浮代码提示
     "editor.insertSpaces": true,                // tab 替换为空格
     "editor.tabSize": 2,                        // 1tab = 2space
@@ -22,13 +22,12 @@
     // 终端
     "terminal.integrated.cursorStyle": "line",                  // 光标样式为竖线
     "terminal.integrated.cursorBlinking": true,                 // 启用光标闪烁
-    "terminal.integrated.fontFamily": "Jetbrains Mono Thin",    // 字体
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",    // 字体
     // UI
     "workbench.startupEditor": "none",              // 启动页面
-    "window.menuBarVisibility": "compact",          // 隐藏标题栏
+    "window.menuBarVisibility": "toggle",           // 隐藏标题栏
     "workbench.iconTheme": "material-icon-theme",   // 图标主题
     "workbench.colorTheme": "GitHub Dark Default",  // 主题
-    "workbench.editor.showTabs": false,             // 不显示编辑页面头顶标签
     // 语言
     "cmake.configureOnOpen": false,                 // 禁用 CMake 自动 configure
     "C_Cpp.clang_format_fallbackStyle": "google",   // C/C++ 代码格式
@@ -37,5 +36,5 @@
     "update.showReleaseNotes": false,                   // 不查看更新信息
     "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
     "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
-    "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
+    "debug.onTaskErrors": "abort"                      // launch.json tasks.json 错误中断 debug
 }
