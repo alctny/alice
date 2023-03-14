@@ -10,6 +10,15 @@
     // 文件管理
     "explorer.confirmDelete": false,      // 删除不需要确认
     "explorer.confirmDragAndDrop": false, // 文件拖拽不需要确认
+    "files.exclude": {                    // 不显示在文件树
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/__pycache__":true
+    },
     // 扩展
     "highlightLine.borderColor": "#65EAB9",
     "highlightLine.borderStyle": "groove", 
