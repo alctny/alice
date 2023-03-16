@@ -1,41 +1,46 @@
 [
-  // 大小写转换
-  {
-    "key": "shift+l shift+l",
-    "command": "editor.action.transformToLowercase"
-  },
-  {
-    "key": "shift+u shift+u",
-    "command": "editor.action.transformToUppercase"
-  },
-  // 标签页管理
-  {
-    "key": "ctrl+o ctrl+w",
-    "command": "workbench.action.closeOtherEditors"
-  },
-  {
-    "key": "ctrl+r ctrl+w",
-    "command": "workbench.action.closeEditorsToTheRight"
-  },
-  {
-    "key": "ctrl+l ctrl+w",
-    "command": "workbench.action.closeEditorsToTheLeft"
-  },
-  // 格式化
-  {
-    "key": "ctrl+shift+i",
-    "command": "editor.action.formatDocument",
-    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-  },
-  // 配置文件
-  {
-    "key": "ctrl+,",
-    "command": "workbench.action.openApplicationSettingsJson"
-  },
-  // 冲突快捷键
-  {
-    "key": "f9",
-    "command": "-sortLines.sortLines",
-    "when": "editorTextFocus"
-  },
+    // 大小写转换
+    {
+        "key": "shift+l shift+l",
+        "command": "editor.action.transformToLowercase"
+    },
+    {
+        "key": "shift+u shift+u",
+        "command": "editor.action.transformToUppercase"
+    },
+    // 标签页管理
+    {
+        "key": "ctrl+o ctrl+w",
+        "command": "workbench.action.closeOtherEditors"
+    },
+    {
+        "key": "ctrl+r ctrl+w",
+        "command": "workbench.action.closeEditorsToTheRight"
+    },
+    {
+        "key": "ctrl+l ctrl+w",
+        "command": "workbench.action.closeEditorsToTheLeft"
+    },
+    // 格式化
+    {
+        "key": "ctrl+shift+i",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    // 終端
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.terminal.clear"
+    },
+    // 配置文件
+    {
+        "key": "ctrl+,",
+        "command": "workbench.action.openApplicationSettingsJson"
+    },
+    // 冲突快捷键
+    {
+        "key": "f9",
+        "command": "-sortLines.sortLines",
+        "when": "editorTextFocus"
+    },
 ]
