@@ -32,6 +32,11 @@
         "key": "ctrl+l",
         "command": "workbench.action.terminal.clear"
     },
+    {
+        "key": "ctrl+shift+c",
+        "command": "-workbench.action.terminal.openNativeConsole",
+        "when": "!terminalFocus"
+    },
     // 配置文件
     {
         "key": "ctrl+,",

@@ -41,12 +41,20 @@
     "cmake.configureOnOpen": false,                 // 禁用 CMake 自动 configure
     "C_Cpp.clang_format_fallbackStyle": "google",   // C/C++ 代码格式
     "python.linting.flake8Args": [
-        "--max-line-length=120",                    // 忽略单行代码过长
+        "--max-line-length=120",                    // 允许 flake8 单行代码长度
         // "--ignore=E402,F841,F401,E302,E305",     // 忽略部分警告
     ],
     "[python]": {
         "editor.formatOnType": true
     },
+    "flake8.args": [
+        "--max-line-length=120",                    // 忽略单行代码过长
+    ],
+    "python.formatting.autopep8Args": [
+        "--max-line-length", 
+        "120", 
+        "--experimental"
+    ],
     // VS Code
     "update.mode": "none",                              // 关闭自动更新
     "update.showReleaseNotes": false,                   // 不查看更新信息
