@@ -14,3 +14,17 @@ function unproxy() {
 function gi() { 
   curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
+
+# remove space in file name
+function rsfn() {
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+  tmp_file="space_${uuid}"
+  for i in "d" "f"; do
+      find . -name "* *" -type ${i} > ${tmp_file}
+      while read fn; do
+          nfn=$(echo ${fn} | tr -d [:space:])
+          mv "${fn}" "${nfn}"
+      done < ${tmp_file}
+  done
+  rm ${tmp_file}
+}

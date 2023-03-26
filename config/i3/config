@@ -37,8 +37,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use xbacklight to adjust screen light
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 
 
@@ -113,8 +113,8 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 " daily"
 set $ws2 " game"
-set $ws3 "󰘦 code"
-# set $ws4 "4"
+set $ws3 " code"
+set $ws4 " temp"
 # set $ws5 "5"
 # set $ws6 "6"
 # set $ws7 "7"
@@ -126,7 +126,7 @@ set $ws3 "󰘦 code"
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
-# bindsym $mod+4 workspace $ws4
+bindsym $mod+4 workspace $ws4
 # bindsym $mod+5 workspace $ws5
 # bindsym $mod+6 workspace $ws6
 # bindsym $mod+7 workspace $ws7
