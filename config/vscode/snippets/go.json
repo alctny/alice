@@ -58,5 +58,13 @@
 	"for-range-v": {
 		"prefix": "frv",
 		"body": "for _, v := range $0 {\n\n}"
+	},
+	"testingt": {
+		"prefix": "ttt",
+		"body": "t *testing.T"
+	},
+	"testingb": {
+		"prefix": "ttb",
+		"body": "t *testing.B"
 	}
 }
