@@ -1,24 +1,25 @@
-alias aliyunpan='/opt/aliyunpan/aliyunpan'
 alias c='clear'
 alias dps="docker ps"
 alias dls="docker images"
 alias drmc="docker container rm"
 alias drmi="docker image rm"
 alias e='exit'
-alias emacs='emacs -nw'
+alias nmac='emacs -nw'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -alh'
 alias sn='shutdown now'
-alias vi='nvim'
-alias vim='nvim'
-alias mount='mount -o uid=`id -u` -o gid=`id -g` -o iocharset=utf8'
+alias aount='mount -o uid=`id -u` -o gid=`id -g` -o iocharset=utf8'
 
-if [ -e "/usr/local/bin/mv" ]; then
+if [ -e /usr/local/bin/mv ]; then
   alias mv='mv -ig'
 fi
 
-if [ -e "/usr/local/bin/cp" ]; then
+if [ -e /usr/local/bin/cp ]; then
   alias cp='cp -ig'
+fi
+
+if [ -e .alias.self ]; then
+  . .alias.self
 fi
