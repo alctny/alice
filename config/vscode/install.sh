@@ -24,6 +24,10 @@ code --install-extension yzane.markdown-pdf # 导出 Markdowon 为 PDF
 code --install-extension gera2ld.markmap-vscode # 用 Markdown 语法写思维导图
 
 # code tool
+# global
+code --install-extension bungcip.better-toml # toml 高亮
+code --install-extension usernamehw.errorlens # 錯誤提示信息
+
 # c/cpp
 code --install-extension ms-vscode.cpptools-extension-pack # C/C++ 开发插件合集
 code --install-extension twxs.cmake # CMake 语言支持
@@ -36,6 +40,7 @@ code --install-extension ms-python.python # python 开发插件合集
 code --install-extension rust-lang.rust-analyzer # rust 语法检测
 code --install-extension tamasfe.even-better-toml # rust toml 支持
 code --install-extension vadimcn.vscode-lldb # rust 调试插件
+code --install-extension serayuzgur.crates
 # fore-ent
 code --install-extension ritwickdey.LiveServer # 即时预览
 code --install-extension ecmel.vscode-html-css # html/css 支持
