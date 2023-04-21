@@ -42,10 +42,15 @@
         "key": "ctrl+,",
         "command": "workbench.action.openApplicationSettingsJson"
     },
+    // 添加斷言斷點
+    {
+        "key": "ctrl+f9",
+        "command": "editor.debug.action.conditionalBreakpoint"
+    },
     // 冲突快捷键
     {
         "key": "f9",
         "command": "-sortLines.sortLines",
         "when": "editorTextFocus"
-    },
+    }
 ]

@@ -1,7 +1,1 @@
-configuration {
-	show-icons: true;
-	icon-theme: "BigSur-dark";
-	display-drun: "drun";
-}
-
-@theme "theme.rasi"
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"

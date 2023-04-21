@@ -1,8 +1,8 @@
 {
     // 编辑页面
-    "editor.fontFamily": "FiraCode Nerd Font", // 字体
+    "editor.fontFamily": "FiraCode Nerd Font",  // 字体
     "editor.fontLigatures": true,               // 启用连体字
-    "editor.fontSize": 17,                      // 字体大小
+    "editor.fontSize": 13,                      // 字体大小
     "editor.hover.sticky": false,               // 悬浮代码提示
     "editor.insertSpaces": true,                // tab 替换为空格
     "editor.tabSize": 2,                        // 1tab = 2space
@@ -17,7 +17,8 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**/__pycache__":true
+        "**/__pycache__":true,
+        "**/.venv":true
     },
     // 扩展
     "highlightLine.borderColor": "#65EAB9",
@@ -29,8 +30,8 @@
     "go.toolsManagement.autoUpdate": false,         // 禁用 go 工具链自动更新
     "liveServer.settings.donotShowInfoMsg": false,  // 关闭 liveserver 提示
     // 终端
-    "terminal.integrated.cursorStyle": "line",                  // 光标样式为竖线
-    "terminal.integrated.cursorBlinking": true,                 // 启用光标闪烁
+    "terminal.integrated.cursorStyle": "line",                 // 光标样式为竖线
+    "terminal.integrated.cursorBlinking": true,                // 启用光标闪烁
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",    // 字体
     // UI
     "workbench.startupEditor": "none",              // 启动页面
@@ -38,18 +39,22 @@
     "workbench.iconTheme": "material-icon-theme",   // 图标主题
     "workbench.colorTheme": "GitHub Dark Default",  // 主题
     // 语言
-    "cmake.configureOnOpen": false,                 // 禁用 CMake 自动 configure
     "C_Cpp.clang_format_fallbackStyle": "google",   // C/C++ 代码格式
     "python.linting.flake8Args": [
-        "--max-line-length=120",                    // 允许 flake8 单行代码长度
+        "--max-line-length=120"                     // 允许 flake8 单行代码长度
         // "--ignore=E402,F841,F401,E302,E305",     // 忽略部分警告
     ],
     "[python]": {
         "editor.formatOnType": true
     },
     "flake8.args": [
-        "--max-line-length=120",                    // 忽略单行代码过长
+        "--max-line-length=120"                     // 忽略单行代码过长
     ],
+    "[typst]": {
+        "editor.wordWrap": "on",
+        "editor.tabSize": 4,
+        "editor.useTabStops": true
+    },
     "python.formatting.autopep8Args": [
         "--max-line-length", 
         "120", 
@@ -60,5 +65,10 @@
     "update.showReleaseNotes": false,                   // 不查看更新信息
     "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
     "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
-    "debug.onTaskErrors": "abort"                      // launch.json tasks.json 错误中断 debug
+    "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "always",
+    "typst-lsp.exportPdf": "never",
+    "typst-ws.executable": "/home/ant/.cargo/bin/typst-ws" 
 }
