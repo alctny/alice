@@ -98,15 +98,15 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 #  󰙲     󱢺  󱍢 
-set $ws1 " daily"
-set $ws2 " game"
-set $ws3 " code"
-set $ws4 " lwifew"
-set $ws5 "󱍢 ant"
-set $ws6 "󱢺 alice"
-set $ws7 "  muse"
-set $ws8 " social"
-set $ws9 " temp"
+set $ws1 "  daily"
+set $ws2 "  game"
+set $ws3 "  code"
+set $ws4 "  lwifew"
+set $ws5 "󱍢  ant"
+set $ws6 "󱢺  alice"
+set $ws7 "   muse"
+set $ws8 "  social"
+set $ws9 "  temp"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -145,6 +145,6 @@ bindsym $mod+p exec xrandr --output eDP --off --output DisplayPort-1 --auto
 
 # ================= window bind workspace =================
 
-assign [class="Steam"] " game"
-assign [class="qqmusic"] "  muse"
-assign [class="QQ"] " social"
+assign [class="Steam"] $ws2
+assign [class="qqmusic"] $ws7
+assign [class="QQ"] $ws8
