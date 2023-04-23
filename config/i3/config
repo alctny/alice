@@ -26,7 +26,7 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --bg-scale "/home/ant/pictures/sys/wallpaper.jpg"
 exec_always --no-startup-id xrandr --output eDP --auto --primary
 
-# 不要在設置自動關閉主限制器的行為，不然會在外接顯示器斷開時陷入無法恢復的黑屏
+# 不要在設置自動關閉主顯示器的行為，不然會在外接顯示器斷開時陷入無法恢復的黑屏
 # exec --no-startup-id xrandr --output DisplayPort-1 --auto --output eDP --off
 # exec --no-startup-id xrandr --output HDMI-1 --rotate left
 # exec --no-startup-id xrandr --output eDP-1 --right-of HDMI-1
@@ -98,15 +98,15 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 #  󰙲     󱢺  󱍢 
-set $ws1 "  daily"
-set $ws2 "  game"
-set $ws3 "  code"
-set $ws4 "  lwifew"
-set $ws5 "󱍢  ant"
-set $ws6 "󱢺  alice"
-set $ws7 "   muse"
-set $ws8 "  social"
-set $ws9 "  temp"
+set $ws1 "I"
+set $ws2 "II"
+set $ws3 "III"
+set $ws4 "IV"
+set $ws5 "V"
+set $ws6 "VI"
+set $ws7 "VII"
+set $ws8 "VIII"
+set $ws9 "IX"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
