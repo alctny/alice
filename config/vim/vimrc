@@ -11,7 +11,6 @@ set softtabstop=4
 set expandtab
 set smartindent
 set backspace=2
-set co=5
 
 " 设置取消备份 禁止临时文件
 set nobackup
@@ -20,6 +19,6 @@ set noswapfile
 " 设置匹配模式 类似当输入一个左括号时会匹配相应的那个右括号
 set showmatch
 set clipboard^=unnamed,unnamedplus
-"突出显示当前行
+" 突出显示当前行
 set cursorline
 set fdm=marker

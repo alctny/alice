@@ -23,13 +23,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/pictures/sys/
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# 壁纸
 exec_always --no-startup-id feh --bg-scale "/home/ant/pictures/sys/wallpaper.jpg"
-exec_always --no-startup-id xrandr --output eDP --auto --primary
 
-# 不要在設置自動關閉主顯示器的行為，不然會在外接顯示器斷開時陷入無法恢復的黑屏
-# exec --no-startup-id xrandr --output DisplayPort-1 --auto --output eDP --off
-# exec --no-startup-id xrandr --output HDMI-1 --rotate left
-# exec --no-startup-id xrandr --output eDP-1 --right-of HDMI-1
+# 设置主屏
+exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1}') --auto --primary
 
 exec --no-startup-id picom
 exec --no-startup-id dunst &
@@ -62,12 +60,6 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -79,7 +71,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -141,10 +133,10 @@ bindsym Print exec flameshot gui
 bindsym F1 exec xfce4-terminal --drop-down
 bindsym $mod+l exec i3lock -i ~/pictures/sys/lock.png
 bindsym $mod+space exec --no-startup-id rofi -show drun
-bindsym $mod+p exec xrandr --output eDP --off --output DisplayPort-1 --auto
+# 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
+bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --off --primary --output $(xrandr | grep " connect" | grep -v "eDP" | awk '{print $1}' | head -n 1) --auto
 
 # ================= window bind workspace =================
-
 assign [class="Steam"] $ws2
 assign [class="qqmusic"] $ws7
 assign [class="QQ"] $ws8
