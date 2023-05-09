@@ -24,11 +24,16 @@
     "highlightLine.borderColor": "#65EAB9",
     "highlightLine.borderStyle": "groove", 
     "highlightLine.borderWidth": "1px",
-    "extensions.ignoreRecommendations": true,       // 忽略插件推荐
-    "extensions.autoUpdate": true,                  // 插件自动更新
-    "extensions.autoCheckUpdates": true,            // 插件自动检查更新
-    "go.toolsManagement.autoUpdate": false,         // 禁用 go 工具链自动更新
-    "liveServer.settings.donotShowInfoMsg": false,  // 关闭 liveserver 提示
+    "extensions.ignoreRecommendations": true,               // 忽略插件推荐
+    "extensions.autoUpdate": true,                          // 插件自动更新
+    "extensions.autoCheckUpdates": true,                    // 插件自动检查更新
+    "go.toolsManagement.autoUpdate": false,                 // 禁用 go 工具链自动更新
+    "liveServer.settings.donotShowInfoMsg": false,          // 关闭 liveserver 提示
+    "typst-lsp.exportPdf": "never",                         // 关闭 typst 自动生成 PDF
+    "typst-ws.executable": "/home/ant/.cargo/bin/typst-ws", // 指定 typst 编译器位置
+    "cmake.configureOnOpen": true,                          // 自动 cmake configure
+    "hexeditor.columnWidth": 16,                            // 二进制编辑器行宽
+    "hexeditor.defaultEndianness": "little",                // 默认小端字序
     // 终端
     "terminal.integrated.cursorStyle": "line",                 // 光标样式为竖线
     "terminal.integrated.cursorBlinking": true,                // 启用光标闪烁
@@ -37,9 +42,11 @@
     "workbench.startupEditor": "none",              // 启动页面
     "window.menuBarVisibility": "toggle",           // 隐藏标题栏
     "workbench.iconTheme": "material-icon-theme",   // 图标主题
-    "workbench.colorTheme": "GitHub Dark Default",  // 主题
+    "workbench.colorTheme": "Xcode Default Dark",   // 主题
+
     // 语言
-    "C_Cpp.clang_format_fallbackStyle": "google",   // C/C++ 代码格式
+    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 120}",   // C/C++ 代码格式
+    "C_Cpp.formatting": "clangFormat",
     "python.linting.flake8Args": [
         "--max-line-length=120"                     // 允许 flake8 单行代码长度
         // "--ignore=E402,F841,F401,E302,E305",     // 忽略部分警告
@@ -48,27 +55,26 @@
         "editor.formatOnType": true
     },
     "flake8.args": [
-        "--max-line-length=120"                     // 忽略单行代码过长
+        "--max-line-length=120"                     // 适应现代屏幕宽度
+    ],
+    "python.formatting.autopep8Args": [
+        "--max-line-length", 
+        "120", 
+        "--experimental"
     ],
     "[typst]": {
         "editor.wordWrap": "on",
         "editor.tabSize": 4,
         "editor.useTabStops": true
     },
-    "python.formatting.autopep8Args": [
-        "--max-line-length", 
-        "120", 
-        "--experimental"
-    ],
+    "[rust]":{
+        "editor.tabSize": 4
+    },
     // VS Code
     "update.mode": "none",                              // 关闭自动更新
     "update.showReleaseNotes": false,                   // 不查看更新信息
     "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
     "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
     "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
-    "git.enableSmartCommit": true,
-    "git.confirmSync": false,
-    "git.openRepositoryInParentFolders": "always",
-    "typst-lsp.exportPdf": "never",
-    "typst-ws.executable": "/home/ant/.cargo/bin/typst-ws" 
+    "http.proxy": "http://127.0.0.1:7890"               // sci
 }

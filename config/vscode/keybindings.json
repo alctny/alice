@@ -30,7 +30,8 @@
     // 終端
     {
         "key": "ctrl+l",
-        "command": "workbench.action.terminal.clear"
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus"
     },
     {
         "key": "ctrl+shift+c",
@@ -47,10 +48,14 @@
         "key": "ctrl+f9",
         "command": "editor.debug.action.conditionalBreakpoint"
     },
+    {
+        "key": "ctrl+f10",
+        "command": "editor.debug.action.editBreakpoint"
+    },
     // 冲突快捷键
     {
         "key": "f9",
         "command": "-sortLines.sortLines",
         "when": "editorTextFocus"
-    }
+    },
 ]

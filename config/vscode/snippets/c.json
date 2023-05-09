@@ -1,0 +1,14 @@
+{
+	"printf": {
+		"prefix": "pln",
+		"body": "printf(\"$1\n\",$2);"
+	},
+	"return": {
+		"prefix": "re",
+		"body": "return $1;"
+	},
+	"struct": {
+		"prefix": "str",
+		"body": "struct $1"
+	}
+}

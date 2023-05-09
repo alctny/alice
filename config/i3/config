@@ -1,15 +1,19 @@
 set $mod Mod4
 floating_modifier $mod
 
-# Theme colors
-client.focused            #ECEFF4      #2E3440     #E5E9F0     #E5E9F0       #ECECEC
-client.focused_inactive   #4C556A      #ECEFF4     #000000     #ECECEC       #ECECEC
-client.unfocused          #ECEFF4      #ECEFF4     #000000     #ECECEC       #ECECEC
-client.urgent             #BF616A      #BF616A     #ffffff     #268BD2
-client.placeholder        #ECEFF4      #909090     #FFFFFF     #268BD2
+# Theme colors            border       backgr.     text        indicator     child_border
+client.focused            #BF616A      #BF616A     #F0F8FF     #F0F8FF       #F0F8FF
+client.focused_inactive   #4C556A      #4C556A     #000000     #F0F8FF       #F0F8FF
+client.unfocused          #268BD2      #268BD2     #000000     #F0F8FF       #F0F8FF
+client.urgent             #BF616A      #BF616A     #F0F8FF     #268BD2
+client.placeholder        #909090      #909090     #F0F8FF     #268BD2
 
 # Window Config
 default_border pixel 0
+
+font pango:Noto Sans Mono 0
+# for_window [class="^.*"] border normal 0
+for_window [class=".*"] title_format "<span></span>"
 
 # Gaps config
 gaps inner 0
@@ -134,6 +138,7 @@ bindsym F1 exec xfce4-terminal --drop-down
 bindsym $mod+l exec i3lock -i ~/pictures/sys/lock.png
 bindsym $mod+space exec --no-startup-id rofi -show drun
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
+# TODO 添加仅主屏，扩展屏，共享屏
 bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --off --primary --output $(xrandr | grep " connect" | grep -v "eDP" | awk '{print $1}' | head -n 1) --auto
 
 # ================= window bind workspace =================
