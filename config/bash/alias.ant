@@ -10,6 +10,7 @@ alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -alh'
 alias sn='shutdown now'
+alias rm='rm -i'
 alias amnt='sudo mount -o uid=`id -u` -o gid=`id -g` -o iocharset=utf8'
 alias resource='source ~/.bashrc'
 alias 7z=7zz

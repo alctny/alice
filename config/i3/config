@@ -1,15 +1,16 @@
 set $mod Mod4
 floating_modifier $mod
 
-# Theme colors            border       backgr.     text        indicator     child_border
-client.focused            #BF616A      #BF616A     #F0F8FF     #F0F8FF       #F0F8FF
-client.focused_inactive   #4C556A      #4C556A     #000000     #F0F8FF       #F0F8FF
-client.unfocused          #268BD2      #268BD2     #000000     #F0F8FF       #F0F8FF
+# Theme colors            border    backgr. text   indicator   child_border
+client.focused            #BF616A      #BF616A     #BF616A     #BF616A       #BF616A
+client.unfocused          #268BD2      #268BD2     #268BD2     #268BD2       #268BD2
+client.focused_inactive   #4C556A      #F0F8FF     #000000     #F0F8FF       #F0F8FF
 client.urgent             #BF616A      #BF616A     #F0F8FF     #268BD2
-client.placeholder        #909090      #909090     #F0F8FF     #268BD2
+client.placeholder        #F0F8FF      #909090     #F0F8FF     #268BD2
 
 # Window Config
 default_border pixel 0
+font pango:Noto San Mono 0
 
 font pango:Noto Sans Mono 0
 # for_window [class="^.*"] border normal 0
@@ -18,6 +19,8 @@ for_window [class=".*"] title_format "<span></span>"
 # Gaps config
 gaps inner 0
 gaps outer 0
+
+
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -145,3 +148,5 @@ bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --of
 assign [class="Steam"] $ws2
 assign [class="qqmusic"] $ws7
 assign [class="QQ"] $ws8
+assign [class="Telegram"] $ws8
+assign [class="微信"] $ws8
