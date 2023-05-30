@@ -76,5 +76,7 @@
     "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
     "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
     "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
-    "http.proxy": "http://127.0.0.1:7890"               // sci
+    "http.proxy": "http://127.0.0.1:7890",
+    "git.openRepositoryInParentFolders": "never",
+    "lldb.suppressUpdateNotifications": true // sci
 }

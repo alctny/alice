@@ -15,3 +15,11 @@ gi() {
   curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
 
+rm() {
+  trash_dir="/home/$USER/.trash"
+  for i in $*; do
+    suffix=$(date +%F-%T)
+    filename=$(basename $i)
+    mv "$i" "${trash_dir}/${filename}_${suffix}"
+  done
+}
