@@ -20,6 +20,6 @@ rm() {
   for i in $*; do
     suffix=$(date +%F-%T)
     filename=$(basename $i)
-    mv "$i" "${trash_dir}/${filename}_${suffix}"
+    mv "$i" "${trash_dir}"/"${filename}""_${suffix}"
   done
 }
