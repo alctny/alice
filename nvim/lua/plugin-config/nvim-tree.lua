@@ -1,3 +1,20 @@
+--
+-- This function has been generated from your
+--   view.mappings.list
+--   view.mappings.custom_only
+--   remove_keymaps
+--
+-- You should add this function to your configuration and set on_attach = on_attach in the nvim-tree setup call.
+--
+-- Although care was taken to ensure correctness and completeness, your review is required.
+--
+-- Please check for the following issues in auto generated content:
+--   "Mappings removed" is as you expect
+--   "Mappings migrated" are correct
+--
+-- Please see https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach for assistance in migrating.
+--
+
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
 
@@ -95,23 +112,14 @@ local function on_attach(bufnr)
 
   vim.keymap.set('n', 'Z', api.node.run.system, opts('Run System'))
 
+end
 
-  
+local ok, nvimtree = pcall(require, "nvim-tree")
+if not ok then
+  vim.norify("startup nvim-tree faild")
+  return
 end
 
 require("nvim-tree").setup({
   on_attach = on_attach,
-  
-  view = {
-    number = false,
-    relativenumber = false,
-    signcolumn = 'yes',
-  },
-
-  filters = {
-    dotfiles = true,
-    custom = { 'node_modules' },
-  },
 })
-
-

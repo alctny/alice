@@ -14,5 +14,10 @@
 	"struct": {
 		"prefix": "str",
 		"body": "struct $1"
+	},
+	"main": {
+		"prefix": "pkgm",
+		"body": "#include <stdio.h>\n#include <stdlib.h>\n\nint main(int argc, char const *argv[]) {\n\tprintf(\"fuck.world\\n\");\n\treturn 0;\n}"
 	}
+
 }

@@ -79,4 +79,4 @@ rime/*.userdb
 rime/build/
 rime/installation.yaml
 rime/user.yaml
-
+nvim/plugin

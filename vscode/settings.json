@@ -27,22 +27,24 @@
     "extensions.ignoreRecommendations": true,               // 忽略插件推荐
     "extensions.autoUpdate": true,                          // 插件自动更新
     "extensions.autoCheckUpdates": true,                    // 插件自动检查更新
-    "go.toolsManagement.autoUpdate": false,                 // 禁用 go 工具链自动更新
+    "go.toolsManagement.autoUpdate": true,                 // 禁用 go 工具链自动更新
     "liveServer.settings.donotShowInfoMsg": false,          // 关闭 liveserver 提示
     "typst-lsp.exportPdf": "never",                         // 关闭 typst 自动生成 PDF
     "typst-ws.executable": "/home/ant/.cargo/bin/typst-ws", // 指定 typst 编译器位置
     "cmake.configureOnOpen": true,                          // 自动 cmake configure
     "hexeditor.columnWidth": 16,                            // 二进制编辑器行宽
     "hexeditor.defaultEndianness": "little",                // 默认小端字序
+    "vim.useSystemClipboard": true,
     // 终端
     "terminal.integrated.cursorStyle": "line",                 // 光标样式为竖线
     "terminal.integrated.cursorBlinking": true,                // 启用光标闪烁
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",    // 字体
+    // "terminal.integrated.fontSize": 16,
     // UI
     "workbench.startupEditor": "none",              // 启动页面
     "window.menuBarVisibility": "toggle",           // 隐藏标题栏
     "workbench.iconTheme": "material-icon-theme",   // 图标主题
-    "workbench.colorTheme": "Xcode Default Dark",   // 主题
+    "workbench.colorTheme": "GitHub Dark Default",   // 主题
 
     // 语言
     "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 120}",   // C/C++ 代码格式
@@ -76,7 +78,10 @@
     "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
     "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
     "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
-    "http.proxy": "http://127.0.0.1:7890",
+    // "http.proxy": "http://127.0.0.1:7890",
     "git.openRepositoryInParentFolders": "never",
-    "lldb.suppressUpdateNotifications": true // sci
+    "lldb.suppressUpdateNotifications": true,
+    "redhat.telemetry.enabled": true,
+    "git.confirmSync": false,
+    "git.autofetch": true // sci
 }

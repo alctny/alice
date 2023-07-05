@@ -15,11 +15,19 @@ gi() {
   curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
 
-rm() {
-  trash_dir="/home/$USER/.trash"
-  for i in $*; do
-    suffix=$(date +%F-%T)
-    filename=$(basename $i)
-    mv "$i" "${trash_dir}"/"${filename}""_${suffix}"
-  done
+e() {
+  if [ $(tmux ls | grep attach | wc -l) -eq 1 ];then
+    tmux detach-client 
+  else
+    exit
+  fi
+}
+
+t() {
+  tmux ls > /dev/null 2>&1
+  if [ $? -eq 0 ];then
+    tmux attach
+  else
+    tmux
+  fi
 }

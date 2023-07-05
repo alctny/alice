@@ -1,3 +1,4 @@
+alias ls='lsd'
 alias c='clear'
 alias dps="docker ps"
 alias dls="docker images"
