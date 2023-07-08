@@ -1,5 +1,5 @@
 #! /bin/bash
 
 killall polybar
-sleep 1
+sleep 3
 polybar -r
