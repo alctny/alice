@@ -2,7 +2,7 @@
     // 编辑页面
     "editor.fontFamily": "FiraCode Nerd Font",  // 字体
     "editor.fontLigatures": true,               // 启用连体字
-    "editor.fontSize": 13,                      // 字体大小
+    "editor.fontSize": 15,                      // 字体大小
     "editor.hover.sticky": false,               // 悬浮代码提示
     "editor.insertSpaces": true,                // tab 替换为空格
     "editor.tabSize": 2,                        // 1tab = 2space
@@ -43,8 +43,7 @@
     // UI
     "workbench.startupEditor": "none",              // 启动页面
     "window.menuBarVisibility": "toggle",           // 隐藏标题栏
-    "workbench.iconTheme": "material-icon-theme",   // 图标主题
-    "workbench.colorTheme": "GitHub Dark Default",   // 主题
+    "workbench.iconTheme": "material-icon-theme", // 主题
 
     // 语言
     "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 120}",   // C/C++ 代码格式
@@ -83,5 +82,6 @@
     "lldb.suppressUpdateNotifications": true,
     "redhat.telemetry.enabled": true,
     "git.confirmSync": false,
-    "git.autofetch": true // sci
+    "git.autofetch": true,
+    "workbench.colorTheme": "GitHub Dark Default",
 }

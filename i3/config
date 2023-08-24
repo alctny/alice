@@ -1,12 +1,12 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:Noto Sans SC 7
+font pango:Noto Sans SC 0
 for_window [class="^.*"] border normal 0
 # for_window [class=".*"] title_format "<span></span>"
 # Theme colors            border    backgr. text   indicator   child_border
-client.focused            #BF616A      #BF616A     #F0F8FF     #BF616A       #BF616A
-client.unfocused          #268BD2      #268BD2     #F0F8FF     #268BD2       #268BD2
+client.focused            #F0F8FF      #BF616A     #F0F8FF     #BF616A       #BF616A
+client.unfocused          #F0F8FF      #268BD2     #F0F8FF     #268BD2       #268BD2
 client.focused_inactive   #4C556A      #F0F8FF     #000000     #F0F8FF       #F0F8FF
 client.urgent             #BF616A      #BF616A     #F0F8FF     #268BD2
 client.placeholder        #F0F8FF      #909090     #F0F8FF     #268BD2
@@ -17,6 +17,7 @@ gaps outer 0
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
+# xset dpms 0 0 300
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/picture/sys/lock.png
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -34,6 +35,7 @@ exec --no-startup-id picom &
 exec --no-startup-id dunst &
 exec --no-startup-id polybar -r &
 exec --no-startup-id fcitx5 &
+# exec --no-startup-id xautolock -time 13 -locker "/home/ant/.config/i3/lock.sh" -notify 15 -notifier "notify-send -u critical -t 1000 -- 'LOCKING SCREEN IN 15 SECONDS'"
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -46,10 +48,11 @@ bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec alacritty
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # exit i3 session
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"

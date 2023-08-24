@@ -23,11 +23,8 @@ e() {
   fi
 }
 
-t() {
-  tmux ls > /dev/null 2>&1
-  if [ $? -eq 0 ];then
-    tmux attach
-  else
-    tmux
-  fi
+
+fbi() {
+  feh --bg-fill $1
 }
+

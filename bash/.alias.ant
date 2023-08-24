@@ -4,7 +4,6 @@ alias dps="docker ps"
 alias dls="docker images"
 alias drmc="docker container rm"
 alias drmi="docker image rm"
-alias e='exit'
 alias nmac='emacs -nw'
 alias l='ls'
 alias la='ls -a'
@@ -12,12 +11,13 @@ alias ll='ls -lh'
 alias lla='ls -alh'
 alias sn='shutdown now'
 # alias rm='rm -i'
-alias amnt='sudo mount -o uid=`id -u` -o gid=`id -g` -o iocharset=utf8'
+alias amnt='sudo mount -o uid=`id -u` -o gid=`id -g`'
 alias smnt='sudo mount'
 alias umnt='sudo umount'
 alias resource='source ~/.bashrc'
 alias 7z=7zz
 alias 7s=7zzs
+alias t='tmux attach || tmux'
 
 if [ -e /usr/local/bin/mv ]; then
   alias mv='mv -ig'
@@ -30,3 +30,4 @@ fi
 if [ -e .alias.self ]; then
   . .alias.self
 fi
+
