@@ -19,7 +19,6 @@ switches:
     reset: 0
     states: [ 漢字, 汉字 ]
 
-
 engine:
   processors:
     - ascii_composer
