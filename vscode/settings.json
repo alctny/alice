@@ -27,7 +27,7 @@
     "extensions.ignoreRecommendations": true,               // 忽略插件推荐
     "extensions.autoUpdate": true,                          // 插件自动更新
     "extensions.autoCheckUpdates": true,                    // 插件自动检查更新
-    "go.toolsManagement.autoUpdate": true,                 // 禁用 go 工具链自动更新
+    "go.toolsManagement.autoUpdate": true,                  // 禁用 go 工具链自动更新
     "liveServer.settings.donotShowInfoMsg": false,          // 关闭 liveserver 提示
     "typst-lsp.exportPdf": "never",                         // 关闭 typst 自动生成 PDF
     "typst-ws.executable": "/home/ant/.cargo/bin/typst-ws", // 指定 typst 编译器位置
@@ -83,5 +83,5 @@
     "redhat.telemetry.enabled": true,
     "git.confirmSync": false,
     "git.autofetch": true,
-    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.colorTheme": "Visual Studio Dark",
 }

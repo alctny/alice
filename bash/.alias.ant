@@ -1,4 +1,4 @@
-alias ls='lsd'
+# alias ls='lsd'
 alias c='clear'
 alias dps="docker ps"
 alias dls="docker images"
@@ -9,23 +9,16 @@ alias l='ls'
 alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -alh'
+alias lhh='du --max-depth=1 -h'
 alias sn='shutdown now'
 # alias rm='rm -i'
-alias amnt='sudo mount -o uid=`id -u` -o gid=`id -g`'
+alias amnt='sudo mount -o uid=`id -u` -o gid=`id -g` '
 alias smnt='sudo mount'
 alias umnt='sudo umount'
 alias resource='source ~/.bashrc'
 alias 7z=7zz
 alias 7s=7zzs
 alias t='tmux attach || tmux'
-
-if [ -e /usr/local/bin/mv ]; then
-  alias mv='mv -ig'
-fi
-
-if [ -e /usr/local/bin/cp ]; then
-  alias cp='cp -ig'
-fi
 
 if [ -e .alias.self ]; then
   . .alias.self
