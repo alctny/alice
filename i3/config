@@ -1,7 +1,7 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:Noto Sans SC 0
+font pango:Noto Sans Bold SC 8
 for_window [class="^.*"] border normal 0
 # for_window [class=".*"] title_format "<span></span>"
 # Theme colors            border    backgr. text   indicator   child_border
