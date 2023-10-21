@@ -1,18 +1,29 @@
 font:
+  size: 14
   normal:
     family: FiraCode Nerd Font
+    style: Light
+  bold:
+    family: FiraCode Nerd Font
+    style: Bold
+  italic:
+    family: FiraCode Nerd Font
     style: Regular
-  size: 7
 window:
-  opacity: 0.9
+  opacity: 0.8
   dimensions:
-    columns: 120
-    lines: 35
+    columns: 155
+    lines: 45
 selection:
   save_to_clipboard: true
 shell:
-  program: /bin/bash
+  program: /bin/zsh
   args:
     - -l
     - -c
     - "tmux attach || tmux"
+cursor:
+  style:
+    shape: Beam
+  vi_mode_style:
+    shape: Beam
