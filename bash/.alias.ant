@@ -20,7 +20,3 @@ alias 7z=7zz
 alias 7s=7zzs
 alias t='tmux attach || tmux'
 
-if [ -e .alias.self ]; then
-  . .alias.self
-fi
-
