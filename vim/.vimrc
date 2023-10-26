@@ -1,0 +1,20 @@
+" 启用语法高亮
+syntax enable
+" 启用行号
+set number
+" 设置 tab 大小
+set tabstop=2
+set shiftwidth=2
+set expandtab
+" 背景色
+set background=dark
+" 大小写敏感自动
+set ignorecase
+set smartcase
+" 输入的时候进行搜索
+set incsearch
+" 自动回到文首
+set wrapscan
+" 关闭自动备份和交换文件
+set nobackup
+set nowrap
