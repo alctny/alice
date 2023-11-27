@@ -1,16 +1,22 @@
 {
-    // 编辑页面
-    "editor.fontFamily": "FiraCode Nerd Font",  // 字体
-    "editor.fontLigatures": true,               // 启用连体字
-    "editor.fontSize": 13,                      // 字体大小
-    "editor.hover.sticky": false,               // 悬浮代码提示
-    "editor.insertSpaces": true,                // tab 替换为空格
-    "editor.tabSize": 2,                        // 1tab = 2space
-    "files.autoSave": "onFocusChange",          // 失去焦点自动保存
-    "editor.minimap.enabled": false,            // 禁用縮略圖
-    "editor.hideCursorInOverviewRuler": true,   // 輸入時隱藏光標
-    "editor.scrollbar.horizontal": "hidden",    // 隱藏垂直滾動條
-    "editor.scrollbar.vertical": "hidden",      // 隱藏水平滾動條
+    // VSCode 基础设置
+    "editor.fontFamily": "FiraCode Nerd Font",          // 字体
+    "editor.fontLigatures": true,                       // 启用连体字
+    "editor.fontSize": 15,                              // 字体大小
+    "editor.hover.sticky": false,                       // 悬浮代码提示
+    "editor.insertSpaces": true,                        // tab 替换为空格
+    "editor.tabSize": 2,                                // 1tab = 2space
+    "files.autoSave": "onFocusChange",                  // 失去焦点自动保存
+    "editor.minimap.enabled": false,                    // 禁用縮略圖
+    "editor.hideCursorInOverviewRuler": true,           // 輸入時隱藏光標
+    "editor.scrollbar.horizontal": "hidden",            // 隱藏垂直滾動條
+    "editor.scrollbar.vertical": "hidden",              // 隱藏水平滾動條
+    "update.mode": "none",                              // 关闭自动更新
+    "update.showReleaseNotes": false,                   // 不查看更新信息
+    "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
+    "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
+    "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
+    // "http.proxy": "http://127.0.0.1:7890",              // vscode 网络代理
     // 文件管理
     "explorer.confirmDelete": false,      // 删除不需要确认
     "explorer.confirmDragAndDrop": false, // 文件拖拽不需要确认
@@ -25,30 +31,28 @@
         "**/.venv":true
     },
     // 扩展
-    "highlightLine.borderColor": "#65EAB9",
-    "highlightLine.borderStyle": "groove", 
-    "highlightLine.borderWidth": "1px",
     "extensions.ignoreRecommendations": true,               // 忽略插件推荐
-    "extensions.autoUpdate": true,                          // 插件自动更新
-    "extensions.autoCheckUpdates": true,                    // 插件自动检查更新
-    "go.toolsManagement.autoUpdate": true,                  // 禁用 go 工具链自动更新
+    "extensions.autoUpdate": "onlyEnabledExtensions",       // 插件自动更新
+    "extensions.autoCheckUpdates": false,                   // 插件自动检查更新
+    "highlightLine.borderColor": "#F0F8FF",                 // cliffordfajardo.highlight-line-vscode 颜色
+    "highlightLine.borderStyle": "groove",                  // cliffordfajardo.highlight-line-vscode 样式
+    "highlightLine.borderWidth": "1px",                     // cliffordfajardo.highlight-line-vscode 粗细
+    "go.toolsManagement.autoUpdate": false,                 // 禁用 go 工具链自动更新
     "liveServer.settings.donotShowInfoMsg": false,          // 关闭 liveserver 提示
     "typst-lsp.exportPdf": "never",                         // 关闭 typst 自动生成 PDF
     "typst-ws.executable": "/home/ant/.cargo/bin/typst-ws", // 指定 typst 编译器位置
-    "cmake.configureOnOpen": true,                          // 自动 cmake configure
+    "cmake.configureOnOpen": false,                         // 自动 cmake configure
     "hexeditor.columnWidth": 16,                            // 二进制编辑器行宽
     "hexeditor.defaultEndianness": "little",                // 默认小端字序
-    "vim.useSystemClipboard": true,
+    "vim.useSystemClipboard": true,                         // vim 模式使用系统剪贴板
     // 终端
-    "terminal.integrated.cursorStyle": "line",                 // 光标样式为竖线
-    "terminal.integrated.cursorBlinking": true,                // 启用光标闪烁
-    "terminal.integrated.fontFamily": "FiraCode Nerd Font",    // 字体
-    // "terminal.integrated.fontSize": 16,
+    "terminal.integrated.cursorStyle": "line",              // 光标样式为竖线
+    "terminal.integrated.cursorBlinking": true,             // 启用光标闪烁
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font", // 字体
     // UI
-    "workbench.startupEditor": "none",              // 启动页面
-    "window.menuBarVisibility": "toggle",           // 隐藏标题栏
-    "workbench.iconTheme": "material-icon-theme", // 主题
-
+    "workbench.startupEditor": "none",                      // 启动页面
+    "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
+    "workbench.iconTheme": "material-icon-theme",           // 主题
     // 语言
     "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 120}",   // C/C++ 代码格式
     "C_Cpp.formatting": "clangFormat",
@@ -59,33 +63,12 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "flake8.args": [
-        "--max-line-length=120"                     // 适应现代屏幕宽度
-    ],
-    "python.formatting.autopep8Args": [
-        "--max-line-length", 
-        "120", 
-        "--experimental"
-    ],
-    "[typst]": {
-        "editor.wordWrap": "on",
-        "editor.tabSize": 4,
-        "editor.useTabStops": true
+    "git.openRepositoryInParentFolders": "never",       // .git 位于父级目录时是否显示 git 管理
+    "workbench.colorTheme": "GitHub Dark Default",           // 主题
+    "terminal.external.linuxExec": "alacritty",         // 系统终端
+    "cmake.debugConfig": {                              // cmake debug 配置
+        "externalConsole": true,                        // 允许使用外部终端
+        "cwd": "${workspaceFolder}"                     // 默认以项目艮目录为 debug 位置
     },
-    "[rust]":{
-        "editor.tabSize": 4
-    },
-    // VS Code
-    "update.mode": "none",                              // 关闭自动更新
-    "update.showReleaseNotes": false,                   // 不查看更新信息
-    "update.enableWindowsBackgroundUpdates": false,     // 禁用后台更新
-    "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
-    "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
-    // "http.proxy": "http://127.0.0.1:7890",
-    "git.openRepositoryInParentFolders": "never",
-    "lldb.suppressUpdateNotifications": true,
-    "redhat.telemetry.enabled": true,
-    "git.confirmSync": false,
-    "git.autofetch": true,
-    "workbench.colorTheme": "Visual Studio Dark",
+    "cmake.showOptionsMovedNotification": false,
 }

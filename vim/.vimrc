@@ -18,3 +18,6 @@ set wrapscan
 " 关闭自动备份和交换文件
 set nobackup
 set nowrap
+" 共用系统剪贴板
+" 自动换行
+set wrap

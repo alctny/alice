@@ -5,11 +5,11 @@ font pango:Noto Sans Bold SC 8
 for_window [class="^.*"] border normal 0
 # for_window [class=".*"] title_format "<span></span>"
 # Theme colors            border    backgr. text   indicator   child_border
-client.focused            #F0F8FF      #BF616A     #F0F8FF     #BF616A       #BF616A
-client.unfocused          #F0F8FF      #268BD2     #F0F8FF     #268BD2       #268BD2
+client.focused            #F0F8FF      #39C5BB     #F0F8FF     #39C5BB       #39C5BB
+client.unfocused          #F0F8FF      #416E74     #F0F8FF     #416E74       #416E74
 client.focused_inactive   #4C556A      #F0F8FF     #000000     #F0F8FF       #F0F8FF
-client.urgent             #BF616A      #BF616A     #F0F8FF     #268BD2
-client.placeholder        #F0F8FF      #909090     #F0F8FF     #268BD2
+client.urgent             #39C5BB      #39C5BB     #F0F8FF     #416E74
+client.placeholder        #F0F8FF      #909090     #F0F8FF     #416E74
 
 # Gaps config
 gaps inner 0
@@ -24,8 +24,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/pictu
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+exec --no-startup-id copyq
+
 # 壁纸
-exec_always --no-startup-id feh --bg-scale "/home/ant/picture/sys/wallpaper.jpg"
+exec_always --no-startup-id feh --bg-scale "/home/ant/picture/sys/wallpaper.png"
 
 # 设置主屏
 exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1}') --auto --primary
@@ -142,3 +144,5 @@ bindsym $mod+space exec --no-startup-id rofi -show drun
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
 # TODO 添加仅主屏，扩展屏，共享屏
 bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --off --primary --output $(xrandr | grep " connect" | grep -v "eDP" | awk '{print $1}' | head -n 1) --auto
+
+for_window [class="*CopyQ*"] floating enable 
