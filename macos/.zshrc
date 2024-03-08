@@ -6,7 +6,7 @@ alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -alh'
 alias t='tmux attach || tmux'
-alias ffmpeg='ffmpeg -hide_banner '
+# alias ffmpeg='ffmpeg -hide_banner '
 #--------------------------------------------自动补全忽略大小写--------------------------------------------
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
