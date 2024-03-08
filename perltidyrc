@@ -1,0 +1,22 @@
+# .perltidyrc
+
+# 设置每行的最大长度为120
+-l=120
+
+# 设置缩进(tab)为2个空格
+-et=2
+
+# 设置 Continuation Indentation 为2个空格
+-ci=2
+
+# 设置独立的行的缩进为2个空格
+-i=2
+
+# 在括号内不要强制空格
+-nicb
+
+# 不保留空行的缩进
+-lp
+
+# 设置 Closing Token Indentation 为2个空格
+-cti=2

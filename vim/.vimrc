@@ -2,6 +2,7 @@
 syntax enable
 " 启用行号
 set number
+set relativenumber
 " 设置 tab 大小
 set tabstop=2
 set shiftwidth=2
@@ -18,6 +19,11 @@ set wrapscan
 " 关闭自动备份和交换文件
 set nobackup
 set nowrap
-" 共用系统剪贴板
 " 自动换行
 set wrap
+" 系统剪贴板同步
+set clipboard=unnamedplus
+" 高亮当前编辑
+set colorcolumn=120
+set cursorline
+set cursorcolumn

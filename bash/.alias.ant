@@ -1,22 +1,15 @@
-# alias ls='lsd'
 alias c='clear'
-alias dps="docker ps"
-alias dls="docker images"
-alias drmc="docker container rm"
-alias drmi="docker image rm"
-alias nmac='emacs -nw'
+alias e='tmux suspend-client || exit'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -lh'
 alias lla='ls -alh'
-alias lhh='du --max-depth=1 -h'
-alias sn='shutdown now'
-# alias rm='rm -i'
+alias lh='du --max-depth=1 -h'
 alias amnt='sudo mount -o uid=`id -u` -o gid=`id -g` '
 alias smnt='sudo mount'
 alias umnt='sudo umount'
 alias resource='source ~/.bashrc'
 alias 7z=7zz
-alias 7s=7zzs
 alias t='tmux attach || tmux'
-
+alias sn='shutdown now'
+alias rime='killall fcitx5 && fcitx5-remote -r'

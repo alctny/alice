@@ -12,19 +12,20 @@ unproxy() {
 }
 
 gi() { 
-  curl -sL https://www.toptal.com/developers/gitignore/api/$@
+  curl -sL https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,windows,macos,$@
 }
-
-e() {
-  if [ $(tmux ls | grep attach | wc -l) -eq 1 ];then
-    tmux detach-client 
-  else
-    exit
-  fi
-}
-
 
 fbi() {
   feh --bg-fill $1
 }
 
+ziptodir() {
+  # 自动解压缩，并判断是否需要创建新的文件夹
+  echo "doing"
+}
+
+win_class() {
+  while true; do
+    xprop | grep WM_CLAS
+  done
+}

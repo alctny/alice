@@ -1,15 +1,12 @@
 set $mod Mod4
 floating_modifier $mod
 
-font pango:Noto Sans Bold SC 8
+font pango:Noto Sans Bold SC 0
 for_window [class="^.*"] border normal 0
 # for_window [class=".*"] title_format "<span></span>"
 # Theme colors            border    backgr. text   indicator   child_border
-client.focused            #F0F8FF      #39C5BB     #F0F8FF     #39C5BB       #39C5BB
-client.unfocused          #F0F8FF      #416E74     #F0F8FF     #416E74       #416E74
-client.focused_inactive   #4C556A      #F0F8FF     #000000     #F0F8FF       #F0F8FF
-client.urgent             #39C5BB      #39C5BB     #F0F8FF     #416E74
-client.placeholder        #F0F8FF      #909090     #F0F8FF     #416E74
+client.focused            #416E74      #416E74     #416E74     #416E74       #416E74
+client.unfocused          #F0F8FF      #F0F8FF     #F0F8FF     #F0F8FF       #F0F8FF
 
 # Gaps config
 gaps inner 0
@@ -130,6 +127,29 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Ctrl+Shift+Left   move container to workspace prev
 bindsym $mod+Ctrl+Shift+Right  move container to workspace next
+
+# pin windows to workspace
+assign [class="Google-chrome"     instance="crx_agimnkijcaahngcdmfeangaknmldooml"] $ws2
+assign [class="Google-chrome"     instance="crx_kippjfofjhjlffjecoapiogbkgbpmgej"] $ws2
+assign [class="supertuxkart"      instance="supertuxkart"]                         $ws2
+assign [class="Code"              instance="code"]                                 $ws3
+assign [class="QtCreator"         instance="qtcreator"]                            $ws3
+assign [class="Postman"           instance="postman"]                              $ws3
+assign [class="Termius"           instance="termius"]                              $ws3
+assign [class="DBeaver"           instance="DBeaver"]                              $ws3
+assign [class="jetbrains-studio"  instance="jetbrains-studio"]                     $ws3
+assign [class="Gimp*"             instance="gimp*"]                                $ws6
+assign [class="blueman-manager"   instance="Blueman-manager"]                      $ws7
+assign [class="Clash for Windows" instance="clash for windows"]                    $ws7
+assign [class="Motrix"            instance="motrix"]                               $ws7
+assign [class="qqmusic"           instance="qqmusic"]                              $ws7
+assign [class="calibre"           instance="calibre-gui"]                          $ws7
+assign [class="TelegramDesktop"   instance="Telegram"]                             $ws8
+assign [class="Localsend_app"     instance="localsend_app"]                        $ws9
+assign [class="Trilium Notes"     instance="trilium notes"]                        $ws9
+
+for_window [class="calibre"      instance="calibre-gui"]  floating disable
+for_window [class="supertuxkart" instance="supertuxkart"] floating disable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
