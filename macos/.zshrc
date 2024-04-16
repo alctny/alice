@@ -41,7 +41,7 @@ function uzall() { find . -name "*.$1" -d 1 -exec 7z x {} \; }
 # 将所有文件提取到当前目录
 function come2here() { find . -type f -exec mv {} . \; }
 
-# 批量重命名
+# 批量重命名,将当前路径下的所有文件重命名为"xxx_序号"的格式
 function allrename() {
   TMP_FILE=".`uuidgen`"
   ls > $TMP_FILE

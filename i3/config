@@ -24,14 +24,14 @@ exec --no-startup-id nm-applet
 exec --no-startup-id copyq
 
 # 壁纸
-exec_always --no-startup-id feh --bg-scale "/home/ant/picture/sys/wallpaper.png"
+exec_always --no-startup-id feh --bg-scale "/home/ant/picture/sys/wallpaper.jpg"
 
 # 设置主屏
 exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1}') --auto --primary
 # exec_always --no-startup-id randr --output eDP-1 --primary --mode 2240x1400 --output DP-2 --left-of eDP-1 --mode 1920x1080
 
 exec --no-startup-id picom &
-exec --no-startup-id dunst &
+# exec --no-startup-id dunst &
 exec --no-startup-id polybar -r &
 exec --no-startup-id fcitx5 &
 # exec --no-startup-id xautolock -time 13 -locker "/home/ant/.config/i3/lock.sh" -notify 15 -notifier "notify-send -u critical -t 1000 -- 'LOCKING SCREEN IN 15 SECONDS'"
@@ -129,14 +129,10 @@ bindsym $mod+Ctrl+Shift+Left   move container to workspace prev
 bindsym $mod+Ctrl+Shift+Right  move container to workspace next
 
 # pin windows to workspace
-assign [class="Google-chrome"     instance="crx_agimnkijcaahngcdmfeangaknmldooml"] $ws2
-assign [class="Google-chrome"     instance="crx_kippjfofjhjlffjecoapiogbkgbpmgej"] $ws2
 assign [class="supertuxkart"      instance="supertuxkart"]                         $ws2
-assign [class="Code"              instance="code"]                                 $ws3
 assign [class="QtCreator"         instance="qtcreator"]                            $ws3
 assign [class="Postman"           instance="postman"]                              $ws3
 assign [class="Termius"           instance="termius"]                              $ws3
-assign [class="DBeaver"           instance="DBeaver"]                              $ws3
 assign [class="jetbrains-studio"  instance="jetbrains-studio"]                     $ws3
 assign [class="Gimp*"             instance="gimp*"]                                $ws6
 assign [class="blueman-manager"   instance="Blueman-manager"]                      $ws7
@@ -147,8 +143,6 @@ assign [class="calibre"           instance="calibre-gui"]                       
 assign [class="TelegramDesktop"   instance="Telegram"]                             $ws8
 assign [class="Localsend_app"     instance="localsend_app"]                        $ws9
 assign [class="Trilium Notes"     instance="trilium notes"]                        $ws9
-
-for_window [class="calibre"      instance="calibre-gui"]  floating disable
 for_window [class="supertuxkart" instance="supertuxkart"] floating disable
 
 # reload the configuration file

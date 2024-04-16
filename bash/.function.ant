@@ -1,18 +1,25 @@
 
-proxy() {
-  export https_proxy=http://127.0.0.1:7890
-  export http_proxy=http://127.0.0.1:7890
-  export all_proxy=socks5://127.0.0.1:7890
+setproxy() {
+  port=7890
+  export HTTPS_PROXY=http://127.0.0.1:$port
+  export HTTP_PROXY=http://127.0.0.1:$port
+  export ALL_PROXY=socks5://127.0.0.1:$port
 }
 
-unproxy() {
-  unset https_proxy
-  unset http_proxy
-  unset all_proxy
+unsetproxy() {
+  unset HTTPS_PROXY
+  unset HTTP_PROXY
+  unset ALL_PROXY
+}
+
+showproxy() {
+  echo "HTTP_PROXY  : $HTTP_PROXY"
+  echo "HTTPS_PROXY : $HTTPS_PROXY"
+  echo "ALL_PROXY   : $ALL_PROXY"
 }
 
 gi() { 
-  curl -sL https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux,windows,macos,$@
+  curl -sL https://www.toptal.com/developers/gitignore/api/$@
 }
 
 fbi() {
@@ -28,4 +35,54 @@ win_class() {
   while true; do
     xprop | grep WM_CLAS
   done
+}
+
+ckpath() {
+  IFS=":" read -ra path <<< "$PATH"
+  for dir in "${path[@]}"; do
+    [[ "$dir" =~ ^\$.* ]] && continue
+    if [ ! -d "$dir" ] && [ "$dir" != '$PATH' ]; then
+      echo -e "\e[31m${dir}\e[0m"
+    else
+      echo -e "\e[32m$dir\e[0m"
+    fi
+  done
+}
+
+clean_trash() {
+  rm -r ~/.local/share/Trash/
+}
+
+wallpaper_walk() {
+  for pic in *; do
+    feh --bg-center  "$pic" 2>/dev/null
+    if [ $? != 0 ]; then
+      continue
+    fi
+    echo "${pic} center"
+    sleep 2
+
+    echo "${pic} scale"
+    feh --bg-scale  "$pic"
+    sleep 2
+
+    echo "${pic} fill"
+    feh --bg-fill  "$pic"
+    sleep 2
+
+    echo "${pic} max"
+    feh --bg-max  "$pic"
+    sleep 2
+
+    echo "${pic} tile"
+    feh --bg-tile  "$pic"
+    sleep 2
+  done 
+}
+
+clean_trash() {
+  rm -rf ~/.local/share/Trash
+  if [[ $? -eq 0 ]]; then
+    echo "clean trash successful"
+  fi
 }
