@@ -1,3 +1,4 @@
-. /home/$USER/.env.ant
-. /home/$USER/.alias.ant
-. /home/$USER/.function.ant
+[[ -f "/home/$USER/.env.ant.sh" ]] && source "/home/$USER/.env.ant.sh"
+[[ -f "/home/$USER/.alias.ant.sh" ]] && source "/home/$USER/.alias.ant.sh"
+[[ -f "/home/$USER/.function.ant.sh" ]] && source "/home/$USER/.function.ant.sh"
+[[ -f "/home/$USER/.self.sh" ]] && source "/home/$USER/.self.sh"

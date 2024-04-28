@@ -24,7 +24,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id copyq
 
 # 壁纸
-exec_always --no-startup-id feh --bg-scale "/home/ant/picture/sys/wallpaper.jpg"
+exec_always --no-startup-id feh --bg-fill "/home/ant/picture/sys/wallpaper.jpg"
 
 # 设置主屏
 exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1}') --auto --primary
