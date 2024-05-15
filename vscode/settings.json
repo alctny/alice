@@ -36,7 +36,7 @@
   },
   // 扩展
   "extensions.ignoreRecommendations": true,               // 忽略插件推荐
-  "extensions.autoUpdate": "onlySelectedExtensions",      // 插件自动更新
+  "extensions.autoUpdate": false,                         // 插件自动更新
   "extensions.autoCheckUpdates": false,                   // 插件自动检查更新
   "highlightLine.borderColor": "#F0F8FF",                 // cliffordfajardo.highlight-line-vscode 颜色
   "highlightLine.borderStyle": "groove",                  // cliffordfajardo.highlight-line-vscode 样式

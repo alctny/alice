@@ -2,7 +2,7 @@ patch:
   schema_list:
     - schema: luna_pinyin_simp
   switcher/hotkeys:
-    - F4
+  #   - F4
   menu/page_size: 9          # 候选词个数
   ascii_composer/switch_key:
     Caps_Lock: commit_code   # Caps 键
@@ -18,4 +18,5 @@ patch:
     - { when: has_menu, accept: equal, send: Page_Down }    # "=" 下一页
     # 快捷键
     - { when: composing, accept: Return, send: Escape }                 # "Return" 回车清码
-    - { when: always, accept: Control+Shift+f, toggle: simplification } # 繁简体切换
+    # - { when: always, accept: Control+Shift+f, toggle: simplification } # 繁简体切换
+    - { when: always, accept: Control+Shift+F, toggle: zh_simp }          # 繁简体切换
