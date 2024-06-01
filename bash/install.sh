@@ -2,9 +2,7 @@
 
 source_path=$(dirname $(readlink -f "$0"))
 
-ln -sf "$source_path/.alias.ant.sh" ~
-ln -sf "$source_path/.env.ant.sh" ~
-ln -sf "$source_path/.function.ant.sh" ~
-ln -sf "$source_path/.inputrc" ~
+ln -sf "$source_path/alias.ant.sh" /etc/profile.d/
+ln -sf "$source_path/env.ant.sh" /etc/profile.d/
+ln -sf "$source_path/function.ant.sh" /etc/profile.d/
 
-cat "$source_path/bashrc" >> ~/.bashrc

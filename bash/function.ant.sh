@@ -104,13 +104,13 @@ function smnt() {
     exit 1
   fi
   dir=${dev##*/}
-  sudo mkdir -p "/mnt/$dir"
-  sudo mount "$dev" "/mnt/$dir"
+  sudo mkdir -p "/mnt/$dir" || exit 1
+  sudo mount "$dev" "/mnt/$dir" || echo "mount error"
 }
 
 # 在 umount 时自动删除 smnt 创建的目录
 function umnt() {
   mounton=$1
-  sudo umount $mounton
+  sudo umount $mounton || echo "unmount error"
   sudo rmdir $mounton
 }

@@ -1,31 +1,26 @@
 set $mod Mod4
+
 floating_modifier $mod
 
 font pango:Noto Sans Bold SC 0
 for_window [class="^.*"] border normal 0
-# for_window [class=".*"] title_format "<span></span>"
 # Theme colors            border    backgr. text   indicator   child_border
 client.focused            #416E74      #416E74     #416E74     #416E74       #416E74
 client.unfocused          #F0F8FF      #F0F8FF     #F0F8FF     #F0F8FF       #F0F8FF
 
 # Gaps config
-gaps inner 0
-gaps outer 0
+gaps inner 3
+gaps outer 3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # xset dpms 0 0 300
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/picture/sys/lock.png
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
 exec --no-startup-id copyq
 
 # 壁纸
-exec_always --no-startup-id feh --bg-fill "/home/ant/picture/sys/wallpaper.jpg"
-
+exec_always --no-startup-id feh --bg-fill "/home/ant/picture/sys/wallpaper.png"
 # 设置主屏
 exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1}') --auto --primary
 # exec_always --no-startup-id randr --output eDP-1 --primary --mode 2240x1400 --output DP-2 --left-of eDP-1 --mode 1920x1080
@@ -34,7 +29,6 @@ exec --no-startup-id picom &
 # exec --no-startup-id dunst &
 exec --no-startup-id polybar -r &
 exec --no-startup-id fcitx5 &
-# exec --no-startup-id xautolock -time 13 -locker "/home/ant/.config/i3/lock.sh" -notify 15 -notifier "notify-send -u critical -t 1000 -- 'LOCKING SCREEN IN 15 SECONDS'"
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -53,8 +47,6 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+q kill
 
-# exit i3 session
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -128,27 +120,15 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Ctrl+Shift+Left   move container to workspace prev
 bindsym $mod+Ctrl+Shift+Right  move container to workspace next
 
-# pin windows to workspace
-assign [class="supertuxkart"      instance="supertuxkart"]                         $ws2
-assign [class="QtCreator"         instance="qtcreator"]                            $ws3
-assign [class="Postman"           instance="postman"]                              $ws3
-assign [class="Termius"           instance="termius"]                              $ws3
-assign [class="jetbrains-studio"  instance="jetbrains-studio"]                     $ws3
-assign [class="Gimp*"             instance="gimp*"]                                $ws6
-assign [class="blueman-manager"   instance="Blueman-manager"]                      $ws7
-assign [class="Clash for Windows" instance="clash for windows"]                    $ws7
-assign [class="Motrix"            instance="motrix"]                               $ws7
-assign [class="qqmusic"           instance="qqmusic"]                              $ws7
-assign [class="calibre"           instance="calibre-gui"]                          $ws7
-assign [class="TelegramDesktop"   instance="Telegram"]                             $ws8
-assign [class="Localsend_app"     instance="localsend_app"]                        $ws9
-assign [class="Trilium Notes"     instance="trilium notes"]                        $ws9
-for_window [class="supertuxkart" instance="supertuxkart"] floating disable
-
+# 把窗口移動到剪貼板
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# exit i3 session
+bindsym $mod+Shift+e exit
 
 # customer hotkey
 bindsym Print exec flameshot gui
@@ -159,4 +139,7 @@ bindsym $mod+space exec --no-startup-id rofi -show drun
 # TODO 添加仅主屏，扩展屏，共享屏
 bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --off --primary --output $(xrandr | grep " connect" | grep -v "eDP" | awk '{print $1}' | head -n 1) --auto
 
+
+# pin windows to workspace
+for_window [class="supertuxkart" instance="supertuxkart"] floating disable
 for_window [class="*CopyQ*"] floating enable 

@@ -5,11 +5,11 @@ shape = "Block"
 shape = "Block"
 
 [font]
-size = 7
+size = 10
 
 [font.bold]
 family = "FiraCode Nerd Font"
-style = "Bold"
+style = "Regular"
 
 [font.italic]
 family = "FiraCode Nerd Font"
@@ -17,7 +17,7 @@ style = "Regular"
 
 [font.normal]
 family = "FiraCode Nerd Font"
-style = "Light"
+style = "Regular"
 
 [selection]
 save_to_clipboard = true

@@ -4,8 +4,8 @@ schema:
 patch:
   translator/dictionary: luna_pinyin.extended
   switches:
-    - name: zh_simp # (※1) 繁简转换
-      reset: 1
+    - name: zh_simp
+      reset: 0
       # states: ["漢", "汉"]
     - name: ascii_mode # 0-中 1-西
       reset: 1
