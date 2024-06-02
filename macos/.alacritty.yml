@@ -10,9 +10,9 @@ font:
     family: FiraCode Nerd Font
     style: Regular
 window:
-  opacity: 0.8
+  opacity: 0.7
   dimensions:
-    columns: 155
+    columns: 175
     lines: 45
 selection:
   save_to_clipboard: true
@@ -24,6 +24,6 @@ shell:
     - "tmux attach || tmux"
 cursor:
   style:
-    shape: Beam
+    shape: Block
   vi_mode_style:
-    shape: Beam
+    shape: Block

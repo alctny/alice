@@ -18,6 +18,7 @@ export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
 export GOPATH="/Users/violet/.go"
 # 命令行提示前綴
+# 👾 👘 🦄 🦋 🦚 🦑 🍀 🪷 🪽 🌸 🎉 🎊 📦 🦠 🧬 🎀
 export PROMPT='%~
 🦋'
 # 禁止 tar 命令生成 ._文件
@@ -26,6 +27,7 @@ export COPYFILE_DISABLE=1
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:~/.local/bin
 #--------------------------------------------自定义函数--------------------------------------------
 # 使新配置生效
 function resource() {
@@ -33,7 +35,7 @@ function resource() {
 }
 
 # .gitignore 生成器
-function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/macos,linux,visualstudiocode,xcode,$@ ;}
+function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
 
 # 解压当前目录下的所有压缩包
 function uzall() { find . -name "*.$1" -d 1 -exec 7z x {} \; }
@@ -60,6 +62,28 @@ function allrename() {
   rm $TMP_FILE
 }
 
+function timels() {
+  while true; do
+    clear
+    ls -l
+    sleep 9
+  done
+}
+
+function videotime() {
+  time=0
+  while read line; do
+   t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
+   time=$(echo "$time + $t" | bc)
+  done < "$1"
+
+  printf "%.2f s\n" $time
+  time=$(echo "$time / 60" | bc)
+  printf "%.2f m\n" $time
+  time=$(echo "$time / 60" | bc)
+  printf "%.2f h\n" $time
+}
+
 #--------------------------------------------外部脚本--------------------------------------------
 # Rust
 source "$HOME/.cargo/env"
@@ -70,3 +94,10 @@ fi
 
 #--------------------------------------------外部脚本--------------------------------------------
 # defaults delete com.apple.desktopservices DSDontWriteNetworkStores
+# 禁止生成緩存文件
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+export HTTPS_PROXY=http://127.0.0.1:7890
+export HTTP_PROXY=http://127.0.0.1:7890
+export ALL_PROXY=socks5://127.0.0.1:7890
+
