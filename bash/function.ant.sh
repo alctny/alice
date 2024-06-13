@@ -105,7 +105,7 @@ function smnt() {
   fi
   dir=${dev##*/}
   sudo mkdir -p "/mnt/$dir" || exit 1
-  sudo mount "$dev" "/mnt/$dir" || echo "mount error"
+  sudo mount "$dev" "/mnt/$dir" && lsblk || echo "mount error"
 }
 
 # 在 umount 时自动删除 smnt 创建的目录
