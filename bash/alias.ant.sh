@@ -8,7 +8,6 @@ alias lla='ls -alh'
 alias lh='du --max-depth=1 -h --exclude="./.*"'
 alias lah='du --max-depth=1 -h'
 alias resource='source ~/.bashrc'
-alias 7z=7zz
 alias t='tmux attach || tmux'
 alias rime='killall fcitx5 && fcitx5-remote -r'
 alias baidu='curl https://www.baidu.com'

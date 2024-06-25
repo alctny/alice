@@ -104,13 +104,45 @@ function smnt() {
     exit 1
   fi
   dir=${dev##*/}
-  sudo mkdir -p "/mnt/$dir" || exit 1
+  sudo mkdir -p "/mnt/$dir"
   sudo mount "$dev" "/mnt/$dir" && lsblk || echo "mount error"
 }
 
 # 在 umount 时自动删除 smnt 创建的目录
 function umnt() {
   mounton=$1
-  sudo umount $mounton || echo "unmount error"
+  sudo umount $mounton && lsblk || echo "unmount error"
   sudo rmdir $mounton
 }
+
+# 功能: 將當前目錄下的所有文件（不包含隱藏文件）重命名爲“前綴+index” 的格式
+# 參數:
+#   $1: 文件名前綴，爲空時格式化之後的結果只有 index
+#   $2: 序號，默認從 0 開始，且會按照目錄下文件數量自動在前方添加 0
+# 注意: 此函數不會修改文件的後綴名，但默認了文件的後綴只有一個 .，對於 .tar.gz 的文件會被認爲後綴是 .gz 而不是 .tar.gz
+function rename_with_index() {
+  index=0
+  if [ "$2" != "" ]; then
+    index=$2
+  fi
+
+  file_count=$(expr $(ls | wc -l) + $index)
+  digit=0
+  t=$(expr $file_count / 10)
+  while true; do
+    digit=$(expr $digit + 1)
+    if [ $t -eq 0 ]; then
+      break
+    fi
+    t=$(expr $t / 10)
+  done
+
+  for f in *; do
+    surfix=${f##*.}
+    idx_str=$(printf "%0${digit}d" $index)
+    new_name="${1}${idx_str}.${surfix}"
+    mv "${f}" "${new_name}"
+    index=$(expr $index + 1)
+  done
+}
+
