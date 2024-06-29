@@ -1,28 +1,28 @@
 {
   // VSCode 基础设置
-  "editor.fontFamily": "FiraCode Nerd Font",          // 字体
-  "editor.fontLigatures": true,                       // 启用连体字
-  "editor.lineNumbers": "relative",                   // 行号显示 relative 相对行号 off 不显示
-  "editor.fontSize": 15,                              // 字体大小
-  "editor.hover.sticky": false,                       // 悬浮代码提示
-  "editor.insertSpaces": true,                        // tab 替换为空格
-  "editor.renderLineHighlightOnlyWhenFocus": false,   // 禁用當前行高亮
-  "editor.tabSize": 2,                                // 1tab = 2space
-  "files.autoSave": "onFocusChange",                  // 失去焦点自动保存
-  "editor.minimap.enabled": true,                     // 是否启用縮略圖
-  "editor.minimap.autohide": true,                    // 是否自动隐藏缩略图
-  "editor.hideCursorInOverviewRuler": true,           // 輸入時隱藏光標
-  "editor.scrollbar.horizontal": "hidden",            // 隱藏垂直滾動條
-  "editor.scrollbar.vertical": "hidden",              // 隱藏水平滾動條
-  "editor.semanticHighlighting.enabled": "configuredByTheme",
-  "update.mode": "none",                              // 关闭自动更新
-  "update.showReleaseNotes": false,                   // 不查看更新信息
-  "security.workspace.trust.untrustedFiles": "open",  // 允许打开不信任文件
-  "debug.onTaskErrors": "abort",                      // launch.json tasks.json 错误中断 debug
-  "workbench.colorTheme": "One Dark Pro Mix",     // 主题
-  "workbench.tree.enableStickyScroll": true,          // 文件树粘性滚动
-  "workbench.editor.enablePreview": false,            // 禁用预览
-  "editor.renderWhitespace": "all",                   // 显示空格 
+  "editor.fontFamily": "FiraCode Nerd Font",                  // 字体
+  "editor.fontLigatures": true,                               // 启用连体字
+  "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
+  "editor.fontSize": 15,                                      // 字体大小
+  "editor.hover.sticky": false,                               // 悬浮代码提示
+  "editor.insertSpaces": true,                                // tab 替换为空格
+  "editor.renderLineHighlightOnlyWhenFocus": false,           // 禁用當前行高亮
+  "editor.tabSize": 2,                                        // 1tab = 2space
+  "files.autoSave": "onFocusChange",                          // 失去焦点自动保存
+  "editor.minimap.enabled": true,                             // 是否启用縮略圖
+  "editor.minimap.autohide": true,                            // 是否自动隐藏缩略图
+  "editor.hideCursorInOverviewRuler": true,                   // 輸入時隱藏光標
+  "editor.scrollbar.horizontal": "hidden",                    // 隱藏垂直滾動條
+  "editor.scrollbar.vertical": "hidden",                      // 隱藏水平滾動條
+  "editor.semanticHighlighting.enabled": "configuredByTheme", // 語義高亮
+  "update.mode": "none",                                      // 关闭自动更新
+  "update.showReleaseNotes": false,                           // 不查看更新信息
+  "security.workspace.trust.untrustedFiles": "open",          // 允许打开不信任文件
+  "debug.onTaskErrors": "abort",                              // launch.json tasks.json 错误中断 debug
+  "workbench.colorTheme": "One Dark Pro Mix",                 // 主题
+  "workbench.tree.enableStickyScroll": true,                  // 文件树粘性滚动
+  "workbench.editor.enablePreview": false,                    // 禁用预览
+  "editor.renderWhitespace": "all",                           // 显示空白字符 
   // 文件管理
   "explorer.confirmDelete": false,                    // 删除不需要确认
   "explorer.confirmDragAndDrop": false,               // 文件拖拽不需要确认

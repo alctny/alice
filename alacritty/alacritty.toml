@@ -5,7 +5,7 @@ shape = "Block"
 shape = "Block"
 
 [font]
-size = 10
+size = 7
 
 [font.bold]
 family = "FiraCode Nerd Font"
