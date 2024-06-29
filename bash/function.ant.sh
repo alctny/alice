@@ -146,3 +146,39 @@ function rename_with_index() {
   done
 }
 
+# 功能: 計算一個目錄中所有視頻時長總和
+# 參數:
+#   $1: 視頻文件列表
+# 注意: 
+#   1. 此函數計算視頻時長依賴 ffprob，需要自行安裝
+#   2. 此函數並不會主動去發現和判斷視頻文件是那些，需要使用者通過 find 命令或其他手段將所有視頻文件路徑輸出到文本文件，
+#      然後作爲參數傳遞給此函數
+function video_duration() {
+  time=0
+  while read line; do
+   t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
+   time=$(echo "$time + $t" | bc)
+  done < "$1"
+
+  printf "%.2f s\n" $time
+  time=$(echo "$time / 60" | bc)
+  printf "%.2f m\n" $time
+  time=$(echo "$time / 60" | bc)
+  printf "%.2f h\n" $time
+}
+
+# 顯示所有顏色代碼在當前終端中的實際顯示效果
+function ansi_colors() {
+  bg_colors=($(seq 40 47) $(seq 90 97))
+  fg_colors=($(seq 30 37) $(seq 100 107))
+  for style in {0..9}; do
+    echo -e "\nstyle: ${style}"
+    for bg in ${bg_colors[@]}; do
+      for fg in ${fg_colors[@]}; do
+        echo -en " \033[${style};${bg};${fg}m\\\033[${style};${bg};${fg}m \033[0m"
+      done
+      echo
+    done
+  done
+}
+
