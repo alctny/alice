@@ -1,10 +1,9 @@
 
 # 设置系统代理
 function setproxy() {
-  port=7890
-  export HTTPS_PROXY=http://127.0.0.1:$port
-  export HTTP_PROXY=http://127.0.0.1:$port
-  export ALL_PROXY=socks5://127.0.0.1:$port
+  export HTTPS_PROXY=http://127.0.0.1:$PROXY_PORT
+  export HTTP_PROXY=http://127.0.0.1:$PROXY_PORT
+  export ALL_PROXY=socks5://127.0.0.1:$PROXY_PORT
 }
 
 # 清空系统代理
@@ -31,11 +30,6 @@ function fbi() {
   feh --bg-fill $1
 }
 
-# 自动解压缩，并判断是否需要创建新的文件夹
-function ziptodir() {
-  echo "doing"
-}
-
 # 获取窗口 class
 function win_class() {
   while true; do
@@ -47,7 +41,7 @@ function win_class() {
 function ckpath() {
   IFS=":" read -ra path <<< "$PATH"
   for dir in "${path[@]}"; do
-    [[ "$dir" =~ ^\$.* ]] && continue  # 过滤 $PATH
+    [[ "$dir" =~ ^\$.* ]] && continue
     if [ ! -d "$dir" ] && [ "$dir" != '$PATH' ]; then
       echo -e "\e[31m${dir}\e[0m"
     else
@@ -60,28 +54,13 @@ function ckpath() {
 # 将当前目录下的所有文件轮流设置为桌面背景
 function wallpaper_walk() {
   for pic in *; do
-    feh --bg-center  "$pic" 2>/dev/null
-    if [ $? != 0 ]; then
-      continue
-    fi
-    echo "${pic} center"
-    sleep 2
-
-    echo "${pic} scale"
-    feh --bg-scale  "$pic"
-    sleep 2
-
     echo "${pic} fill"
     feh --bg-fill  "$pic"
-    sleep 2
-
-    echo "${pic} max"
-    feh --bg-max  "$pic"
-    sleep 2
+    sleep 1
 
     echo "${pic} tile"
     feh --bg-tile  "$pic"
-    sleep 2
+    sleep 1
   done 
 }
 

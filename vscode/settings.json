@@ -1,6 +1,6 @@
 {
   // VSCode 基础设置
-  "editor.fontFamily": "FiraCode Nerd Font",                  // 字体
+  "editor.fontFamily": "FiraCode Nerd Font Light",            // 字体
   "editor.fontLigatures": true,                               // 启用连体字
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
   "editor.fontSize": 15,                                      // 字体大小
@@ -50,10 +50,13 @@
   "github.copilot.chat.localeOverride": "zh-TW",          // github copilot 语言
   "python.createEnvironment.trigger": "off",              // 禁止 Python 提示选择虚拟环境
   // 终端
-  "terminal.integrated.cursorStyle": "line",              // 光标样式为竖线
-  "terminal.integrated.cursorBlinking": true,             // 启用光标闪烁
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font", // 字体
-  "terminal.external.linuxExec": "alacritty",             // 外部终端
+  "terminal.integrated.cursorStyle": "block",                            // 光标样式为竖线
+  "terminal.integrated.cursorBlinking": true,                            // 启用光标闪烁
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",                // 字体
+  "terminal.external.linuxExec": "alacritty",                            // 外部终端
+  "terminal.integrated.profiles.linux": {
+    "bash": { "path": "bash", "icon": "terminal-bash", "args": ["-l"] }, // 以登錄狀態初始化 bash
+  },
   // UI
   "workbench.startupEditor": "none",                      // 启动页面
   "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
