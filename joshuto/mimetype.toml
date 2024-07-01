@@ -4,7 +4,7 @@ audio_default = [
 ]
 
 image_default = [
-  { command = "feh", args = [ "--keep-zoom-vp", "." ] },
+  { command = "feh", args = [ "--keep-zoom-vp", ".", "--start-at"] },
 ]
 
 video_default = [
