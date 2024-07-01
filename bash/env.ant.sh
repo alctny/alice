@@ -25,7 +25,7 @@ export GLFW_IM_MODULE=fcitx5
 export EDITOR=vim
 
 # 命令提示符 prompt
-export PS1="\033[7;97;36m\w\033[0m \033[6;97;100m\u\033[0m\n🦚"  # 備用 emoji 👾 👘 🦄 🦋 🦚 🦑 🍀 🪷 🪽 🌸 🎉 🎊 📦 🦠 🧬 🎀
+export PS1="\033[7;97;36m \w \033[0m\033[6;97;100m \u \033[0m\n🦚"  # 備用 emoji 👾 👘 🦄 🦋 🦚 🦑 🍀 🪷 🪽 🌸 🎉 🎊 📦 🦠 🧬 🎀
 
 # man page
 export LESS='-R'

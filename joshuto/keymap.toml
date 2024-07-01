@@ -28,13 +28,12 @@ keymap = [
   { keys = ["m", "k"], commands = [":mkdir "] },
 
   # copy and paste
-  { keys = ["d", "d"], commands = ["cut_files"] },
   { keys = ["p", "p"], commands = ["paste_files"] },
+  { keys = ["d", "d"], commands = ["cut_files"] },
   { keys = ["y", "y"], commands = ["copy_files"] },
   { keys = ["y", "n"], commands = ["copy_filename"] },
-  { keys = ["y", "p"], commands = ["copy_filepath"] },
+  { keys = ["y", "f"], commands = ["copy_filepath"] },
   { keys = ["y", "d"], commands = ["copy_dirpath"] },
-  { keys = ["y", "a"], commands = ["copy_filepath --all-selected=true"] },
 
 
   # delete
