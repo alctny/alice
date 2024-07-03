@@ -81,6 +81,7 @@ keymap = [
   { keys = ["g", "o"], commands = ["cd /opt"] },
   { keys = ["g", "d"], commands = ["cd ~/download"] },
   { keys = ["g", "j"], commands = ["cd ~/.config/joshuto"] },
+  { keys = ["g", "b"], commands = ["cd /data/baidu"] },
 
   { keys = ["?"],      commands = ["help"] },
 ]
