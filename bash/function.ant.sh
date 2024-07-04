@@ -1,4 +1,17 @@
 
+# 一個簡單的進度條
+function progress_bar() {
+    local progress=$1
+    local total_steps=$2
+    local max_length=50
+    local filled_length=$(( progress * max_length / total_steps ))
+    local empty_length=$(( max_length - filled_length ))
+    local filled_bar=$(printf "%0.s#" $(seq 1 $filled_length))
+    local empty_bar=$(printf "%0.s-" $(seq 1 $empty_length))
+    
+    printf "\r[%s%s] %d%% (%d / %d)" "$filled_bar" "$empty_bar" "$(( progress * 100 / total_steps ))" "$progress" "$total_steps"
+}
+
 # 设置系统代理
 function setproxy() {
   export HTTPS_PROXY=http://127.0.0.1:$PROXY_PORT
@@ -133,17 +146,25 @@ function rename_with_index() {
 #   2. 此函數並不會主動去發現和判斷視頻文件是那些，需要使用者通過 find 命令或其他手段將所有視頻文件路徑輸出到文本文件，
 #      然後作爲參數傳遞給此函數
 function video_duration() {
-  time=0
+  if [ "$1" == "" ]; then
+    echo "pleast provide file witch video file list"
+    return 1
+  fi
+  local time=0
+  local total=$(wc -l $1 | awk '{print $1}')
+  local i=1
   while read line; do
-   t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
-   time=$(echo "$time + $t" | bc)
+    t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
+    time=$(echo "$time + $t" | bc)
+    progress_bar "$i" "$total"
+    i=$(( $i + 1  ))
   done < "$1"
-
-  printf "%.2f s\n" $time
-  time=$(echo "$time / 60" | bc)
-  printf "%.2f m\n" $time
-  time=$(echo "$time / 60" | bc)
-  printf "%.2f h\n" $time
+  time=$(echo "$time/1" | bc)
+  echo
+  local hou=$(( $time / 3600 ))
+  local min=$(( ($time - $hou * 3600) /60 ))
+  local sec=$(( $time - $hou * 3600 - $min * 60 ))
+  printf "%dh:%dm:%ds\n" "$hou" "$min" "$sec"
 }
 
 # 顯示所有顏色代碼在當前終端中的實際顯示效果
