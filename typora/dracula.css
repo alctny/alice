@@ -41,14 +41,8 @@
   --primary-color: var(--dracula-cyan);
   /* implicit mathjax edit panel background color */
   --rawblock-edit-panel-bd: var(--dracula-math);
-  --monospace: "Fira Code", "Source Code", "Consolas", monospace; /* seems to be the new way to do this */
-}
-
-@font-face {
-  font-family: "Fira Code";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Fira Code Retina"), local("Fira Code Regular"), local("Fira Code"), url("./Dracula/FiraCode-VF.woff2") format("woff2");
+  --monospace: "Fira Code", "Source Code", "Consolas", monospace;
+  /* seems to be the new way to do this */
 }
 
 html {
@@ -62,6 +56,7 @@ body {
   background: var(--dracula-background);
   background: var(--bg-color);
   fill: currentColor;
+  font-family: 'FiraCode Nerd Code';
 }
 
 #write {
@@ -70,7 +65,7 @@ body {
 }
 
 #typora-source .CodeMirror-lines {
-    max-width: 70%;
+  max-width: 70%;
 }
 
 html,
@@ -88,7 +83,7 @@ div.code-tooltip,
   background: #4b535a;
 }
 
-.popover.bottom > .arrow:after {
+.popover.bottom>.arrow:after {
   border-bottom-color: #4b535a;
 }
 
@@ -187,6 +182,7 @@ h6 {
 }
 
 @media (min-width: 1200px) {
+
   h3.md-focus:before,
   h4.md-focus:before,
   h5.md-focus:before,
@@ -362,7 +358,7 @@ var {
 
 kbd {
   color: #fff;
-  box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
   font-size: 90%;
 }
 
@@ -389,7 +385,7 @@ hr {
   /* variable */
 }
 
-#write > *:first-child {
+#write>*:first-child {
   margin-top: 40px;
 }
 
@@ -445,11 +441,11 @@ td {
   padding-left: 1.25rem;
 }
 
-.md-task-list-item > input {
+.md-task-list-item>input {
   top: auto;
 }
 
-.md-task-list-item > input:before {
+.md-task-list-item>input:before {
   content: "";
   display: inline-block;
   width: 0.875rem;
@@ -461,8 +457,8 @@ td {
   margin-top: -0.4rem;
 }
 
-.md-task-list-item > input:checked:before,
-.md-task-list-item > input[checked]:before {
+.md-task-list-item>input:checked:before,
+.md-task-list-item>input[checked]:before {
   content: "\221A";
   /*◘*/
   font-size: 0.625rem;
@@ -501,7 +497,7 @@ td {
   color: white;
 }
 
-.typora-search-spinner > div {
+.typora-search-spinner>div {
   background-color: #fff;
 }
 
@@ -527,19 +523,19 @@ td {
   background: transparent;
 }
 
-.md-image > .md-meta {
+.md-image>.md-meta {
   color: #bbbbbb;
   background: transparent;
 }
 
-.md-expand.md-image > .md-meta {
+.md-expand.md-image>.md-meta {
   color: #ddd;
 }
 
-#write > h3:before,
-#write > h4:before,
-#write > h5:before,
-#write > h6:before {
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
   border: none;
   border-radius: 0px;
   color: #888;
@@ -548,11 +544,11 @@ td {
   top: 0.2rem;
 }
 
-#write > h3.md-focus:before {
+#write>h3.md-focus:before {
   top: 2px;
 }
 
-#write > h4.md-focus:before {
+#write>h4.md-focus:before {
   top: 2px;
 }
 
@@ -707,6 +703,7 @@ footer {
   footer {
     border-top: none;
   }
+
   footer:hover {
     color: inherit;
   }
@@ -745,7 +742,7 @@ footer {
   color: white;
 }
 
-.megamenu-menu-panel .dropdown-menu > li > a {
+.megamenu-menu-panel .dropdown-menu>li>a {
   color: inherit;
   background-color: #2f353a;
   text-decoration: none;
@@ -772,7 +769,7 @@ footer {
 .btn-default.focus,
 .btn-default:active,
 .btn-default.active,
-.open > .dropdown-toggle.btn-default {
+.open>.dropdown-toggle.btn-default {
   color: white;
   border: 1px solid #ddd;
   background-color: inherit;
@@ -843,7 +840,7 @@ footer {
 }
 
 .on-focus-mode .md-end-block:not(.md-focus) img,
-.on-focus-mode .md-task-list-item:not(.md-focus-container) > input {
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
   opacity: #686868 !important;
 }
 
@@ -851,11 +848,7 @@ footer {
   color: #686868;
 }
 
-.on-focus-mode
-  .md-fences.md-focus
-  .CodeMirror-code
-  > *:not(.CodeMirror-activeline)
-  *,
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
 .on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
   color: #686868 !important;
 }
@@ -865,11 +858,7 @@ footer {
   color: #fff;
 }
 
-.on-focus-mode
-  #typora-source
-  .CodeMirror-code
-  > *:not(.CodeMirror-activeline)
-  * {
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
   color: #686868 !important;
 }
 
@@ -911,16 +900,27 @@ footer {
   border: solid 1px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
   background-color: var(--bg-color);
-  font-size: 16px;
+  font-size: 18px;
+}
+
+#sidebar-files-menu.dropdown-menu>li {
+  font-size: 18px;
+  font-family: "FiraCode Nerd Font";
+}
+
+#sidebar-files-menu.dropdown-menu>li>a {
+  color: aliceblue;
 }
 
 .file-list-item {
   border-bottom: none;
+  font-size: 18px;
 }
 
 .file-list-item-summary {
   opacity: 1;
 }
+
 
 .file-list-item.active:first-child {
   border-top: none;
@@ -934,16 +934,17 @@ footer {
   height: 32px;
 }
 
-.file-library-node.active > .file-node-content,
+.file-library-node.active>.file-node-content,
 .file-list-item.active {
   color: white;
   color: var(--active-file-text-color);
 }
 
-.file-library-node.active > .file-node-background {
+.file-library-node.active>.file-node-background {
   background-color: rgb(34, 34, 34);
   background-color: var(--active-file-bg-color);
 }
+
 .file-list-item.active {
   background-color: rgb(34, 34, 34);
   background-color: var(--active-file-bg-color);
@@ -955,23 +956,12 @@ footer {
 }
 
 #write {
-  cursor: -webkit-image-set(
-        url("dracula/cursor.png") 1x,
-        url("dracula/cursor@2x.png") 2x
-      )
-      8 8,
+  cursor: -webkit-image-set(url("dracula/cursor.png") 1x,
+      url("dracula/cursor@2x.png") 2x) 8 8,
     auto;
 }
 
-.md-task-list-item > input {
+.md-task-list-item>input {
   margin-left: -1.3em;
   margin-top: calc(1rem - 10px);
-  -webkit-appearance: none;
 }
-
-
-/* 設置頁面 */
-.pane-group {
-  font-size: 20px;
-}
-
