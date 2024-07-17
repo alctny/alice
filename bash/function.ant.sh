@@ -92,8 +92,8 @@ function cosb() {
 function smnt() {
   dev=$1
   if [ "$dev" == "" ] || [ ! -b $dev ]; then
-    echo "必须输入需要挂载的文件"
-    exit 1
+    echo "必须输入需要挂载的磁盤"
+    return 1
   fi
   dir=${dev##*/}
   sudo mkdir -p "/mnt/$dir"
@@ -103,7 +103,7 @@ function smnt() {
 # 在 umount 时自动删除 smnt 创建的目录
 function umnt() {
   mounton=$1
-  sudo umount $mounton && lsblk || echo "unmount error"
+  sudo umount $mounton && lsblk || (echo "unmount error" && return 1)
   sudo rmdir $mounton
 }
 
