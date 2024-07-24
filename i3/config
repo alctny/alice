@@ -9,8 +9,8 @@ client.focused            #416E74      #416E74     #416E74     #416E74       #41
 client.unfocused          #F0F8FF      #F0F8FF     #F0F8FF     #F0F8FF       #F0F8FF
 
 # Gaps config
-gaps inner 3
-gaps outer 3
+gaps inner 0
+gaps outer 0
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -27,7 +27,7 @@ exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1
 
 exec --no-startup-id picom &
 # exec --no-startup-id dunst &
-exec --no-startup-id polybar -r &
+exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
 
 # Use pactl to adjust volume in PulseAudio.
@@ -146,3 +146,4 @@ bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --of
 for_window [class="supertuxkart" instance="supertuxkart"] floating disable
 for_window [class="Soffice"] floating disable 
 for_window [class="copyq"] floating enable 
+for_window [title="图片查看"] floating enable 
