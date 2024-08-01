@@ -9,3 +9,4 @@
 - Terminal Splash: <https://terminalsplash.com>
 - Nerd Font: <https://www.nerdfonts.com/#home>
 - Dracula Theme: <https://draculatheme.com>
+- Emoji Pedia: <https://emojipedia.org/full-moon>

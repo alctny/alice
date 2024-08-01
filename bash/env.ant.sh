@@ -22,7 +22,7 @@ export SDL_IM_MODULE=fcitx5
 export GLFW_IM_MODULE=fcitx5
 
 # 默認編輯器
-export EDITOR=vim
+export EDITOR=nvim
 
 # 命令提示符 prompt
 export PS1="\033[7;97;36m \w \033[0m\033[6;97;100m \u \033[0m\n🦚"  # 🦚 🪷 📦 🎀 ☭  ⚆_⚆ 

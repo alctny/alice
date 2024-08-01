@@ -9,7 +9,7 @@ function progress_bar() {
     local filled_bar=$(printf "%0.s#" $(seq 1 $filled_length))
     local empty_bar=$(printf "%0.s-" $(seq 1 $empty_length))
     
-    printf "\r[%s%s] %d%% (%d / %d)" "$filled_bar" "$empty_bar" "$(( progress * 100 / total_steps ))" "$progress" "$total_steps"
+    printf "\r\033[0;40;32m[%s%s] %d%% (%d / %d)\033[0m" "$filled_bar" "$empty_bar" "$(( progress * 100 / total_steps ))" "$progress" "$total_steps"
 }
 
 # 设置系统代理
@@ -140,31 +140,48 @@ function rename_with_index() {
 
 # 功能: 計算一個目錄中所有視頻時長總和
 # 參數:
-#   $1: 視頻文件列表
+#   $1: 視頻文件列表，为空则自动搜索 mp4/mkv/flv 文件
+#   $2: 将具体每个视频时长输出到特定文件，为空则不输出
 # 注意: 
 #   1. 此函數計算視頻時長依賴 ffprob，需要自行安裝
 #   2. 此函數並不會主動去發現和判斷視頻文件是那些，需要使用者通過 find 命令或其他手段將所有視頻文件路徑輸出到文本文件，
 #      然後作爲參數傳遞給此函數
 function video_duration() {
-  if [ "$1" == "" ]; then
-    echo "pleast provide file witch video file list"
-    return 1
+  local vlist=$1
+  local detail=$2
+  if [ "$vlist" == "" ]; then
+    vlist=video_duration_list.txt
+    find . -type f -iname "*.mkv" -or -iname "*.mp4" -or -iname "*.flv" > $vlist
   fi
+  [ ! -f "$vlist" ] && echo "$vlist not file" && return
+    
+
   local time=0
-  local total=$(wc -l $1 | awk '{print $1}')
+  local total=$(wc -l $vlist | awk '{print $1}')
   local i=1
   while read line; do
-    t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
+    local t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
+    # 具体每个文件时长
+    if [ "$detail" != "" ]; then
+      local tt=$(echo "$t/1" | bc)
+      local line_hou=$(( $tt / 3600 ))
+      local line_min=$(( ($tt - $line_hou * 3600) / 60 ))
+      local line_sec=$(( $tt - $line_hou * 3600 - $line_min * 60 ))
+      printf "%dh:%02dm:%02ds %s\n" "$line_hou" "$line_min" "$line_sec" "$line" >> $detail
+    fi
+    # 累积
     time=$(echo "$time + $t" | bc)
-    progress_bar "$i" "$total"
     i=$(( $i + 1  ))
-  done < "$1"
+    progress_bar "$i" "$total"
+  done < "$vlist"
+
+  # 输出结果
   time=$(echo "$time/1" | bc)
   echo
   local hou=$(( $time / 3600 ))
   local min=$(( ($time - $hou * 3600) /60 ))
   local sec=$(( $time - $hou * 3600 - $min * 60 ))
-  printf "%dh:%dm:%ds\n" "$hou" "$min" "$sec"
+  printf "\033[6;90;34m%dh:%dm:%ds\033[0m\n" "$hou" "$min" "$sec"
 }
 
 # 顯示所有顏色代碼在當前終端中的實際顯示效果
