@@ -1,14 +1,28 @@
+
+# shift       Shift_L (0x32),  Shift_R (0x3e)
+# lock        Caps_Lock (0x42)
+# control     Control_L (0x25),  Control_R (0x69)
+# mod1        Alt_L (0x40),  Alt_R (0x6c),  Alt_L (0xcc),  Meta_L (0xcd)
+# mod2        Num_Lock (0x4d)
+# mod3        ISO_Level5_Shift (0xcb)
+# mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
+# mod5        ISO_Level3_Shift (0x5c)
 set $mod Mod4
 
 floating_modifier $mod
 
 font pango:Noto Sans Bold SC 0
 
-for_window [class="^.*"] border normal 0
+for_window [class=".*"]  border normal 0
+for_window [class=".*"]  border pixel 0
 
-# Theme colors            border    backgr. text   indicator   child_border
-client.focused            #416E74      #416E74     #416E74     #416E74       #416E74
-client.unfocused          #F0F8FF      #F0F8FF     #F0F8FF     #F0F8FF       #F0F8FF
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
 
 # Gaps config
 gaps inner 0
@@ -17,9 +31,13 @@ gaps outer 0
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 # xset dpms 0 0 300
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/picture/sys/lock.png
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/picture/wallpaper/lock.png
+exec --no-startup-id xautolock -time 15 -locker i3lock
 exec --no-startup-id nm-applet
 exec --no-startup-id copyq
+exec --no-startup-id conky -c ~/.config/conky/conkyrc
+# exec --no-startup-id conky -c ~/.config/conky/iktodo
+
 
 # 壁纸
 # exec_always --no-startup-id feh --bg-fill "/home/ant/picture/sys/wallpaper.png"
@@ -47,6 +65,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+bindsym Mod1+Mod4+Return exec st -e /bin/bash -l -c 'tmux a || tmux'
 
 # kill focused window
 bindsym $mod+q kill
@@ -57,15 +76,24 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
+
+bindsym $mod+Shift+h     move left
+bindsym $mod+Shift+j     move down
+bindsym $mod+Shift+k     move up
+bindsym $mod+Shift+l     move right
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+# bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
@@ -114,6 +142,8 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 bindsym $mod+Ctrl+Left  workspace prev
 bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+h     workspace prev
+bindsym $mod+Ctrl+l     workspace next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -128,8 +158,23 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Ctrl+Shift+Left   move container to workspace prev
 bindsym $mod+Ctrl+Shift+Right  move container to workspace next
+bindsym $mod+Ctrl+Shift+h      move container to workspace prev
+bindsym $mod+Ctrl+Shift+l      move container to workspace next
 
-# 把窗口移動到剪貼板
+mode "resize" {
+    bindsym Left  resize shrink width  10 px
+    bindsym Up    resize shrink height 10 px
+    bindsym Down  resize grow   height 10 px
+    bindsym Right resize grow   width  10 px
+
+    # Exit resize mode by pressing Escape or Enter
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# move window to clipboard, use $mod+minus to pase
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 # reload the configuration file
@@ -141,25 +186,32 @@ bindsym $mod+Shift+e exit
 
 # customer hotkey
 bindsym Print exec flameshot gui
-bindsym $mod+l exec i3lock -i /home/ant/picture/sys/lock.png
 bindsym Mod1+space exec --no-startup-id rofi -show drun
+bindsym Mod1+Ctrl+q exec i3lock -i /home/ant/picture/wallpaper/lock.png
 # bindsym F1 exec xfce4-terminal --drop-down
 
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
 # TODO 添加仅主屏，扩展屏，共享屏
-# bindsym $mod+p exec xrandr --output $(xrandr | grep eDP | awk '{print $1}') --off --primary --output $(xrandr | grep " connect" | grep -v "eDP" | awk '{print $1}' | head -n 1) --auto
+bindsym $mod+p exec xrandr --output eDP-1 --off --primary --output DP-2 --mode 1920x1080 --primary
 
 # pin windows to workspace
-assign [class="baidunetdisk"]  6
-assign [class="Typora"]        7
-assign [class="obsidian"]      7
-assign [class="google-chrome"] 8
-assign [class="Google-chrome"] 8
-assign [class="wechat"]        9
-assign [class="Telegram"]      9
+assign [class="libreoffice-calc"] 5
+assign [class="Localsend_app"]    6
+assign [class="baidunetdisk"]     6
+assign [class="Typora"]           7
+assign [class="obsidian"]         7
+assign [class="google-chrome"]    8
+assign [class="Google-chrome"]    8
+assign [class="wechat"]           9
+assign [class="Telegram"]         9
 
 
 # set application floating enable or disable
-for_window [class="wechat"]   floating disable
-for_window [title="图片查看"] floating enable 
-for_window [class="copyq"]    floating enable 
+for_window [class="wechat"]            floating disable
+for_window [title="图片查看"]          floating enable  move position center
+for_window [class="copyq"]             floating enable  move position center
+for_window [class="flameshot"]         floating enable  move position center
+for_window [class="Rustdesk"]          floating enable  move position center
+for_window [window_role="pop-up"]      floating enable  move position center
+for_window [window_role="task_dialog"] floating enable  move position center
+

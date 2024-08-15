@@ -10,6 +10,7 @@ alias ll='ls -lh'
 alias lla='ls -alh'
 alias lh='du --max-depth=1 -h --exclude="./.*"'
 alias lah='du --max-depth=1 -h'
+alias fbi='feh --bg-fill'
 
 alias c='clear'
 alias resource='source ~/.bashrc'

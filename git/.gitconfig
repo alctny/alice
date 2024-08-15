@@ -6,6 +6,8 @@
 [alias]
   dog = log --all --decorate --oneline --graph
   ln = log --oneline -n 10
+  ls = ls-files --others --exclude-standard
+  la = ls-files --others
 [core]
   quotepath = false
 [filter "lfs"]

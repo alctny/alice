@@ -15,6 +15,7 @@
   "editor.scrollbar.horizontal": "hidden",                    // 隱藏垂直滾動條
   "editor.scrollbar.vertical": "hidden",                      // 隱藏水平滾動條
   "editor.semanticHighlighting.enabled": "configuredByTheme", // 語義高亮
+  "debug.console.fontSize": 16,                               // 控制台字体大小
   "update.mode": "none",                                      // 关闭自动更新
   "update.showReleaseNotes": false,                           // 不查看更新信息
   "security.workspace.trust.untrustedFiles": "open",          // 允许打开不信任文件
@@ -53,6 +54,7 @@
   "terminal.integrated.cursorStyle": "block",                            // 光标样式为竖线
   "terminal.integrated.cursorBlinking": true,                            // 启用光标闪烁
   "terminal.integrated.fontFamily": "FiraCode Nerd Font",                // 字体
+  "terminal.integrated.fontSize": 16,                                    // 内置终端字体大小
   "terminal.external.linuxExec": "alacritty",                            // 外部终端
   "terminal.integrated.profiles.linux": {
     "bash": { "path": "bash", "icon": "terminal-bash", "args": ["-l"] }, // 以登錄狀態初始化 bash
@@ -62,7 +64,7 @@
   "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
   "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",                  // 主题
   // 语言
-  "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 120}",   // C/C++ 代码格式
+  "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 150}",   // C/C++ 代码格式
   "C_Cpp.formatting": "clangFormat",                                                // C/C++ 格式化引擎
   "git.openRepositoryInParentFolders": "never",                                     // 是否加载父级目录中的 .git
   "[python]": {
@@ -81,10 +83,11 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2
   },
-  "[perl]": {
-    "editor.defaultFormatter": "sfodje.perltidy",
-  },
   "workbench.editorAssociations": {
     "*.csv": "default"
-  }
+  },
+
+
+  "liveServer.settings.donotShowInfoMsg": true,
+  "cmake.showConfigureWithDebuggerNotification": false
 }
