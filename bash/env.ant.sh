@@ -6,6 +6,7 @@ export PROXY_PORT=7890
 export HTTPS_PROXY=http://127.0.0.1:$PROXY_PORT
 export HTTP_PROXY=http://127.0.0.1:$PROXY_PORT
 export ALL_PROXY=socks5://127.0.0.1:$PROXY_PORT
+export NO_PROXY="localhost,127.0.0.1,172.30.0.0,172.28.0.0"
 
 # Rust 代理
 export RUSTUP_DIST_SERVER="https://rsproxy.cn"
@@ -20,6 +21,11 @@ export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
 export SDL_IM_MODULE=fcitx5
 export GLFW_IM_MODULE=fcitx5
+
+# 命令行
+
+export HISTSIZE=
+export HISTFILESIZE=
 
 # 默認編輯器
 export EDITOR=nvim

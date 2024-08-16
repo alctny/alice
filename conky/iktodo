@@ -28,7 +28,8 @@ conky.config = {
   draw_outline = false,
   draw_shades = false,
   extra_newline = false,
-  font = 'Noto Sans SC:Regular:size=14',          -- font for the task
+  font1 = 'FiraCode Nerd Font:Regular:size=18',    -- font for the task
+  font2 = 'Noto Sans SC:Regular:size=14',          -- font for the task
   gap_x = 60,
   gap_y = 160,
   minimum_height = 5,
@@ -55,9 +56,11 @@ conky.config = {
 
   --Colors (Dracula)
   color0 = '#f0f8ff',
+  color1 = '#416e74'
 }
 
 -- Variables: https://conky.cc/variables
 conky.text = [[
-${goto 12}${color0}${font}${exec iktodo list | cat}
+${color1}${font1}IKTODO:
+${color0}${font2}${exec iktodo list | cat}
 ]]

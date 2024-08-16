@@ -76,3 +76,8 @@ $RECYCLE.BIN/
 *.lnk
 
 nvim/lazy-lock.json
+rime/build
+rime/luna_pinyin.userdb
+rime/sync/*
+rime/installation.yaml
+rime/user.yaml

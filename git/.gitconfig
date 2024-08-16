@@ -1,25 +1,35 @@
 [user]
   name = 尸府主任
   email = gfiszhang@gmail.com
+
 [color]
   ui = true
+
 [alias]
   dog = log --all --decorate --oneline --graph
   ln = log --oneline -n 10
   ls = ls-files --others --exclude-standard
   la = ls-files --others
+  ass = update-index --no-assume-unchanged 
+  rosster = update-index --assume-unchanged 
+
 [core]
   quotepath = false
+
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
 [init]
   defaultBranch = main
+
 [https]
   proxy = http://127.0.0.1:7890
+
 [http]
   proxy = http://127.0.0.1:7890
+
 [pull]
   rebase = true

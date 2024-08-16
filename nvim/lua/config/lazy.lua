@@ -26,27 +26,32 @@ require("lazy").setup({
   spec = {
     -- add your plugins here
     { 'numToStr/Comment.nvim', opts = { }},
+    
     -- 主题
     { "Mofiqul/dracula.nvim" },
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "folke/tokyonight.nvim", priority = 1000, opts = {}, },
+
+    
     -- markdown
-    {
+    { 
       'MeanderingProgrammer/render-markdown.nvim',
       opts = {},
-      dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, },
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, 
+    },
+
     {
       "tadmccorkle/markdown.nvim",
       ft = "markdown", -- or 'event = "VeryLazy"'
       opts = { },
     },
+
     -- hex color
-    {"NvChad/nvim-colorizer.lua", opts = {}},
+    { "NvChad/nvim-colorizer.lua", opts = {}},
 
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "tokyonight-night" } },
+  install = { colorscheme = { "dracula" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
   config = { notify = false },

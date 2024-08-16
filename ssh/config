@@ -11,3 +11,11 @@ User git
 Port 443
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_ed25519
+
+
+Host 172.16.0.6
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/comsns
+  Port 2222
