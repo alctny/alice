@@ -89,5 +89,5 @@
 
 
   "liveServer.settings.donotShowInfoMsg": true,
-  "cmake.showConfigureWithDebuggerNotification": false
+  "cmake.showConfigureWithDebuggerNotification": false,
 }

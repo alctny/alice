@@ -10,8 +10,8 @@
   ln = log --oneline -n 10
   ls = ls-files --others --exclude-standard
   la = ls-files --others
-  ass = update-index --no-assume-unchanged 
-  rosster = update-index --assume-unchanged 
+  noass = update-index --no-assume-unchanged 
+  ass = update-index --assume-unchanged 
 
 [core]
   quotepath = false

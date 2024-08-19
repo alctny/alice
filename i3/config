@@ -35,9 +35,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/pictu
 exec --no-startup-id xautolock -time 15 -locker i3lock
 exec --no-startup-id nm-applet
 exec --no-startup-id copyq
-exec --no-startup-id conky -c ~/.config/conky/conkyrc
-exec --no-startup-id conky -c ~/.config/conky/iktodo
-
+exec --no-startup-id conky
 
 # 壁纸
 # exec_always --no-startup-id feh --bg-fill "/home/ant/picture/sys/wallpaper.png"
