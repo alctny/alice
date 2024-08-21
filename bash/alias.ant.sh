@@ -13,7 +13,7 @@ alias lah='du --max-depth=1 -h'
 alias fbi='feh --bg-fill'
 
 alias c='clear'
-alias resource='source ~/.bashrc'
+alias resource='source ~/.bashrc && source /etc/profile'
 alias rime='killall fcitx5 && fcitx5-remote -r'
 alias baidu='curl https://www.baidu.com'
 alias google='curl https://www.google.com'

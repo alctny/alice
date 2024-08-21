@@ -62,8 +62,8 @@ bindsym XF86MonBrightnessUp   exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-# bindsym Mod1+Mod4+Return exec st -e /bin/bash -l -c 'tmux a || tmux'
+bindsym $mod+Return exec st -e /bin/bash -l -c 'tmux a || tmux'
+bindsym Mod1+Mod4+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill

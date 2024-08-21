@@ -1,11 +1,14 @@
+# Append "$1" to $PATH when not already in.
+# This function API is accessible to scripts in /etc/profile.d
+function append_path () {
+  case ":$PATH:" in
+    *:"$1":*)
+      ;;
+    *)
+      PATH="${PATH:+$PATH:}$1"
+  esac
+}
 
-if [ "$SELF_INIT_FINISHED" == "" ]; then
-  # export
-  return
-fi
+# SET PATH OR ALIS IN THERE
 
-# alias
-
-# function
-
-export SELF_INIT_FINISHED="OK"
+unset -f append_path

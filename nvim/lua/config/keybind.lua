@@ -62,5 +62,6 @@ map("n", "<A-Down>", "v:move '>+1<CR>gv-gv<Esc>",      opt)
 map("n", "<A-Up>",   "v:move '<-2<CR>gv-gv<Esc>",      opt)
 map("i", "<A-Up>",   "<Esc>v:move '<-2<CR>gv-gv<Esc>", opt)
 map("i", "<A-Down>", "<Esc>v:move '>+1<CR>gv-gv<Esc>", opt)
+-- 编辑模式下 C-v 自动粘贴
+map("i", "<C-v>", "<Esc>pa", opt)
 
-map("i", "<C-v>", "<Esc>pa", opt) -- 编辑模式下 C-v 自动粘贴

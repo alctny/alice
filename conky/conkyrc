@@ -95,22 +95,22 @@ $color0$font2${alignc}TALK IS CHEAP
 $color0$font2${alignc}SHOW ME THE CODE
 
 # system base info
+$color3${font4}Hardware: $color$alignr${execpi 6000 hostnamectl | grep "Hardware Model" | sed 's/.*Model: *//'}
 $color3${font4}Kernel: ${alignr}$color$kernel
 $color3${font4}Threads: $color$alignr$threads
 $color3${font4}Processes: $color$alignr$processes
 $color3${font4}Weather: $color$alignr$font5${execpi 30 polybar.weather}
-
 # cpu
-$alignr$color3${execi 6000 cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-16} $cpu%$font
+$color3${execi 6000 lscpu | grep "Model name" | sed 's/Model name: *//; s/ with.*//'} $cpu%$font
 $color1$font4${top name 1}$alignr$color2${top cpu 1}%
 $color1$font4${top name 2}$alignr$color2${top cpu 2}%
 $color1$font4${top name 3}$alignr$color2${top cpu 3}%
 # memary
-$alignr$color3${font3}RAM  $mem/$memmax
+$color3${font3}RAM  $mem/$memmax
 $color1$font4${top_mem name 1}$alignr$color2${top_mem mem_res 1}
 $color1$font4${top_mem name 2}$alignr$color2${top_mem mem_res 2}
 $color1$font4${top_mem name 3}$alignr$color2${top_mem mem_res 3}
 # TODO List
-${alignr}${color3}${font3}IKTODO
+${color3}${font3}IKTODO
 ${color1}${font5}${exec iktodo list -C none}
 ]];

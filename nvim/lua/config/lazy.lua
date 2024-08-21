@@ -21,19 +21,23 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Setup lazy.nvim
+-- setup lazy.nvim
 require("lazy").setup({
   spec = {
     -- add your plugins here
-    { 'numToStr/Comment.nvim', opts = { }},
+    { 'numtostr/comment.nvim', opts = { }},
     -- 主题
-    { "Mofiqul/dracula.nvim" },
-    { "folke/tokyonight.nvim", priority = 1000, opts = {}, },
+    { 'tiagovla/tokyodark.nvim', opts = { },
+      config = function(_, opts)
+          require("tokyodark").setup(opts) -- calling setup is optional
+          vim.cmd [[colorscheme tokyodark]]
+      end,
+    },
     -- markdown
     { 'MeanderingProgrammer/render-markdown.nvim', dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim', opts = {}} },
-    { "tadmccorkle/markdown.nvim", ft = "markdown", opts = { } },
+    { 'tadmccorkle/markdown.nvim', ft = 'markdown', opts = { } },
     -- hex color
-    { "NvChad/nvim-colorizer.lua", opts = {}},
+    { 'NvChad/nvim-colorizer.lua', opts = {}},
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

@@ -71,7 +71,8 @@ vim.o.hidden = true
 vim.g.completeopt = "menu,menuone,noselect,noinsert"
 vim.o.showtabline = 2
 
+-- 启用真彩色
 vim.opt.termguicolors = true
 -- 设置颜色主题
-vim.cmd [[colorscheme tokyonight-night ]]
+-- vim.cmd [[colorscheme tokyonight-night ]]
 
