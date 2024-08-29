@@ -3,7 +3,7 @@
   "editor.fontFamily": "FiraCode Nerd Font Light",            // 字体
   "editor.fontLigatures": true,                               // 启用连体字
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
-  "editor.fontSize": 15,                                      // 字体大小
+  "editor.fontSize": 14,                                      // 字体大小
   "editor.hover.sticky": false,                               // 悬浮代码提示
   "editor.insertSpaces": true,                                // tab 替换为空格
   "editor.renderLineHighlightOnlyWhenFocus": false,           // 禁用當前行高亮
@@ -90,4 +90,6 @@
 
   "liveServer.settings.donotShowInfoMsg": true,
   "cmake.showConfigureWithDebuggerNotification": false,
+  "fittencode.languagePreference.displayPreference": "zh-cn",
+  "fittencode.languagePreference.commentPreference": "zh-cn",
 }

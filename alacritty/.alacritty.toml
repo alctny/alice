@@ -10,11 +10,11 @@ size = 6
 
 [font.bold]
 family = "FiraCode Nerd Font"
-style = "Regular"
+style = "Bold"
 
 [font.italic]
 family = "FiraCode Nerd Font"
-style = "Regular"
+style = "Retina"
 
 [font.normal]
 family = "FiraCode Nerd Font"
