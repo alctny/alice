@@ -196,6 +196,7 @@ bindsym $mod+p exec xrandr --output eDP-1 --off --primary --output DP-2 --mode 1
 assign [class="libreoffice-calc"] 5
 assign [class="Localsend_app"]    6
 assign [class="baidunetdisk"]     6
+assign [class="Motrix"]           6
 assign [class="Typora"]           7
 assign [class="obsidian"]         7
 assign [class="google-chrome"]    8

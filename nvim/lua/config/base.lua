@@ -75,4 +75,8 @@ vim.o.showtabline = 2
 vim.opt.termguicolors = true
 -- 设置颜色主题
 -- vim.cmd [[colorscheme tokyonight-night ]]
+vim.cmd [[colorscheme gruvbox ]]
 
+
+vim.opt.shortmess:append("I")
+vim.opt.cmdheight = 1

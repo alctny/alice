@@ -27,12 +27,7 @@ require("lazy").setup({
     -- add your plugins here
     { 'numtostr/comment.nvim', opts = { }},
     -- 主题
-    { 'tiagovla/tokyodark.nvim', opts = { },
-      config = function(_, opts)
-          require("tokyodark").setup(opts) -- calling setup is optional
-          vim.cmd [[colorscheme tokyodark]]
-      end,
-    },
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opt=...},
     -- markdown
     { 'MeanderingProgrammer/render-markdown.nvim', dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim', opts = {}} },
     { 'tadmccorkle/markdown.nvim', ft = 'markdown', opts = { } },
@@ -43,6 +38,6 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "dracula" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
   config = { notify = false },
 })
