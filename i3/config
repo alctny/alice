@@ -7,6 +7,7 @@
 # mod3        ISO_Level5_Shift (0xcb)
 # mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
 # mod5        ISO_Level3_Shift (0x5c)
+set $Alt Mod1
 set $mod Mod4
 
 floating_modifier $mod
@@ -50,6 +51,7 @@ exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400
 exec --no-startup-id picom &
 exec --no-startup-id polybar alice &
 exec --no-startup-id fcitx5 &
+# exec --no-startup-id fcitx5 --verbose=classicui=5 &
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -63,7 +65,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 
 # start a terminal
 bindsym $mod+Return exec st -e /bin/bash -l -c 'tmux a || tmux'
-bindsym Mod1+Mod4+Return exec alacritty
+bindsym $mod+$Alt+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -198,6 +200,7 @@ assign [class="Localsend_app"]    6
 assign [class="baidunetdisk"]     6
 assign [class="Motrix"]           6
 assign [class="Typora"]           7
+assign [class="Trilium Notes"]    7
 assign [class="obsidian"]         7
 assign [class="google-chrome"]    8
 assign [class="Google-chrome"]    8

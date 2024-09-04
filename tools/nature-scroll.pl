@@ -1,0 +1,34 @@
+#! /bin/env perl
+use strict;
+use warnings;
+
+use constant REX_NATURA_OPTION => qr/^\s*Option\s+"NaturalScrolling"\s+"True"/;
+use constant REX_SECTION_END => qr/^\s*EndSection/;
+use constant NATURA_OPTION => 'Option "NaturalScrolling" "True"';
+
+sub add_ns_opt {
+  my $file = $_[0];
+  my @content;
+  my $is_set = 0;
+  my $space = "";
+
+  open (my $fh, '+<', $file) or die "open file error: $!";
+
+  while (my $lin = <$fh>) {
+    $is_set = 1 if $lin =~ REX_NATURA_OPTION ;
+    if ($lin =~ REX_SECTION_END && $is_set != 1) {
+      push (@content, $space.NATURA_OPTION."\n");
+      $is_set = 0;
+    } 
+    ($space) = $lin =~ /^(\s+)/;
+    push (@content, $lin);
+  }
+
+  seek ($fh, 0, 0);
+  print $fh @content;
+  close $fh or die "close file error: $!";
+}
+
+add_ns_opt "/usr/share/X11/xorg.conf.d/40-libinput.conf";
+add_ns_opt "/usr/local/share/X11/xorg.conf.d/40-libinput.conf";
+

@@ -62,7 +62,7 @@ vim.o.list = true
 vim.o.listchars = "space:·"
 
 -- 关闭默认状态栏显示
-vim.o.showmode = false
+vim.o.showmode = true
 
 -- 左侧流出额外一列
 vim.wo.signcolumn = "yes"
@@ -77,6 +77,3 @@ vim.opt.termguicolors = true
 -- vim.cmd [[colorscheme tokyonight-night ]]
 vim.cmd [[colorscheme gruvbox ]]
 
-
-vim.opt.shortmess:append("I")
-vim.opt.cmdheight = 1

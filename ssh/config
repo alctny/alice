@@ -19,3 +19,11 @@ Host 172.16.0.6
   AddKeysToAgent yes
   IdentityFile ~/.ssh/comsns
   Port 2222
+
+
+Host 172.30.1.171
+  # HostkeyAlgorithms +ssh-rsa
+  # PubkeyAcceptedAlgorithms +ssh-rsa
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/comsns
+  Port 22
