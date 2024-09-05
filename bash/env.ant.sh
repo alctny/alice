@@ -20,11 +20,11 @@ export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 export GOPROXY=https://www.goproxy.cn,direct
 
 # 輸入法
-export GTK_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx5
-export SDL_IM_MODULE=fcitx5
-export GLFW_IM_MODULE=fcitx5
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=fcitx
 
 # 命令行上限
 export HISTSIZE=

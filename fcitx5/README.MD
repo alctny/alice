@@ -5,11 +5,11 @@
 使用 Fcitx5 輸入中文需要額外的環境變量配置：
 
 ```bash
-export GTK_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx5
-export SDL_IM_MODULE=fcitx5
-export GLFW_IM_MODULE=fcitx5
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=fcitx
 ```
 
 ## 主題配置
