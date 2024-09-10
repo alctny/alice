@@ -1,79 +1,94 @@
+local opt = vim.opt
+local win = vim.wo
+local buf = vim.bo
+
+--------------------------------------------------------------
+--                          option                          --
+--------------------------------------------------------------
 -- 文件编码
-vim.g.encoding = "UTF-8"
-vim.o.fileencoding = 'utf-8'
-
--- zt tb 在光标所在行留出 8 行
-vim.o.scrolloff = 4
-vim.o.sidescrolloff = 4
-
--- 相对行号
-vim.wo.number = true
-vim.wo.relativenumber = true
-
--- 高亮所在行
-vim.wo.cursorline = true
-vim.wo.cursorcolumn = true
-
+opt.fileencoding = 'utf-8'
+-- zt tb 在光标所在行留出指定行
+opt.scrolloff = 4
+opt.sidescrolloff = 4
 -- tab size
-vim.o.tabstop = 2
-vim.bo.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftround = true
-
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftround = true
+opt.backspace = { "indent", "eol", "start" }
 -- >> << 时移动长度
-vim.o.shiftwidth = 2
-vim.bo.shiftwidth = 2
-
+opt.shiftwidth = 2
 -- 空格替代tab
-vim.o.expandtab = true
-vim.bo.expandtab = true
-
+opt.expandtab = true
 -- 新行对齐当前行
-vim.o.autoindent = true
-vim.bo.autoindent = true
-vim.o.smartindent = true
-
-
+opt.autoindent = true
+opt.smartindent = true
 -- 大小写不敏感
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
+opt.ignorecase = true
+opt.smartcase = true
 -- 搜索
-vim.o.incsearch = true
-vim.o.hlsearch = false
-
+opt.incsearch = true
+opt.hlsearch = false
 -- 底行高度
-vim.o.cmdheight = 0
-
+opt.cmdheight = 0
 -- 文件被外部修改时自动加载变化
-vim.o.autoread = true
-vim.bo.autoread = true
-
+opt.autoread = true
 -- 禁止创建备份文件
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.swapfile = false
-
+opt.backup = false
+opt.writebackup = false
+opt.swapfile = false
+opt.updatetime = 50
+-- undo and redo
+opt.undofile = true
+opt.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
 -- 使用系统剪贴板
-vim.opt.clipboard = 'unnamedplus'
-
+opt.clipboard = 'unnamedplus'
 -- 显示不可见字符
-vim.o.list = true
-vim.o.listchars = "space:·"
-
+opt.list = true
+opt.listchars = "space:·"
 -- 关闭默认状态栏显示
-vim.o.showmode = true
-
--- 左侧流出额外一列
-vim.wo.signcolumn = "yes"
+opt.showmode = true
 -- 允许隐藏修改过的 buffer
-vim.o.hidden = true
-vim.g.completeopt = "menu,menuone,noselect,noinsert"
-vim.o.showtabline = 2
-
+opt.hidden = true
+opt.showtabline = 2
+opt.completeopt = "menu,menuone,noselect,noinsert"
+-- 自动更新 vim 窗口标题
+opt.title = true
 -- 启用真彩色
-vim.opt.termguicolors = true
--- 设置颜色主题
--- vim.cmd [[colorscheme tokyonight-night ]]
-vim.cmd [[colorscheme gruvbox ]]
+opt.termguicolors = true
+-- 自动补全
+opt.wildmenu = true
+opt.completeopt = { "menu", "menuone" }
+-- 允许通过 .nvim.lua 为不同的项目启动本地配置
+opt.exrc = true
+-- 单行模式
+opt.wrap = false
+-- split 窗口位置
+opt.splitright = true
+opt.splitbelow = true
 
+---------------------------------------------------------------
+--                          windows                          --
+---------------------------------------------------------------
+-- 左侧流出额外一列
+win.signcolumn = "yes"
+-- 相对行号
+win.number = true
+win.relativenumber = true
+-- 高亮所在行
+win.cursorline = true
+win.cursorcolumn = true
+
+-----------------------------------------------------------
+--                          buf                          --
+-----------------------------------------------------------
+-- 自动加载被修改过的文件
+buf.autoread = true
+-- 自动缩进
+buf.autoindent = true
+-- 缩进
+buf.expandtab = true
+buf.shiftwidth = 2
+buf.tabstop = 2
+-- 设置颜色主题
+-- vim.cmd [[colorscheme gruvbox ]]
+vim.cmd [[colorscheme tokyonight-night ]]

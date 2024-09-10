@@ -17,41 +17,41 @@ font pango:Noto Sans Bold SC 0
 for_window [class=".*"]  border normal 0
 for_window [class=".*"]  border pixel 0
 
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4 #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36 #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555 #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36 #282A36
 client.background       #F8F8F2
 
 # Gaps config
 gaps inner 0
 gaps outer 0
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-# xset dpms 0 0 300
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i /home/ant/picture/wallpaper/lock.png
-exec --no-startup-id xautolock -time 15 -locker i3lock
-exec --no-startup-id nm-applet
-exec --no-startup-id copyq
-exec --no-startup-id conky
-
-# 壁纸
-# exec_always --no-startup-id feh --bg-fill "/home/ant/picture/sys/wallpaper.png"
-exec_always --no-startup-id feh --bg-fill --randomize  ~/picture/wallpaper/*
-
-# 设置主屏
-exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400
-# exec_always --no-startup-id xrandr --output $(xrandr | grep eDP | awk '{print $1}') --auto --primary
-# exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 --output DP-2 --left-of eDP-1 --mode 1920x1080
-
-# exec --no-startup-id dunst &
-exec --no-startup-id picom &
+# start with power up
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
+exec --no-startup-id xautolock -time 15 -locker 'i3lock -c F0F8FF -i /home/ant/picture/wallpaper/lock.png' &
+exec --no-startup-id nm-applet &
+exec --no-startup-id copyq &
+exec --no-startup-id conky &
+# exec --no-startup-id picom &
 exec --no-startup-id polybar alice &
 exec --no-startup-id fcitx5 &
-# exec --no-startup-id fcitx5 --verbose=classicui=5 &
+
+exec_always --no-startup-id feh --bg-fill --randomize  ~/picture/wallpaper/* &
+exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 &
+
+# customer hotkey
+# bindsym F1 exec xfce4-terminal --drop-down
+bindsym $mod+Return exec st -e /bin/bash -lc 'tmux a || tmux'
+bindsym $mod+$Alt+Return exec st -e /bin/bash -l
+bindsym Print exec flameshot gui
+bindsym Mod1+space exec --no-startup-id rofi -show drun
+bindsym Mod1+Ctrl+q exec i3lock -e -f -k -c f0f8ff -i /home/ant/picture/wallpaper/lock.png
+
+# 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
+# TODO 添加仅主屏，扩展屏，共享屏
+bindsym $mod+p exec xrandr --output eDP-1 --off --primary --output DP-2 --mode 1920x1080 --primary
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -62,14 +62,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use xbacklight to adjust screen light
 bindsym XF86MonBrightnessUp   exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
-
-# start a terminal
-bindsym $mod+Return exec st -e /bin/bash -l -c 'tmux a || tmux'
-bindsym $mod+$Alt+Return exec alacritty
-
-# kill focused window
-bindsym $mod+q kill
-
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -82,7 +74,6 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # move focused window
-
 bindsym $mod+Shift+h     move left
 bindsym $mod+Shift+j     move down
 bindsym $mod+Shift+k     move up
@@ -96,37 +87,44 @@ bindsym $mod+Shift+Right move right
 # bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-
+# kill focused window
+bindsym $mod+q kill
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
 # change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
-
+bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
-
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
+# enter resize mode
+bindsym $mod+r mode "resize"
+# move window to clipboard, use $mod+minus to pase
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 session
+bindsym $mod+Shift+e exit
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-# ➊ ➋ ➌ ➎ ➍ ➏ ➐ ➑ ➒ ➓
 # 𝟭 𝟮 𝟯 𝟰 𝟱 𝟲 𝟳 𝟴 𝟵
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
 set $ws10 "10"
 
 # switch to workspace
@@ -162,37 +160,13 @@ bindsym $mod+Ctrl+Shift+h      move container to workspace prev
 bindsym $mod+Ctrl+Shift+l      move container to workspace next
 
 mode "resize" {
-    bindsym Left  resize shrink width  10 px
-    bindsym Up    resize shrink height 10 px
-    bindsym Down  resize grow   height 10 px
-    bindsym Right resize grow   width  10 px
-
-    # Exit resize mode by pressing Escape or Enter
+    bindsym Left   resize shrink width  10 px
+    bindsym Up     resize shrink height 10 px
+    bindsym Down   resize grow   height 10 px
+    bindsym Right  resize grow   width  10 px
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
-
-bindsym $mod+r mode "resize"
-
-# move window to clipboard, use $mod+minus to pase
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 session
-bindsym $mod+Shift+e exit
-
-# customer hotkey
-bindsym Print exec flameshot gui
-bindsym Mod1+space exec --no-startup-id rofi -show drun
-bindsym Mod1+Ctrl+q exec i3lock -i /home/ant/picture/wallpaper/lock.png
-# bindsym F1 exec xfce4-terminal --drop-down
-
-# 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
-# TODO 添加仅主屏，扩展屏，共享屏
-bindsym $mod+p exec xrandr --output eDP-1 --off --primary --output DP-2 --mode 1920x1080 --primary
 
 # pin windows to workspace
 assign [class="libreoffice-calc"] 5
@@ -206,7 +180,6 @@ assign [class="google-chrome"]    8
 assign [class="Google-chrome"]    8
 assign [class="wechat"]           9
 assign [class="Telegram"]         9
-
 
 # set application floating enable or disable
 for_window [class="wechat"]            floating disable

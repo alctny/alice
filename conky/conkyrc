@@ -20,14 +20,14 @@ conky.config = {
   imlib_cache_size = 0,          -- disable image cache to get a new spotify cover per song
 
   -- Placement (For SINGLE monitor users!)
-  alignment = 'middle_left', -- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
-  gap_x = 90,                -- pixels between right or left border
-  gap_y = 0,               -- pixels between bottom or left border
+  alignment = 'top_left', -- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
+  gap_x = 60,                -- pixels between right or left border
+  gap_y = 120,               -- pixels between bottom or left border
 
   -- Size
   minimum_height = 200,      -- minimum height of window
   minimum_width = 360,       -- minimum width of window
-  maximum_width = 360,       -- maximum width of window
+  maximum_width = 720,       -- maximum width of window
 
   --Graphical
   border_inner_margin = 5,           -- margin between border and text
@@ -50,10 +50,9 @@ conky.config = {
   --Textual
   format_human_readable = true,                    -- KiB, MiB rather then number of bytes
   font  = 'FiraCode Nerd Font:Regular:size=12',    -- the default font used
-  font2 = 'FiraCode Nerd Font Med:size=18',        -- font for the title
-  font3 = 'FiraCode Nerd Font Med:Reularsize=16',  -- font for the subtitle
-  font4 = 'FiraCode Nerd Font Med:size=12',        -- font for the simple text
-  font5 = 'Noto Sans SC:Medium:size=12',           -- font for the chinese
+  font1 = 'FiraCode Nerd Font Med:size=18',        -- font for the title
+  font2 = 'Noto Sans SC:Medium:size=12',           -- font for the chinese
+  font3 = '[BANNER]:size=32',
   max_text_width = 0,                              -- 0 will make sure line does not get broken if width too smal
   max_user_text = 16384,                           -- max text in conky default 16384
   override_utf8_locale = true,                     -- force UTF8 requires xft
@@ -90,17 +89,14 @@ conky.config = {
 };
 
 conky.text = [[
-# date time
-$color0$font2${alignc}TALK IS CHEAP
-$color0$font2${alignc}SHOW ME THE CODE
-
-# system base info
-$color3${font4}Hardware: $color$alignr${execpi 6000 hostnamectl | grep "Hardware Model" | sed 's/.*Model: *//'}
-$color3${font4}Kernel: ${alignr}$color$kernel
-$color3${font4}Threads: $color$alignr$threads
-$color3${font4}Processes: $color$alignr$processes
-$color3${font4}Weather: $color$alignr$font5${execpi 30 polybar.weather}
-$color3${execi 60000 lscpu | grep "Model name" | sed 's/Model name: *//; s/ with.*//'}$alignr$cpu%$font
-$color3${font3}RAM$alignr$mem/$memmax
-${color1}${font5}${exec iktodo list -C none}
+$color0$font3${alignc}[talk_is_cheap]
+# $color3${font4}Hardware: $color$alignr${execpi 6000 hostnamectl | grep "Hardware Model" | sed 's/.*Model: *//'}
+# $color3${font4}Kernel: ${alignr}$color$kernel
+# $color3${font4}Threads: $color$alignr$threads
+# $color3${font4}Processes: $color$alignr$processes
+# $color3${font4}Weather: $color$alignr$font5${execpi 30 polybar.weather}
+# $color3${execi 60000 lscpu | grep "Model name" | sed 's/Model name: *//; s/ with.*//'}$alignr$cpu%$font
+# $color3${font3}RAM$alignr$mem/$memmax
+$color1$font2${exec iktodo list -C none}
+$color0$font3${alignc}[show_me_the_code]
 ]];
