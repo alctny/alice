@@ -2,9 +2,11 @@ local opt = vim.opt
 local win = vim.wo
 local buf = vim.bo
 
---------------------------------------------------------------
---                          option                          --
---------------------------------------------------------------
+-------------------------------------------- option --------------------------------------------
+-- leader 键
+vim.o.timeoutlen = 500
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 -- 文件编码
 opt.fileencoding = 'utf-8'
 -- zt tb 在光标所在行留出指定行
@@ -38,8 +40,8 @@ opt.writebackup = false
 opt.swapfile = false
 opt.updatetime = 50
 -- undo and redo
-opt.undofile = true
-opt.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
+-- opt.undofile = true
+-- opt.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
 -- 使用系统剪贴板
 opt.clipboard = 'unnamedplus'
 -- 显示不可见字符
@@ -57,7 +59,7 @@ opt.title = true
 opt.termguicolors = true
 -- 自动补全
 opt.wildmenu = true
-opt.completeopt = { "menu", "menuone" }
+opt.completeopt = { "menuone", "noselect" }
 -- 允许通过 .nvim.lua 为不同的项目启动本地配置
 opt.exrc = true
 -- 单行模式
@@ -66,9 +68,7 @@ opt.wrap = false
 opt.splitright = true
 opt.splitbelow = true
 
----------------------------------------------------------------
---                          windows                          --
----------------------------------------------------------------
+-------------------------------------------- windows --------------------------------------------
 -- 左侧流出额外一列
 win.signcolumn = "yes"
 -- 相对行号
@@ -78,9 +78,7 @@ win.relativenumber = true
 win.cursorline = true
 win.cursorcolumn = true
 
------------------------------------------------------------
---                          buf                          --
------------------------------------------------------------
+--------------------------------------------   buf   --------------------------------------------
 -- 自动加载被修改过的文件
 buf.autoread = true
 -- 自动缩进
@@ -89,6 +87,3 @@ buf.autoindent = true
 buf.expandtab = true
 buf.shiftwidth = 2
 buf.tabstop = 2
--- 设置颜色主题
--- vim.cmd [[colorscheme gruvbox ]]
-vim.cmd [[colorscheme tokyonight-night ]]
