@@ -1,7 +1,7 @@
 -- 在顶部提供一个类似 VSCode 的 tab 页的形式显示 buffer 列表
 
 local setup = function()
-  local bl = require('bufferline')
+  local bl = require("bufferline")
   local kopt = {noremap = true, silent = true }
   local map = vim.keymap.set
   map("n", "<c-Tab>",    "<cmd>BufferLineCycleNext<CR>",    opt)
@@ -27,4 +27,9 @@ local setup = function()
   bl.setup({})
 end
 
-return { 'akinsho/bufferline.nvim', version = '*', dependencies = { 'nvim-tree/nvim-web-devicons' }, config = setup }
+return {
+  "akinsho/bufferline.nvim",
+  version = "*",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = setup,
+}

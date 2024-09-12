@@ -1,3 +1,3 @@
-require('base')
-require('keybind')
-require('lazzy')
+require("base")
+require("keybind")
+require("lazzy")

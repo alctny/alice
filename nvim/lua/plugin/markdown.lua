@@ -1,2 +1,2 @@
 -- Markdown
-return {'tadmccorkle/markdown.nvim', ft = 'markdown'}
+return {"tadmccorkle/markdown.nvim", ft = "markdown"}

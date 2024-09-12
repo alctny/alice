@@ -65,4 +65,8 @@ local opt = {
   },
 }
 -- TODO 今日不醉不归
-return { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = opt }
+return {
+  "folke/todo-comments.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = opt,
+}

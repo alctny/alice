@@ -1,3 +1,3 @@
 -- 自动注释
 
-return {'numtostr/comment.nvim'}
+return {"numtostr/comment.nvim"}

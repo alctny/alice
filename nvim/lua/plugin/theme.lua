@@ -5,7 +5,7 @@ local setup = function()
 end
 
 return {
-  -- { 'ellisonleao/gruvbox.nvim', priority = 1000 , config = setup, opt=..., },
-  { 'folke/tokyonight.nvim', lazy = false, priority = 1000, config = setup },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = setup, opt=..., enable = false },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000, config = setup, enable = true },
 }
 

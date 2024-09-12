@@ -8,7 +8,7 @@ vim.o.timeoutlen = 500
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 -- 文件编码
-opt.fileencoding = 'utf-8'
+opt.fileencoding = "utf-8"
 -- zt tb 在光标所在行留出指定行
 opt.scrolloff = 4
 opt.sidescrolloff = 4
@@ -40,10 +40,10 @@ opt.writebackup = false
 opt.swapfile = false
 opt.updatetime = 50
 -- undo and redo
--- opt.undofile = true
--- opt.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
+opt.undofile = true
+opt.undodir = vim.fn.expand("$HOME/.local/share/nvim/undo")
 -- 使用系统剪贴板
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"
 -- 显示不可见字符
 opt.list = true
 opt.listchars = "space:·"
