@@ -13,7 +13,8 @@ local setup = function()
     " █▀     ██████████  ▀███▀███▀   ▀████████▀ █▀   █▀   ",
     "                                                     ",
   }
+  dashboard.section.buttons.val = {}
   require("alpha").setup(dashboard.config)
 end
 
-return { "goolord/alpha-nvim", config = setup }
+return { "goolord/alpha-nvim", config = setup, enable = false, cond = false }
