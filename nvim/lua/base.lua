@@ -40,8 +40,8 @@ opt.writebackup = false
 opt.swapfile = false
 opt.updatetime = 50
 -- undo and redo
-opt.undofile = true
-opt.undodir = vim.fn.expand("$HOME/.local/share/nvim/undo")
+-- opt.undofile = true
+-- opt.undodir = vim.fn.expand("$HOME/.local/share/nvim/undo")
 -- 使用系统剪贴板
 opt.clipboard = "unnamedplus"
 -- 显示不可见字符

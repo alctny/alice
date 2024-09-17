@@ -20,8 +20,8 @@
   "update.mode": "none",                                      // 关闭自动更新
   "update.showReleaseNotes": false,                           // 不查看更新信息
   "security.workspace.trust.untrustedFiles": "open",          // 允许打开不信任文件
-  "debug.onTaskErrors": "abort",                              // launch.json tasks.json 错误中断 debug
   "workbench.colorTheme": "One Dark Pro Mix",                 // 主题
+  "debug.onTaskErrors": "abort",                              // debug 出现错误的时候中断 debug
   "workbench.tree.enableStickyScroll": true,                  // 文件树粘性滚动
   "workbench.editor.enablePreview": false,                    // 禁用预览
   "editor.renderWhitespace": "all",                           // 显示空白字符 
