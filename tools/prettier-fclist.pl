@@ -1,0 +1,42 @@
+#! /bin/env perl
+
+use strict;
+use warnings;
+
+sub prettier_stdou() {
+  my @text;
+  my ($mlen, $flen, $slen) = (0, 0, 0);
+
+  my @out;
+  if (scalar @ARGV > 0) {
+    my $cnt = join(" ", @ARGV);
+    @out = split("\n", qx(fc-list | grep $cnt));
+  } else {
+    @out = <STDIN>;
+  }
+
+  foreach my $line (@out) {
+    my ($family, $name, $style) = $line =~ qr/(.*\.ttf)\s*:\s*(.*):style=(.*)/;
+    next if !defined($family);
+
+    my $fl = length($family);
+    $mlen = $fl if $fl > $mlen;
+
+    $name =~ s/,/, /g;
+    my $nl = length($name);
+    $flen = $nl if $nl > $flen;
+
+    $style =~ s/,/, /g;
+    my $sl = length($style);
+    $slen = $sl if $sl > $slen;
+
+    push (@text, [$family, $name, $style]);
+  }
+
+  my $fmt = "|%-${mlen}s | %-${flen}s | %-${slen}s |\n";
+  foreach my $lin (@text) {
+    printf ($fmt, $lin->[0], $lin->[1], $lin->[2]);
+  }
+}
+
+prettier_stdou();
