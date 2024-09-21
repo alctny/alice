@@ -81,3 +81,8 @@ rime/luna_pinyin.userdb
 rime/sync/*
 rime/installation.yaml
 rime/user.yaml
+
+*.rmlock
+*.dat
+*.lock
+*.pub
