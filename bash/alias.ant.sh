@@ -33,10 +33,4 @@ alias google='curl https://www.google.com'
 alias grep='grep --color=auto'
 alias ffrecord='ffmpeg -video_size 2240x1400 -r 60 -f x11grab -i :0.0 -f pulse -i $(pactl list sinks | grep $(pactl get-default-sink).monitor | cut -d : -f 2) -qscale 0 ~/video/$(date +%Y-%m-%d_%H-%M-%S.mkv)'
 
-ifalias ncdu du
-ifalias lsd  ls
-ifalias bat  cat
-ifalias nvim vim
-ifalias nvim vi
-
 unset -f ifalias

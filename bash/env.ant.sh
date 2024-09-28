@@ -30,6 +30,9 @@ export GLFW_IM_MODULE=fcitx
 export HISTSIZE=
 export HISTFILESIZE=
 
+# history 默认格式
+export HISTTIMEFORMAT='%F %T '
+
 # 默認編輯器
 export EDITOR=nvim
 export VISUAL=nvim
