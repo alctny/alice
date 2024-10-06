@@ -34,8 +34,8 @@ args = [
 opacity = 0.9
 
 [window.dimensions]
-columns = 155
-lines = 45
+columns = 210
+lines = 63
 
 [env]
 TERM = "alacritty-direct"

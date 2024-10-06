@@ -1,5 +1,5 @@
 # 自動補全，忽略大小寫
-bind "set completion-ignore-case on"
+# bind "set completion-ignore-case on"
 
 # 系統代理
 export PROXY_PORT=7890
@@ -42,6 +42,9 @@ export TERMINAL=alacritty
 
 # 命令提示符 prompt
 export PS1="\033[7;97;36m \w \033[0m\033[0;47;100m \u \033[0m\n🦚"  # 🦚 🪷 📦 🎀
+if [ "$RANGER_SHELL" == 'true' ]; then
+  export PS1='\w\n(R)'
+fi
 
 # 默认翻页工具
 export PAGER=less
