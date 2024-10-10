@@ -27,7 +27,7 @@ keymap = [
 
   { keys = ["c", "d"], commands = [":cd "] },
   { keys = ["m", "f"], commands = [":touch "] },
-  { keys = ["m", "k"], commands = [":mkdir "] },
+  { keys = ["m", "d"], commands = [":mkdir "] },
 
   # copy and paste
   { keys = ["p", "p"], commands = ["paste_files"] },
@@ -43,9 +43,10 @@ keymap = [
   { keys = ["d", "D"], commands = ["delete_files --noconfirm"] },
 
   # rename
-  { keys = ["a"],      commands = ["rename_append"] },
-  { keys = ["i"],      commands = ["rename_prepend"] },
+  { keys = ["c", "a"], commands = ["rename_append_base"] },
+  { keys = ["c", "i"], commands = ["rename_keep_ext"] },
   { keys = ["c", "w"], commands = ["bulk_rename"] },
+  { keys = ["c", "c"], commands = [":rename "] },
 
   # select
   { keys = [" "],      commands = ["select --toggle=true"] },
@@ -75,6 +76,7 @@ keymap = [
   { keys = ["m", "p"], commands = ["linemode perm"] },
 
   # other
+  { keys = ["w"], commands = ["show_tasks --exit-key=w"] },
   { keys = ["="], commands = ["set_mode"] },
 
   # goto
@@ -82,8 +84,6 @@ keymap = [
   { keys = ["g", "m"], commands = ["cd /mnt"] },
   { keys = ["g", "o"], commands = ["cd /opt"] },
   { keys = ["g", "d"], commands = ["cd ~/download"] },
-  { keys = ["g", "j"], commands = ["cd ~/.config/joshuto"] },
-  { keys = ["g", "b"], commands = ["cd /data/baidu"] },
 
   { keys = ["?"],      commands = ["help"] },
 ]

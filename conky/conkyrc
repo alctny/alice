@@ -79,7 +79,7 @@ conky.config = {
   color0 = '#bd93f9',
   color1 = '#f8f8f2',
   color2 = '#8be9fd',
-  color3 = '#50fa7b',
+  color3 = '#01F99A',
 
   -- Colors (Ant)
   -- color0 = '#39c5bb',
@@ -97,6 +97,6 @@ $color0$font3${alignc}[talk_is_cheap]
 # $color3${font4}Weather: $color$alignr$font5${execpi 30 polybar.weather}
 # $color3${execi 60000 lscpu | grep "Model name" | sed 's/Model name: *//; s/ with.*//'}$alignr$cpu%$font
 # $color3${font3}RAM$alignr$mem/$memmax
-$color1$font2${exec iktodo list -C none}
+$color3$font2${exec iktodo list -C none}
 $color0$font3${alignc}[show_me_the_code]
 ]];

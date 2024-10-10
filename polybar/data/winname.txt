@@ -1,0 +1,32 @@
+Navigator,FireFox
+wechat,WeChat
+code,VSCode
+postman,Postman
+google-chrome,Chrome
+clash-verge,Clash
+baidunetdisk,BaiduNetdisk
+st-256color,Terminal
+xfce4-terminal,Terminal
+draw.io,DrawIO
+motrix,Motrix
+trilium,notes,Trilium
+copyq,CopyQ
+vmware,VMware
+VirtualBox Manager,VirlBox
+emacs,Emacs
+wpsoffice,WPS
+calibre-gui,Calibre
+calibre-ebook-viewer,CaView
+calibre-ebook-edit,CaEdit
+blueman-manager,Blueman
+dolphin,Dolphin
+eudic,Eudic
+systemsettings5,Setting
+plasma-settings,Setting
+obs,OBS
+gl,MPV
+kdenlive,Kdenlive
+flameshot,Flameshot
+steamwebhelper,Steam
+clash for windows,Clash
+JetBrains Toolbox,JetBrainToolbox

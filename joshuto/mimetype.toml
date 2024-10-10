@@ -1,14 +1,16 @@
 [class]
 audio_default = [
-  { command = "vlc", args = [ "--", ] },
+  { command = "mpv", args = [ "--", ], fork = true, silent = true },
+  { command = "vlc", args = [ "--", ], fork = true, silent = true  },
 ]
 
 image_default = [
-  { command = "feh", args = [ "--keep-zoom-vp", ".", "--start-at"] },
+  { command = "feh", args = [ "--keep-zoom-vp", "--zoom-step=3", "--image-bg=#416E74", ".", "--start-at"] },
 ]
 
 video_default = [
-  { command = "vlc", args = [ "--", ] },
+  { command = "mpv", args = [ "--", ], fork = true, silent = true  },
+  { command = "vlc", args = [ "--", ], fork = true, silent = true  },
 ]
 
 text_default = [
