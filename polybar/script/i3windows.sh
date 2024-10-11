@@ -40,9 +40,10 @@ winlis() {
     wn=$(xprop -id $id WM_CLASS | awk -F'"' '{print $2}')
     wn=$(wnamecustom "$wn")
     if [ "$id" = "$aid" ]; then
-      wn="*${wn}"
+      # wn="*${wn}"
+      wn=%{F#BD93F9}$wn%{F-}
     fi
-    echo -n "${wn} | "
+    echo -n "${wn}  "
   done
   echo
 }

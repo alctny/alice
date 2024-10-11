@@ -5,7 +5,7 @@ local setup = function()
   local map = vim.keymap.set
   local opt = {noremap = true, silent = true }
   map("n", "<C-p>",      ts.buffers,                   opt)
-  map("n", "<leader>ff", ts.find_files,                opt)
+  map("n", "<leader><leader>", ts.find_files,                opt)
   map("n", "<leader>fl", ts.live_grep,                 opt)
   map("n", "<leader>fs", ts.current_buffer_fuzzy_find, opt)
   -- map("n", "<leader>fS", ts.grep_string,               opt)
