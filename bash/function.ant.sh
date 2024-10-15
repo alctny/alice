@@ -278,3 +278,9 @@ function ascii-code () {
 EOF
 }
 
+function loop() {
+  while true; do
+    eval "$*"
+    sleep 1
+  done
+}

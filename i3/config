@@ -170,7 +170,7 @@ mode "resize" {
 }
 
 # pin windows to workspace
-assign [class="calibre"]      0
+assign [class="calibre"]          0
 assign [class="libreoffice-calc"] 5
 assign [class="Localsend_app"]    6
 assign [class="baidunetdisk"]     6

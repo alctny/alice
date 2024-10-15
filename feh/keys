@@ -2,14 +2,17 @@ menu_parent      h Left
 menu_child       l Right
 menu_down        j Down
 menu_up          k Up
+
 scroll_up        J C-Up
 scroll_down      K C-Down
 scroll_left      H C-Left
 scroll_right     L C-Right
+
 delete           Delete
-zoom_in          k
-zoom_out         j
-zoom_default     0
-zoom_fit         z
-next_img         l
-prev_img         h
+zoom_in          k Up
+zoom_out         j Down
+zoom_default     z
+zoom_fit         f space
+next_img         l Left
+prev_img         h Right
+

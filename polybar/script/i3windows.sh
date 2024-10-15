@@ -13,6 +13,7 @@ empt="Deus Vult"
 data_file="/home/$USER/.config/polybar/data/winname.txt"
 
 # custom windows name
+# 同时考虑 WM_CLASS 和 WM_NAME 在两者之间找到平横
 wnamecustom() {
   wname=$1
   if [ ! -f $data_file ]; then
@@ -29,7 +30,7 @@ wnamecustom() {
 # 查看当前 workspace 所有窗口
 winlis() {
   act_ws_id=$(wmctrl -d | awk -F' ' '$2 == "*"' | awk '{print $1}')
-  ids=$(wmctrl -l -x | awk  -v awi="$act_ws_id" '$2 == awi {print $1}' | sed -E 's/^0x0+/0x/')
+  ids=$(wmctrl -lx | awk  -v awi="$act_ws_id" '$2 == awi {print $1}' | sed -E 's/^0x0+/0x/')
   if [ -z "$ids" ]; then
     echo $empt
     return
@@ -37,7 +38,7 @@ winlis() {
 
   aid=$(xprop -root | grep '_NET_ACTIVE_WINDOW(WINDOW)' | awk '{print $NF}')
   for id in $ids; do
-    wn=$(xprop -id $id WM_CLASS | awk -F'"' '{print $2}')
+    wn=$(xprop -id $id WM_CLASS | awk -F'"' '{print $4}')
     wn=$(wnamecustom "$wn")
     if [ "$id" = "$aid" ]; then
       # wn="*${wn}"
