@@ -24,6 +24,7 @@ keymap = [
   { keys = [":"],      commands = [":"] },
   { keys = ["s"], commands = ["shell bash --init-file ~/.profile.ant.sh"] },
   { keys = ["S"], commands = [":shell "] },
+  { keys = ["r"],      commands = ["shell ranger ."] },
 
   { keys = ["c", "d"], commands = [":cd "] },
   { keys = ["m", "f"], commands = [":touch "] },

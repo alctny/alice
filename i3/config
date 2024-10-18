@@ -37,6 +37,7 @@ exec --no-startup-id conky &
 exec --no-startup-id picom &
 exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
+exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
 
 exec_always --no-startup-id feh --bg-fill --randomize  ~/picture/wallpaper/* &
 exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 &
@@ -171,7 +172,6 @@ mode "resize" {
 
 # pin windows to workspace
 assign [class="calibre"]          0
-assign [class="libreoffice-calc"] 5
 assign [class="Localsend_app"]    6
 assign [class="baidunetdisk"]     6
 assign [class="Motrix"]           6

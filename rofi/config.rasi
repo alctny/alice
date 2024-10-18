@@ -5,16 +5,27 @@
 configuration {
   combi-modes:     [drun,window];
   modes :          "drun,window";
-  // modi: "drun,session:rofi-session,window";
   disable-history: false;
-
-  yoffset : -150;
+  yoffset :        -150;
 
   show-icons:      true;
-  display-drun:    "";
-  display-window:  "win";
-  display-run:     "run";
-  display-ssh:     "ssh";
-  display-combi:   "combi";
+  display-drun:    "d";
+  display-window:  "w";
+  display-run:     "r";
+  display-ssh:     "s";
+  display-combi:   "c";
   display-keys:    "key";
+
+  kb-row-up:              "Control+p";
+  kb-row-down:            "Control+n";
+  kb-page-prev:           "Control+u";
+  kb-page-next:           "Control+d";
+  kb-mode-next:           "Tab";
+  kb-mode-previous:       "Shift+Tab";
+  kb-remove-char-back:    "BackSpace";
+  kb-remove-char-forward: "Delete";
+
+  kb-element-next: "";
+  kb-row-tab: "";
+  kb-remove-to-sol: "";
 }

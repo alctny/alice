@@ -46,7 +46,7 @@ map("t", "<M-l>",      "<C-\\><C-N><C-w>l",                  opt)
 -- 编辑
 map("n", "<C-s>",   "<cmd>w<CR>",    opt)
 map("n", "<C-q>",   "<cmd>wq<CR>",   opt)
-map("n", "<C-c>",   "<cmd>q!<CR>",   opt)
+-- map("n", "<C-c>",   "<cmd>q!<CR>",   opt)
 map("i", "<C-s>",   "<C-o>:wa<CR>",  opt)
 map("i", "<C-q>",   "<Esc>:waq<CR>", opt)
 map("i", "<C-Del>", "<C-o>dw",       opt)
