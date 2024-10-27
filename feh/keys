@@ -13,6 +13,6 @@ zoom_in          k Up
 zoom_out         j Down
 zoom_default     z
 zoom_fit         f space
-next_img         l Left
-prev_img         h Right
+next_img         l Right
+prev_img         h Left
 

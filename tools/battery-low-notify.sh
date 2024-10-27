@@ -7,6 +7,10 @@ while true; do
   status=$(cat /sys/class/power_supply/BAT0/status)
   capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 
+  if [ "$capacity" == 100 ];then
+    continue
+  fi
+
   if [ "$pstatus" != "$status" ];then
     dunstify -u low -t 1500 -i battery-060 "$status" "current status: $capacity !!!"
     pstatus=$status

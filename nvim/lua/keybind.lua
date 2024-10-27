@@ -52,19 +52,8 @@ map("i", "<C-q>",   "<Esc>:waq<CR>", opt)
 map("i", "<C-Del>", "<C-o>dw",       opt)
 map("i", "<C-BS>",  "<C-o>db",       opt)
 map("i", "<C-CR>",  "<C-o>o",        opt)
--- 自动补全括号和引号
--- map("i", '"',       '""<Left>',      opt)
--- map("i", "'",       "''<Left>",      opt)
--- map("i", "(",       "()<Left>",      opt)
--- map("i", "[",       "[]<Left>",      opt)
--- map("i", "{",       "{}<Left>",      opt)
--- map("i", "`",       "``<Left>",    opt)
--- map("i", "「",      "「」<Left>",    opt)
--- map("i", "【",      "【】<Left>",    opt)
--- map("i", "〚",      "〚〛<Left>",    opt)
--- map("i", "〘",      "〘〙<Left>",    opt)
--- map("i", "〔",      "〔〕<Left>",    opt)
--- Emacs 兼容
+
+-- Like Emacs
 map("i", "<C-b>",   "<Left>",    opt)
 map("i", "<C-f>",   "<Right>",   opt)
 map("i", "<C-p>",   "<Up>",      opt)
@@ -76,9 +65,6 @@ map("i", "<C-k>",   "<C-o>c$",   opt)
 map("n", "<C-k>",   "d$",        opt)
 map("i", "<A-b>",   "<C-Left>",  opt)
 map("i", "<A-f>",   "<C-Right>", opt)
--- 终端无法识别但可以在 nvim 客户端使用的组合键
-map("n", "<C-j>",   "cc<Esc>",   opt)
-map("n", "<C-l>",   "cc<Esc>",   opt)
 map("i", "<C-j>",   "<C-o>cc",   opt)
 map("i", "<C-l>",   "<C-o>cc",   opt)
 -- visual 模式下使用 >> <<

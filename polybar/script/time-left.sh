@@ -5,7 +5,8 @@ if [ $# -gt 0 ];then
   points=($*)
 fi
 
-mode=1
+mode=0
+gap=1
 
 switch() {
   mode=$((($mode + 1) % 2))
@@ -33,8 +34,8 @@ function left() {
     diff_sec=$(($pass_tp - $pass_tody))
     dh=$(($diff_sec / 3600))
     dm=$((($diff_sec - $dh * 3600) / 60))
-    # ds=$(($diff_sec - $dh * 3600 - $dm * 60))
-    printf "$(date +"%m-%d") %d'%d\"\n" $dh $dm
+    ds=$(($diff_sec - $dh * 3600 - $dm * 60))
+    printf "$(date +"%Y/%m/%d") %02d:%02d:%02d\n" $dh $dm $ds
     break
   done
 }
@@ -45,11 +46,11 @@ while true; do
       left
       ;;
     1)
-      date +"%m-%d %H:%M"
+      date +"%Y/%m/%d %H:%M:%S"
       ;;
     *)
       echo Fuck You
       ;;
   esac
-  sleep 3
+  sleep $gap
 done

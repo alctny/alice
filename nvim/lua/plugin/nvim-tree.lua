@@ -13,6 +13,7 @@ local function on_attach(bufnr)
   map("n", "V",          api.node.open.vertical,         opt)
   map("n", "<BS>",       api.node.navigate.parent_close, opt)
   map("n", "<C-b>",      api.tree.toggle,                opt)
+  map("n", "<C-\\>",     api.tree.toggle,                opt)
   map("n", "?",          api.tree.toggle_help,           opt)
   map("n", "yn",         api.fs.copy.filename,           opt)
   map("n", "<F2>",       api.fs.rename_node,             opt)
@@ -34,6 +35,7 @@ local opt = {
 }
 
 vim.keymap.set("n", "<C-b>", ":NvimTreeFindFile<CR>", {noremap = true, silent = true })
+vim.keymap.set("n", "<C-\\>", ":NvimTreeFindFile<CR>", {noremap = true, silent = true })
 
 return {
   "nvim-tree/nvim-tree.lua",

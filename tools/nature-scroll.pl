@@ -30,7 +30,7 @@ sub add_ns_opt {
   close $fh or die "close file error: $!";
 }
 
-add_ns_opt "/etc/X11/xorg.conf.d/40-libinput.conf";
+#add_ns_opt "/etc/X11/xorg.conf.d/40-libinput.conf";
 add_ns_opt "/usr/share/X11/xorg.conf.d/40-libinput.conf";
-add_ns_opt "/usr/local/share/X11/xorg.conf.d/40-libinput.conf";
+#add_ns_opt "/usr/local/share/X11/xorg.conf.d/40-libinput.conf";
 

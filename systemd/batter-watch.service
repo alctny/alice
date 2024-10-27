@@ -1,0 +1,10 @@
+[Unit]
+Description=电量监视服务
+After=graphical.target
+
+[Service]
+ExecStart=/usr/local/bin/battery-low-notify.sh
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

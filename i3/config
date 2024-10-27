@@ -14,8 +14,9 @@ floating_modifier $mod
 
 font pango:Noto Sans Bold SC 0
 
-for_window [class=".*"]  border normal 0
-for_window [class=".*"]  border pixel 0
+for_window [class=".*"] border normal 2 border pixel 1
+for_window [class="st-256color"] border pixel 0
+for_window [class="Alacritty"] border pixel 0
 
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4 #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A #44475A
@@ -25,8 +26,11 @@ client.placeholder      #282A36 #282A36 #F8F8F2 #282A36 #282A36
 client.background       #F8F8F2
 
 # Gaps config
-gaps inner 0
-gaps outer 0
+gaps inner 2
+gaps outer 2
+
+workspace_auto_back_and_forth yes
+focus_on_window_activation focus
 
 # start with power up
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
@@ -37,7 +41,7 @@ exec --no-startup-id conky &
 exec --no-startup-id picom &
 exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
-exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
+# exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
 
 exec_always --no-startup-id feh --bg-fill --randomize  ~/picture/wallpaper/* &
 exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 &
@@ -160,6 +164,7 @@ bindsym $mod+Ctrl+Shift+Left   move container to workspace prev
 bindsym $mod+Ctrl+Shift+Right  move container to workspace next
 bindsym $mod+Ctrl+Shift+h      move container to workspace prev
 bindsym $mod+Ctrl+Shift+l      move container to workspace next
+bindsym $mod+Tab workspace back_and_forth
 
 mode "resize" {
     bindsym Left   resize shrink width  10 px
@@ -172,6 +177,9 @@ mode "resize" {
 
 # pin windows to workspace
 assign [class="calibre"]          0
+assign [class="code"]             2
+assign [class="AppRun"]           3
+assign [class="DBeaver"]          3
 assign [class="Localsend_app"]    6
 assign [class="baidunetdisk"]     6
 assign [class="Motrix"]           6

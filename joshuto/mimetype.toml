@@ -173,8 +173,8 @@ epub.inherit = "reader_default"
 azw3.inherit = "reader_default"
 
 torrent.app_list = [
-  { command = "transmission-gtk", fork = true, silent = true },
   { command = "motrix",           fork = true, silent = true },
+  { command = "transmission-gtk", fork = true, silent = true },
 ]
 
 [mimetype]
