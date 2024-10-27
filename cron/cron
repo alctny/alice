@@ -1,0 +1,2 @@
+13 *  * * * DISPLAY=:0 XAUTHORITY=$(find /tmp/ -name "xauth_*" 2>/dev/null) feh --bg-fill --randomize  $HOME/picture/wallpaper/*
+0  */2  * * * XDG_RUNTIME_DIR=/run/user/$(id -u) dunstify -t 3000 -u low "休息" "起身活动活动!"

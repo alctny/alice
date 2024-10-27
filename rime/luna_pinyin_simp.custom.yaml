@@ -10,3 +10,9 @@ patch:
     - name: ascii_mode # 0-中 1-西
       reset: 1
       # states: ["中", "西"]
+    - name: full_shape
+      # states: [ 半, 全 ]
+      reset: 0
+    - name: ascii_punct
+      # states: [ 。，, ．， ]
+      reset: 1
