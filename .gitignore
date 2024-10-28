@@ -86,3 +86,4 @@ rime/user.yaml
 *.dat
 *.lock
 *.pub
+rime/terra_pinyin.userdb
