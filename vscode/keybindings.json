@@ -139,4 +139,8 @@
         "command": "cursorEnd",
         "when": "editorTextFocus && vim.mode == 'Insert'"
     },
+    {
+        "key": "ctrl+\\",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
 ]

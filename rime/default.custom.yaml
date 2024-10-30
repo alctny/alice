@@ -14,17 +14,21 @@ patch:
     Control_R: noop          # 右 Control，屏蔽该切换键
   key_binder/bindings:
     # 翻页
-    - { when: composing, accept: Tab,       send: Shift+Right }    # "tab" 键分词
-    - { when: paging,    accept: minus,     send: Page_Up }         # 上一页
-    - { when: has_menu,  accept: equal,     send: Page_Down }     # 下一页
-    - { when: paging,    accept: Control+p, send: Page_Up }     # 上一页
-    - { when: has_menu,  accept: Control+n, send: Page_Down } # 下一页
-    # 快捷键
-    - { when: composing, accept: Return,           send: Escape }           # 清码
-    - { when: composing, accept: Control+u,        send: Escape }           # 清码
-    - { when: always,    accept: Control+Shift+f,  toggle: simplification } # 繁简体切换
-    - { when: always,    accept: Control+Shift+F,  toggle: zh_simp }        # 繁简体切换
-    - { when: always,    accept: "Control+period", toggle: ascii_punct}     # 切换全角/半角
+    - { when: always,    accept: Control+Shift+f, toggle: simplification } # 繁简体切换
+    - { when: always,    accept: Control+Shift+F, toggle: zh_simp }        # 繁简体切换
+    - { when: always,    accept: Control+period,  toggle: ascii_punct}     # 切换全角/半角
+    - { when: paging,    accept: minus,     send: Page_Up }     # 上一页
+    - { when: has_menu,  accept: equal,     send: Page_Down }   # 下一页
+    - { when: paging,    accept: Control+p, send: Up }     # 上一页
+    - { when: has_menu,  accept: Control+n, send: Down }   # 下一页
+    - { when: composing, accept: Tab,       send: Shift+Right } # "tab" 键分词
+    - { when: composing, accept: Control+b, send: Left }        # 光標左移
+    - { when: composing, accept: Control+f, send: Right }       # 光標右移
+    - { when: composing, accept: Control+a, send: Home }        # 光標移動到開頭
+    - { when: composing, accept: Control+e, send: End }         # 光標移動到末尾
+    - { when: composing, accept: Control+d, send: Delete }      # 光標移動到末尾
+    - { when: composing, accept: Control+u, send: Escape }      # 清码
+    - { when: composing, accept: Return,    send: Escape }      # 清码
 
   # 皮肤主题
   style/color_scheme: dracula
