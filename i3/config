@@ -33,8 +33,10 @@ workspace_auto_back_and_forth yes
 focus_on_window_activation focus
 
 # start with power up
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
-exec --no-startup-id xautolock -time 13 -locker 'rand-img-lock' &
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
+# exec --no-startup-id xautolock -time 13 -locker 'rand-img-lock' &
+exec --no-startup-id xss-lock --transfer-sleep-lock --nofork slock &
+exec --no-startup-id xautolock -time 13 -locker slock &
 exec --no-startup-id nm-applet &
 exec --no-startup-id copyq &
 exec --no-startup-id conky &
@@ -53,7 +55,8 @@ bindsym $mod+Return exec st -e /bin/bash -lc 'tmux a || tmux'
 bindsym $mod+$Alt+Return exec st -e /bin/bash -l
 bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -show drun
-bindsym Mod1+Ctrl+q exec rand-img-lock &
+# bindsym Mod1+Ctrl+q exec rand-img-lock &
+bindsym --release Mod1+Ctrl+q exec sh -c 'slock'
 
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
 # TODO 添加仅主屏，扩展屏，共享屏

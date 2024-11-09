@@ -1,8 +1,8 @@
 patch:
   schema_list:
-    - schema: terra_pinyin
     - schema: luna_pinyin_simp
-  default_schema: terra_pinyin
+    - schema: terra_pinyin
+  default_schema: luna_pinyin_simp
   switcher/hotkeys:
   menu/page_size: 9          # 候选词个数
   ascii_composer/switch_key:
