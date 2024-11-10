@@ -1,29 +1,40 @@
 // -*- mode: jsonc -*-
 {
-  "height": 20, // Waybar height (to be removed for auto height)
-  "spacing": 0, // Gaps between modules (4px)
+  "height": 20,
+  "spacing": 2,
   "modules-left": [ "clock" ],
   "modules-center": [ "sway/workspaces" ],
-  "modules-right": [ "pulseaudio", "power-profiles-daemon", "battery", "tray" ],
+  "modules-right": [ "pulseaudio", "cpu", "memory", "battery", "tray" ],
 
 
   "style": {
     "font": "FiraCode Nerd Font Mono",
-    "font-size": 17
+    "font-size": 16
   },
 
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
 
+
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+
+
+  "memory": {
+    "format": "{}% "
+  },
+
   "tray": {
     // "icon-size": 21,
-    "spacing": 10
+    "spacing": 7
   },
 
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "{:%Y-%m-%d}"
+    "format":"{:%Y/%m/%d %H:%M:%S}"
   },
 
   "battery": {
