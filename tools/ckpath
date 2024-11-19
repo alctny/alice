@@ -1,0 +1,12 @@
+#! /bin/bash
+
+# 对 PATH 变量进行检查
+IFS=":" read -ra path <<< "$PATH"
+for dir in "${path[@]}"; do
+  [[ "$dir" =~ ^\$.* ]] && continue
+  if [ ! -d "$dir" ] && [ "$dir" != '$PATH' ]; then
+    echo -e "\e[31m${dir}\e[0m"
+  else
+    echo -e "\e[32m$dir\e[0m"
+  fi
+done

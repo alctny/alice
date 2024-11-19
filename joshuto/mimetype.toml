@@ -1,5 +1,5 @@
 [class]
-image_default = [   { command = "feh", args = [ "--geometry", "+center+center", "--auto-zoom", "--info", "exiftool -Directory -FileName -FileSize -FileType -ImageSize %F", "--zoom-step", "3", "--image-bg", "#24272E", "--keep-zoom-vp", ".", "--start-at"], fork = true, silent = false } ]
+image_default = [   { command = "feh", args = [ "--geometry", "+center+center", "--auto-zoom", "--info", "exiftool -Directory -FileName -FileSize -FileType -ImageSize %F", "--zoom-step", "3", "--image-bg", "#416e74", "--keep-zoom-vp", ".", "--start-at"], fork = true, silent = false } ]
 text_default = [{ command = "nvim" }]
 reader_default = [{ command = "ebook-viewer", fork = true, silent = true }]
 libreoffice_default = [{ command = "libreoffice", fork = true, silent = true }]

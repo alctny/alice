@@ -1,0 +1,11 @@
+#! /bin/bash
+
+# 挂载外部磁盘的时候自动在 mnt 目录下创建相应的文件夹
+dev=$1
+if [ "$dev" == "" ] || [ ! -b $dev ]; then
+  echo "必须输入需要挂载的磁盤"
+  return 1
+fi
+dir=${dev##*/}
+sudo mkdir -p "/mnt/$dir"
+sudo mount "$dev" "/mnt/$dir" && lsblk || echo "mount error"

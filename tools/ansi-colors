@@ -1,0 +1,23 @@
+#! /bin/bash
+
+# 顯示所有顏色代碼在當前終端中的實際顯示效果
+# 参数：
+#   $1: 只显示特定样式的效果
+
+st_comment=( 默认 加粗 降低亮度 斜体 下划线 闪烁 快速闪烁 反显 隐藏 删除线)
+bg_colors=({40..47} {90..97})
+fg_colors=({30..37} {100..107})
+st_slice=({0..9})
+if [ "$1" != "" ]; then
+  st_slice=($1)
+fi
+for style in ${st_slice[@]}; do
+  echo -e "\nstyle: ${style} (${st_comment[$style]})"
+  for bg in ${bg_colors[@]}; do
+    for fg in ${fg_colors[@]}; do
+      echo -en " \033[${style};${bg};${fg}m\\\033[${style};${bg};${fg}m \033[0m"
+    done
+    echo
+  done
+done
+

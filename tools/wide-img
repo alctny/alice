@@ -1,0 +1,33 @@
+#! /bin/bash
+
+uuid=$(cat /proc/sys/kernel/random/uuid)
+function wide-img() {
+  dir=$(realpath ${1:-.})
+  cd $dir
+  for f in *; do
+    if [ -d "$f" ]; then
+      wide-img "$f" &
+      continue
+    fi
+
+    if [ ! -f "$f" ]; then
+      continue
+    fi
+
+    mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
+    if [ "$mime" != "image" ]; then
+      continue
+    fi
+
+    prate=$(echo $(magick "$f" -ping -format "scale=2; %w / %h" info:)|bc)
+    if (( $(echo "$prate < 1" | bc -l) )); then
+      [ ! -d "$uuid" ] && mkdir "$uuid"
+      mv "$f" "$uuid/"
+      continue
+    fi
+  done
+
+  echo $dir
+}
+
+wide-img .

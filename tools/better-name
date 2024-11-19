@@ -1,0 +1,10 @@
+#! /bin/bash
+
+for f in *; do
+  fn=$(echo "$f" | tr -d '{[( ~)]}')
+  if [ -e "$fn" ]; then
+    echo "SKIP: $f"
+    continue
+  fi
+  mv "$f" "$fn"
+done

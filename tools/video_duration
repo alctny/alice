@@ -1,0 +1,47 @@
+#! /bin/bash
+
+# 功能: 計算一個目錄中所有視頻時長總和
+# 參數:
+#   $1: 視頻文件列表，为空则自动搜索 mp4/mkv/flv 文件
+#   $2: 将具体每个视频时长输出到特定文件，为空则不输出
+# 注意: 
+#   1. 此函數計算視頻時長依賴 ffprob，需要自行安裝
+#   2. 此函數並不會主動去發現和判斷視頻文件是那些，需要使用者通過 find 命令或其他手段將所有視頻文件路徑輸出到文本文件，
+#      然後作爲參數傳遞給此函數
+
+vlist=$1
+detail=$2
+if [ "$vlist" == "" ]; then
+  vlist=video_duration_list.txt
+  find . -type f -iname "*.mkv" -or -iname "*.mp4" -or -iname "*.flv" > $vlist
+fi
+[ ! -f "$vlist" ] && echo "$vlist not file" && return
+  
+
+time=0
+total=$(wc -l $vlist | awk '{print $1}')
+i=1
+while read line; do
+  t=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$line")
+  # 具体每个文件时长
+  if [ "$detail" != "" ]; then
+    tt=$(echo "$t/1" | bc)
+    line_hou=$(( $tt / 3600 ))
+    line_min=$(( ($tt - $line_hou * 3600) / 60 ))
+    line_sec=$(( $tt - $line_hou * 3600 - $line_min * 60 ))
+    printf "%dh:%02dm:%02ds %s\n" "$line_hou" "$line_min" "$line_sec" "$line" >> $detail
+  fi
+  # 累积
+  time=$(echo "$time + $t" | bc)
+  i=$(( $i + 1  ))
+  progress_bar "$i" "$total"
+done < "$vlist"
+
+# 输出结果
+time=$(echo "$time/1" | bc)
+echo
+hou=$(( $time / 3600 ))
+min=$(( ($time - $hou * 3600) /60 ))
+sec=$(( $time - $hou * 3600 - $min * 60 ))
+printf "\033[6;90;34m%dh:%dm:%ds\033[0m\n" "$hou" "$min" "$sec"
+

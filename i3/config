@@ -182,6 +182,7 @@ mode "resize" {
 assign [class="calibre"]          0
 assign [class="code"]             2
 assign [class="AppRun"]           3
+assign [class="Gimp-2.10"]        4
 assign [class="DBeaver"]          3
 assign [class="Localsend_app"]    6
 assign [class="baidunetdisk"]     6

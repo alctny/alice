@@ -21,10 +21,10 @@ keymap = [
   { keys = ["g", "g"], commands = ["cursor_move_home"] },
 
   # inner command
-  { keys = [":"],      commands = [":"] },
+  { keys = [":"], commands = [":"] },
   { keys = ["s"], commands = ["shell bash --init-file ~/.profile.ant.sh"] },
   { keys = ["S"], commands = [":shell "] },
-  { keys = ["r"],      commands = ["shell ranger ."] },
+  { keys = ["r"], commands = ["shell ranger ."] },
 
   { keys = ["c", "d"], commands = [":cd "] },
   { keys = ["m", "f"], commands = [":touch "] },
@@ -35,6 +35,7 @@ keymap = [
   { keys = ["d", "d"], commands = ["cut_files"] },
   { keys = ["y", "y"], commands = ["copy_files"] },
   { keys = ["y", "n"], commands = ["copy_filename"] },
+  { keys = ["y", "e"], commands = ["copy_filename_without_extension"] },
   { keys = ["y", "f"], commands = ["copy_filepath"] },
   { keys = ["y", "d"], commands = ["copy_dirpath"] },
 
@@ -50,9 +51,9 @@ keymap = [
   { keys = ["c", "c"], commands = [":rename "] },
 
   # select
-  { keys = [" "],      commands = ["select --toggle=true"] },
-  { keys = ["v"],      commands = ["select --all=true --toggle=true"] },
-  { keys = ["V"],      commands = ["toggle_visual"] },
+  { keys = [" "], commands = ["select --toggle=true"] },
+  { keys = ["v"], commands = ["select --all=true --toggle=true"] },
+  { keys = ["V"], commands = ["toggle_visual"] },
 
   # search
   { keys = ["n"],      commands = ["search_next"] },

@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# 在 umount 时自动删除 smnt 创建的目录
+mounton=$1
+sudo umount $mounton && lsblk || (echo "unmount error" && return 1)
+sudo rmdir $mounton
