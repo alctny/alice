@@ -1,0 +1,63 @@
+#! /bin/bash
+
+# 找出所有長寬比不一樣的圖片
+
+declare -A ratio_count
+declare -A pic_ratio
+
+uuid=$(cat /proc/sys/kernel/random/uuid)
+log="diff-aspectratio-info-$uuid"
+mvto="dar-pic-$uuid"
+
+echo "---------------------------- calculation ratio ----------------------------"| tee -a $log
+
+for f in *; do
+  [ ! -f "$f" ] && continue
+
+  mime=$(exiftool -MimeType "$f"  | awk '{print $4}' | awk -F'/' '{print $1}')
+  [ "$mime" != 'image' ] && continue
+
+
+
+
+  ratio=$(echo $(magick identify -format 'scale=1; %w / %h' $f) | bc | sed 's/^\./0./')
+  if [ ! -v ratio_count[$ratio] ]; then
+    ratio_count[$ratio]=1
+  else
+    ratio_count[$ratio]=$(( ${ratio_count[$ratio]} + 1 ))
+  fi
+  pic_ratio["$f"]=$ratio
+
+  printf "%3s %s\n" "$ratio" "$f" >> $log
+done
+
+echo "---------------------------- calculation detail ----------------------------"| tee -a $log
+max=0
+mode=0
+for k in ${!ratio_count[@]}; do
+  printf "%3s %s\n" $k ${ratio_count[$k]} | tee -a $log
+  if [ "$max" -lt "${ratio_count[$k]}" ]; then
+    mode=$k
+    max=${ratio_count[$k]}
+  fi
+done
+
+echo "---------------------------- calculation result ----------------------------"| tee -a $log
+echo "final ratio: $mode" | tee -a $log
+echo "final max  : $max"  | tee -a $log
+echo 
+
+echo "----------------------------------------------------------------------------"| tee -a $log
+for k in ${!pic_ratio[@]}; do
+  if (( $(echo "$(echo "${pic_ratio[$k]} - $mode" | bc | sed 's/^-//' | sed 's/^\./0./') > 0.15" | bc -l) )); then
+    [ ! -d "$mvto" ] && mkdir "$mvto"
+    mv "$k" "$mvto"
+    echo "mv "$k" to "$mvto"" | tee -a $log
+  fi
+done
+
+echo -e "\ncat file $log to detail\n"
+
+unset ratio_count
+unset pic_ratio
+

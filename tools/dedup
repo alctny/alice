@@ -1,0 +1,24 @@
+#! /bin/bash
+
+# de-duplicate
+# 刪除重複文件
+
+logf="dedup-$(cat /proc/sys/kernel/random/uuid)"
+
+find . -type f -exec md5sum {} \; > $logf
+idx=$(awk '{print $1}' $logf | sort | uniq -d)
+for i in ${idx[@]}; do
+  echo ""
+  echo "$i :"
+  awk -v u="$i" '$1 == u {$1="";print NR $0}' $logf
+  read -p "saved: " no
+  awk -v u="$i" -v no="$no" '$1 == u && NR != no {$1="";print i $0}' $logf | while read line; do
+    echo "remove $line"
+    rm "$line"
+  done
+done
+unset i
+
+rm $logf
+unset $logf
+

@@ -1,10 +1,12 @@
 #! /bin/bash
 
 for f in *; do
-  fn=$(echo "$f" | tr -d '{[( ~)]}')
-  if [ -e "$fn" ]; then
-    echo "SKIP: $f"
+  # [ ! -f "$f" ] && continue
+  snip="printf '$f' =~ s/(\(.+?\))|(\[.+?\])|({.+?})|(（.+?）)|\s*|Z-Library//gr;"
+  nf=$(perl -e "$snip")
+  if [ -e "$nf" ]; then 
+    echo "skip: $f -> $nf"
     continue
   fi
-  mv "$f" "$fn"
+  mv "$f" "$nf"
 done

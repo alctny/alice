@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# 移動長寬比小於 1 的圖片到單獨目錄
+
 uuid=$(cat /proc/sys/kernel/random/uuid)
 function wide-img() {
   dir=$(realpath ${1:-.})
@@ -23,6 +25,7 @@ function wide-img() {
     if (( $(echo "$prate < 1" | bc -l) )); then
       [ ! -d "$uuid" ] && mkdir "$uuid"
       mv "$f" "$uuid/"
+      echo move $f to $uuid
       continue
     fi
   done
