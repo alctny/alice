@@ -19,7 +19,7 @@ keymap = [
   { on = "l",            run = "enter",           desc = "Enter the child directory" },
 
   # Copy/Yank/Delete/Move
-  { on = ["y", "y"], run = "yank",                               desc = "Copy the selected characters" },
+  { on = ["y", "y"], run = "yank",                  desc = "Copy the selected characters" },
   { on = ["y", "f"], run = "copy path",             desc = "Copy the file path" },
   { on = ["y", "d"], run = "copy dirname",          desc = "Copy the directory path" },
   { on = ["y", "n"], run = "copy filename",         desc = "Copy the filename" },

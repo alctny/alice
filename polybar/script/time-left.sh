@@ -23,7 +23,7 @@ function time2sec() {
 
 
 function left() {
-  pass_tody=$(($(date +%H) * 3600 + $(date +%M | sed s/^0//) * 60 + $(date +%S | sed s/^0//)))
+  pass_tody=$(($(date +%H | sed s/^0//) * 3600 + $(date +%M | sed s/^0//) * 60 + $(date +%S | sed s/^0//)))
 
   for tp in "${points[@]}"; do
     pass_tp=$(time2sec "$tp")

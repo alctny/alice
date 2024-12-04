@@ -1,0 +1,16 @@
+#! /bin/bash
+
+t=$(mktemp)
+ls > $t
+$EDITOR $t
+
+i=0
+for f in *; do 
+  i=$((i+1))
+
+  nf=$(sed -n ${i}p $t)
+  if [ -e "$nf" ]; then
+    continue
+  fi
+  mv "$f" "$nf"
+done

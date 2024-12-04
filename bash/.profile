@@ -1,4 +1,7 @@
-# 
+bind 'set mark-symlinked-directories off'
+bind 'set mark-directories off'
+
+#
 # /etc/skel/.bashrc
 #
 # 功能: 如果命令 A' 存在则使用 A 作为 A' 的别名替代原本的命令 A

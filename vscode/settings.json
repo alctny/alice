@@ -98,4 +98,5 @@
     "workbench.action.tasks.configureTaskRunner",
     "workbench.action.tasks.runTask"
   ],
+  "go.lintTool": "revive",
 }
