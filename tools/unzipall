@@ -1,0 +1,13 @@
+#!/bin/bash
+
+[ -z $1 ] && pswd="" || pswd="-p$1" 
+
+for f in *; do
+	[ ! -f $f ] && continue
+	mime=$(exiftool -MimeType "$f" | awk '{print $4}')
+	[ $mime != "application/zip" ] && continue
+
+	nf=${f%.*}
+	mkdir "$nf"
+	7z x "$f" -o"$nf" $pswd
+done

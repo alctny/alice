@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 low=20
 pstatus=$(cat /sys/class/power_supply/BAT0/status)

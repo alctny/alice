@@ -1,4 +1,4 @@
-#! /bin/env perl
+#!/bin/perl
 
 use constant REX_SECTION_END => qr/^\s*EndSection\s*$/;
 use constant REX_TP_OPT => qr/^\s*Option "Tapping" "on"\s*$/;

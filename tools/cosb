@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # 清空废纸篓 Command + Option + Shift + Backspace
 # 如果该目录为空 size 依旧会是 4k，但是影响不是很大，所以不做特别修正

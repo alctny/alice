@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # 一個簡單的進度條
 progress=$1

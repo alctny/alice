@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 #
 # 随机使用一张图片作为 i3lock 的锁屏壁纸
 #
