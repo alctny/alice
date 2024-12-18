@@ -1,0 +1,49 @@
+#!/bin/bash
+# 获取精选图片: https://api.pexels.com/v1/curated
+# 搜索图片:     https://api.pexels.com/v1/search
+
+readonly PEXELS_API="https://api.pexels.com/v1/search?orientation=landscape&query=wallpaper&size=large&per_page=1&page=%d"
+readonly DATA_DIR="$HOME/picture/pexels"
+readonly HEADER="Authorization: $PEXELS_KEY"
+
+err() {
+  echo $@ >& 2 
+}
+
+api() {
+  printf $PEXELS_API $1
+}
+
+# get random page
+response=$(curl -s -H "$HEADER" $(api 1))
+total=$(echo $response | jq -r '.total_results')
+if [[ -z $total || $total == "null" ]]; then
+  err "get total faild, response: $response"
+  exit 1
+fi
+page=$((RANDOM % $total + 1))
+
+# get photo info
+response=$(curl -s -H "$HEADER" $(api $page))
+id=$(echo $response | jq -r ".photos[0].id")
+if [[ -z $id || $id == "null" ]]; then
+  err "get photo id error, response is: $response"
+  exit 1
+fi
+original=$(echo $response | jq -r '.photos[0].src.original')
+suffix=${original##*.}
+
+# skip exites
+[[ -f $filename ]] && exit 0
+[[ ! -d $DATA_DIR ]] && mkdir -p $DATA_DIR
+filename="${DATA_DIR}/${id}.${suffix}"
+
+# download photo
+curl -s -H "$HEADER" -o $filename $original
+if [[ $? -ne 0 ]]; then
+  err "get file error: $?"
+  exit 1
+fi
+echo save to $filename
+
+feh --bg-fill $filename
