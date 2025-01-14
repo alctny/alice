@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # 在 umount 时自动删除 smnt 创建的目录
 

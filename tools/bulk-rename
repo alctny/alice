@@ -1,16 +1,36 @@
-#! /bin/bash
+#!/bin/bash
 
-t=$(mktemp)
-ls > $t
-$EDITOR $t
+set -e
+
+file_list=""
+
+while getopts "f:" opt; do
+  case $opt in
+    f) file_list=$OPTARG ;;
+  esac
+done
+
+if [[ "$file_list" == "" ]]; then
+  file_list=$(mktemp)
+  ls > $file_list
+fi
+
+if [[ ! -s "$file_list" ]]; then
+  echo "nothing to do"
+  exit 0
+fi
+
+bak=$(mktemp)
+cp "$file_list" "$bak"
+
+$EDITOR $file_list
 
 i=0
-for f in *; do 
+while read f; do 
   i=$((i+1))
-
-  nf=$(sed -n ${i}p $t)
+  nf=$(sed -n ${i}p $file_list)
   if [ -e "$nf" ]; then
     continue
   fi
   mv "$f" "$nf"
-done
+done < $bak

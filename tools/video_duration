@@ -8,6 +8,24 @@
 #   1. 此函數計算視頻時長依賴 ffprob，需要自行安裝
 #   2. 此函數並不會主動去發現和判斷視頻文件是那些，需要使用者通過 find 命令或其他手段將所有視頻文件路徑輸出到文本文件，
 #      然後作爲參數傳遞給此函數
+#
+
+# 一個簡單的進度條
+function progress_bar() {
+  progress=$1
+  total_steps=$2
+  max_length=50
+  filled_length=$(( progress * max_length / total_steps ))
+  empty_length=$(( max_length - filled_length ))
+  filled_bar=$(printf "%0.s#" $(seq 1 $filled_length))
+  empty_bar=$(printf "%0.s-" $(seq 1 $empty_length))
+  printf "\r\033[0;40;32m[%s%s] %d%% (%d / %d)\033[0m" "$filled_bar" "$empty_bar" "$(( progress * 100 / total_steps ))" "$progress" "$total_steps"
+}
+
+if ! command -v ffprobe > /dev/null 2>&1; then
+  echo "not found command ffprobe" > 2
+  exit 1
+fi
 
 vlist=$1
 detail=$2
