@@ -5,7 +5,7 @@
 uuid=$(cat /proc/sys/kernel/random/uuid)
 function wide-img() {
   dir=$(realpath ${1:-.})
-  cd $dir
+  cd "$dir"
   for f in *; do
     if [ -d "$f" ]; then
       wide-img "$f" &
