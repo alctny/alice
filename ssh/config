@@ -2,28 +2,5 @@ Host github.com
 User git
 Hostname ssh.github.com
 PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_ed25519
+IdentityFile ~/.ssh/github
 Port 443
-
-Host gitlab.com
-Hostname altssh.gitlab.com
-User git
-Port 443
-PreferredAuthentications publickey
-IdentityFile ~/.ssh/id_ed25519
-
-
-Host 172.16.0.6
-  HostkeyAlgorithms +ssh-rsa
-  PubkeyAcceptedAlgorithms +ssh-rsa
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/comsns
-  Port 2222
-
-
-Host 172.30.1.171
-  # HostkeyAlgorithms +ssh-rsa
-  # PubkeyAcceptedAlgorithms +ssh-rsa
-  AddKeysToAgent yes
-  IdentityFile ~/.ssh/comsns
-  Port 22

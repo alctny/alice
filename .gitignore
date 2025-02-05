@@ -87,3 +87,8 @@ rime/user.yaml
 *.lock
 *.pub
 rime/terra_pinyin.userdb
+copyq/copyq-commands.ini
+copyq/copyq-filter.ini
+copyq/copyq-monitor.ini
+copyq/copyq_geometry.ini
+copyq/copyq_tabs.ini

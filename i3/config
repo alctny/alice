@@ -33,30 +33,31 @@ workspace_auto_back_and_forth yes
 focus_on_window_activation focus
 
 # start with power up
-# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
-# exec --no-startup-id xautolock -time 13 -locker 'rand-img-lock' &
-exec --no-startup-id xss-lock --transfer-sleep-lock --nofork slock &
-exec --no-startup-id xautolock -time 13 -locker slock &
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
+exec --no-startup-id xautolock -time 13 -locker 'rand-img-lock' &
+# exec --no-startup-id xss-lock --transfer-sleep-lock --nofork slock &
+# exec --no-startup-id xautolock -time 13 -locker slock &
 exec --no-startup-id nm-applet &
 exec --no-startup-id copyq &
-exec --no-startup-id conky &
+# exec --no-startup-id conky &
 exec --no-startup-id picom &
 exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
 # exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
 
-exec_always --no-startup-id feh --bg-fill --randomize  ~/picture/wallpaper/* &
+exec_always --no-startup-id feh --bg-fill --randomize  ~/.local/share/wallpaper/* &
 exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 &
 
 # customer hotkey
 # bindsym F1 exec xfce4-terminal --drop-down
-bindsym F1 exec ~/.local/bin/alacritty-setup.sh
-bindsym $mod+Return exec st -e /bin/bash -lc 'tmux a || tmux'
+bindsym F1 exec ~/.local/bin/term_toggle.sh
+# bindsym $mod+Return exec st -e /bin/bash -lc 'tmux a || tmux'
+bindsym $mod+Return exec alacritty
 bindsym $mod+$Alt+Return exec st -e /bin/bash -l
 bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -show drun
-# bindsym Mod1+Ctrl+q exec rand-img-lock &
-bindsym --release Mod1+Ctrl+q exec sh -c 'slock'
+bindsym Mod1+Ctrl+q exec rand-img-lock &
+# bindsym --release Mod1+Ctrl+q exec sh -c 'slock'
 
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
 # TODO 添加仅主屏，扩展屏，共享屏

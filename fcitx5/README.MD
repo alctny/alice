@@ -14,7 +14,7 @@ export GLFW_IM_MODULE=fcitx
 
 ## 主題配置
 
-Fcitx5 的配置文件在 `~/.config/fcitx5/classicui.conf` 但是主題文件需要存放在目錄 `~/.local/share/fcitx5/theme`，且 `classicui.conf` 的 `Theme` 字段值爲主題的目錄名，而非主題下 `theme.conf` 中的 `Name` 字段值。
+Fcitx5 的配置文件在 `~/.config/fcitx5/classicui.conf` 但是主題文件需要存放在目錄 `~/.local/share/fcitx5/themes`，且 `classicui.conf` 的 `Theme` 字段值爲主題的目錄名，而非主題下 `theme.conf` 中的 `Name` 字段值。
 
 ## 額外插件
 
