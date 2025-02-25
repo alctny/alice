@@ -1,0 +1,16 @@
+bind / fillcmdline find
+bind ? fillcmdline find --reverse
+bind n findnext --search-from-view
+bind N findnext --search-from-view --reverse
+bind gn findselect
+bind gN composite findnext --search-from-view --reverse; findselect
+bind ,<Space> nohlsearch
+
+bind --mode=normal x tabclose
+unbind d
+
+bind --mode=normal J tabnext
+bind --mode=normal K tabprev
+
+bind --mode=normal R urlroot
+unbind gU

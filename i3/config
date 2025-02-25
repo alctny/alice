@@ -33,7 +33,7 @@ workspace_auto_back_and_forth yes
 focus_on_window_activation focus
 
 # start with power up
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork &
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -e -f -k -c f0f8ff -i /home/iEwzii/.local/share/wallpaper/saya_09.png &
 exec --no-startup-id xautolock -time 13 -locker 'rand-img-lock' &
 # exec --no-startup-id xss-lock --transfer-sleep-lock --nofork slock &
 # exec --no-startup-id xautolock -time 13 -locker slock &
@@ -56,7 +56,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+$Alt+Return exec st -e /bin/bash -l
 bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -show drun
-bindsym Mod1+Ctrl+q exec rand-img-lock &
+# bindsym Mod1+Ctrl+q exec rand-img-lock &
+bindsym Mod1+Ctrl+q exec i3lock -e -f -k -c f0f8ff -i /home/iEwzii/.local/share/wallpaper/saya_09.png
 # bindsym --release Mod1+Ctrl+q exec sh -c 'slock'
 
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
@@ -193,6 +194,7 @@ assign [class="Trilium Notes"]    7
 assign [class="obsidian"]         7
 assign [class="google-chrome"]    8
 assign [class="Google-chrome"]    8
+assign [class="firefox"]          8
 assign [class="wechat"]           9
 assign [class="Telegram"]         9
 

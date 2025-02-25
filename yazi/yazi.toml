@@ -41,7 +41,7 @@ open = [
 ]
 
 img = [
-  { run = 'feh "$1"', orphan = true, desc = "feh", for = "linux" },
+  { run = 'feh -Z --zoom-step 3 --image-bg "#416e74" --keep-zoom-vp "$@" .', orphan = true, desc = "feh", for = "linux" }
 ]
 
 reveal = [
@@ -52,6 +52,7 @@ extract = [{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "u
 
 play = [
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+  { run = 'vlc "$@"', orphan = true, for = "unix" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 

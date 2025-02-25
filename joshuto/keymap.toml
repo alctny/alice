@@ -22,7 +22,7 @@ keymap = [
 
   # inner command
   { keys = [":"], commands = [":"] },
-  { keys = ["s"], commands = ["shell bash --init-file ~/.profile.ant.sh"] },
+  { keys = ["s"], commands = ["shell bash --init-file ~/.self.env"] },
   { keys = ["S"], commands = [":shell "] },
   { keys = ["r"], commands = ["shell ranger ."] },
 
@@ -42,7 +42,7 @@ keymap = [
 
   # delete
   { keys = ["delete"], commands = ["delete_files --noconfirm"] },
-  { keys = ["d", "D"], commands = ["delete_files --noconfirm"] },
+  { keys = ["d", "D"], commands = ["delete_files --permanently"] },
 
   # rename
   { keys = ["c", "a"], commands = ["rename_append_base"] },
@@ -80,6 +80,9 @@ keymap = [
   # other
   { keys = ["w"], commands = ["show_tasks --exit-key=w"] },
   { keys = ["="], commands = ["set_mode"] },
+
+
+  { keys = ["f", "f"], commands = [":filter "] },
 
   # goto
   { keys = ["g", "h"], commands = ["cd ~"] },
