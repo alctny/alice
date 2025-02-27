@@ -22,4 +22,8 @@ function progress_bar() {
   printf "\r\033[0;40;32m[%s%s] %d%% (%d / %d)\033[0m" "$filled_bar" "$empty_bar" "$(( progress * 100 / total_steps ))" "$progress" "$total_steps"
 }
 
-
+# 輸出錯誤信息並推出
+function err() {
+  echo "$*"
+  exit 1
+}

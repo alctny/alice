@@ -2,15 +2,42 @@
 
 # 在 umount 时自动删除 smnt 创建的目录
 
-[ $UID -ne 0 ] && prefix=sudo || prefix=""
+# [ $UID -ne 0 ] && prefix=sudo || prefix=""
+#
+# mounton=$1
+# $prefix umount $mounton
+# if [ $? -ne 0 ];then
+# 	echo -e "\033[97;31munmount error\033[31m"
+# 	exit 1
+# else
+# 	echo -e "\033[97;32mumount success\033[0m"
+# 	lsblk
+# 	$prefix rmdir $mounton
+# fi
+#
 
-mounton=$1
-$prefix umount $mounton
-if [ $? -ne 0 ];then
-	echo -e "\033[97;31munmount error\033[31m"
-	exit 1
-else
-	echo -e "\033[97;32mumount success\033[0m"
-	lsblk
-	$prefix rmdir $mounton
+current_dir=$(dirname $(realpath $0))
+source $current_dir/mod.sh
+
+if [[ -z "$1" ]]; then
+  err "usage: smnt <block-device>"
+fi
+
+if [[ ! -b $1 ]]; then
+  err "$1 not block device"
+fi
+
+mount_point=$(lsblk -no MOUNTPOINT $1)
+if [[ "$mount_point" == "" ]]; then
+  err "$1 not mount"
+fi
+
+udisksctl unmount -b $1
+if [[ $? -ne 0 ]]; then
+  err "unmout error"
+fi
+
+link_dir="$HOME/${mount_point##*/}"
+if [[ -L $link_dir && ! -e $link_dir ]]; then
+  rm $link_dir
 fi

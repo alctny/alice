@@ -2,21 +2,45 @@
 
 # 挂载外部磁盘的时候自动在 mnt 目录下创建相应的文件夹
 
-[ $UID -ne 0 ] && prefix=sudo || prefix=""
+# [ $UID -ne 0 ] && prefix=sudo || prefix=""
+#
+# dev=$1
+# if [ "$dev" == "" ] || [ ! -b $dev ]; then
+#   echo -e "\033[97;31misn't block file\033[0m"
+#   exit 1
+# fi
+# dir=${dev##*/}
+# $prefix mkdir -p "/mnt/$dir"
+# $prefix mount $dev /mnt/$dir
+# if [ $? -ne 0 ]; then
+#   echo -e "\033[0;93;31mmount error:\033[0m"
+#   exit 1
+# else
+#   echo -e "\033[3;97;32mmount success\033[0m"
+# fi
+#
 
-dev=$1
-if [ "$dev" == "" ] || [ ! -b $dev ]; then
-  echo -e "\033[97;31misn't block file\033[0m"
-  exit 1
-fi
-dir=${dev##*/}
-$prefix mkdir -p "/mnt/$dir"
-$prefix mount $dev /mnt/$dir
-if [ $? -ne 0 ]; then
-  echo -e "\033[0;93;31mmount error:\033[0m"
-  exit 1
-else
-  echo -e "\033[3;97;32mmount success\033[0m"
+current_dir=$(dirname $(realpath $0))
+source $current_dir/mod.sh
+
+if [[ -z "$1" ]]; then
+  err "usage: smnt <block-device>"
 fi
 
+if [[ ! -b $1 ]]; then
+  err "$1 not block device"
+fi
+
+mount_dir=$(udisksctl mount -b $1 | awk '{print $NF}')
+if [[ $? -ne 0 ]]; then
+  err "mount error"
+fi
+
+link_dir="$HOME/${mount_dir##*/}"
+if [[ ! -e $link_dir ]]; then
+  ln -sf $mount_dir $HOME/
+  echo "successful mount to: $mount_dir"
+  echo "link to home dir: $link_dir"
+  exit 0
+fi
 
