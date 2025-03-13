@@ -40,7 +40,7 @@ link_dir="$HOME/${mount_dir##*/}"
 if [[ ! -e $link_dir ]]; then
   ln -sf $mount_dir $HOME/
   echo "successful mount to: $mount_dir"
-  echo "link to home dir: $link_dir"
+  echo "link to home dir:    $link_dir"
   exit 0
 fi
 

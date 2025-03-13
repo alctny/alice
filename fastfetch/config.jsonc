@@ -16,7 +16,7 @@
     "break",
     {"type": "custom", "format": "┌{$1} {#1}System Information{#} {$1}┐"},
     "break",
-    {"key": "OS         ", "keyColor": "red",     "type": "os"},
+    //{"key": "OS         ", "keyColor": "red",     "type": "os"},
     {"key": "Machine    ", "keyColor": "green",   "type": "host"},
     {"key": "Kernel     ", "keyColor": "magenta", "type": "kernel"},
     {"key": "Uptime     ", "keyColor": "red",     "type": "uptime"},

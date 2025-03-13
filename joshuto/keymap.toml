@@ -56,10 +56,11 @@ keymap = [
   { keys = ["V"], commands = ["toggle_visual"] },
 
   # search
-  { keys = ["n"],      commands = ["search_next"] },
-  { keys = ["N"],      commands = ["search_prev"] },
-  { keys = ["/"],      commands = ["search_fzf"] },
-  { keys = ["ctrl+f"], commands = ["subdir_fzf"] },
+  { keys = ["n"], commands = ["search_next"] },
+  { keys = ["N"], commands = ["search_prev"] },
+  { keys = ["/"], commands = ["search_fzf"] },
+  # { keys = ["?"], commands = ["subdir_fzf"] },
+  # { keys = ["ctrl+f"], commands = ["subdir_fzf"] },
 
   # sort
   { keys = ["o", "r"], commands = ["sort reverse"] },
@@ -80,7 +81,6 @@ keymap = [
   # other
   { keys = ["w"], commands = ["show_tasks --exit-key=w"] },
   { keys = ["="], commands = ["set_mode"] },
-
 
   { keys = ["f", "f"], commands = [":filter "] },
 

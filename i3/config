@@ -30,7 +30,7 @@ gaps inner 2
 gaps outer 2
 
 workspace_auto_back_and_forth yes
-focus_on_window_activation focus
+focus_on_window_activation    focus
 
 # start with power up
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -e -f -k -c f0f8ff -i /home/iEwzii/.local/share/wallpaper/saya_09.png &
@@ -44,7 +44,6 @@ exec --no-startup-id picom &
 exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
 # exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
-
 exec_always --no-startup-id feh --bg-fill --randomize  ~/.local/share/wallpaper/* &
 exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 &
 
@@ -149,10 +148,10 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
-bindsym $mod+Ctrl+Left  workspace prev
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+h     workspace prev
-bindsym $mod+Ctrl+l     workspace next
+bindsym $mod+Ctrl+Left  workspace prev_on_output
+bindsym $mod+Ctrl+Right workspace next_on_output
+bindsym $mod+Ctrl+h     workspace prev_on_output
+bindsym $mod+Ctrl+l     workspace next_on_output
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -181,30 +180,33 @@ mode "resize" {
 }
 
 # pin windows to workspace
-assign [class="calibre"]          0
-assign [class="code"]             2
-assign [class="AppRun"]           3
-assign [class="Gimp-2.10"]        4
-assign [class="DBeaver"]          3
-assign [class="Localsend_app"]    6
-assign [class="baidunetdisk"]     6
-assign [class="Motrix"]           6
-assign [class="Typora"]           7
-assign [class="Trilium Notes"]    7
-assign [class="obsidian"]         7
-assign [class="google-chrome"]    8
-assign [class="Google-chrome"]    8
-assign [class="firefox"]          8
-assign [class="wechat"]           9
-assign [class="Telegram"]         9
+assign [class="calibre"]       0
+assign [class="code"]          2
+assign [class="AppRun"]        3
+assign [class="DBeaver"]       3
+assign [class="Gimp-2.10"]     4
+assign [class="kdenlive"]      4
+assign [class="Localsend_app"] 6
+assign [class="baidunetdisk"]  6
+assign [class="Motrix"]        6
+assign [class="Typora"]        7
+assign [class="SiYuan"]        7
+assign [class="Trilium Notes"] 7
+assign [class="obsidian"]      7
+assign [class="google-chrome"] 8
+assign [class="Google-chrome"] 8
+assign [class="firefox"]       8
+assign [class="wechat"]        9
+assign [class="QQ"]            9
+assign [class="Telegram"]      9
 
 # set application floating enable or disable
-# for_window [window_role="pop-up"]      floating enable  move position center
-# for_window [window_role="task_dialog"] floating enable  move position center
-for_window [class="wechat"]            floating disable
+for_window [window_role="pop-up"]      floating enable  move position center
+for_window [window_role="task_dialog"] floating enable  move position center
+# for_window [class="wechat"]            floating disable
+# for_window [title="图片查看"]          floating enable  move position center
 for_window [class="calibre"]           floating disable
 for_window [class="crx_.*"]            floating disable
-for_window [title="图片查看"]          floating enable  move position center
 for_window [class="copyq"]             floating enable  move position center
 for_window [class="flameshot"]         floating enable  move position center
 for_window [class="Rustdesk"]          floating enable  move position center

@@ -6,7 +6,7 @@
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
   "editor.fontSize": 14,                                      // 字体大小
   "editor.hover.sticky": false,                               // 悬浮代码提示
-  "editor.insertSpaces": false,                               // tab 替换为空格
+  "editor.insertSpaces": true,                                // tab 替换为空格
   "editor.renderLineHighlightOnlyWhenFocus": false,           // 禁用當前行高亮
   "editor.tabSize": 2,                                        // 1tab = 2space
   "files.autoSave": "onFocusChange",                          // 失去焦点自动保存
