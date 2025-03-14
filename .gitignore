@@ -92,3 +92,5 @@ copyq/copyq-filter.ini
 copyq/copyq-monitor.ini
 copyq/copyq_geometry.ini
 copyq/copyq_tabs.ini
+mpv/watch_later
+copyq/copyq-bak.conf

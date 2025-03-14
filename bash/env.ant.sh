@@ -34,8 +34,8 @@ export HISTFILESIZE=
 export HISTTIMEFORMAT='%F %T '
 
 # 默認編輯器
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=/usr/local/nvim/bin/nvim
+export VISUAL=/usr/local/nvim/bin/nvim
 
 # 默认终端模拟器
 export TERMINAL=alacritty

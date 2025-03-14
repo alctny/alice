@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# 功能: 将目录下默认的 XDG 标准目录修改为英文小写
+
+readonly UD="$HOME/.config/user-dirs.dirs"
+
+cat $UD | grep -v "^#" | while read line; do
+  ori_dir=$(echo $line | awk -F'"' '{print $2}' | sed 's|$HOME/||')
+  # 不可以使用 ${ori_dir,,} 因为 ori_dir 还有可能是中文或其他语言
+  low_dir=$(echo $line | awk -F'_' '{print $2}' | tr [:upper:] [:lower:])
+  
+  new_line=$(echo $line | sed "s/$ori_dir/$low_dir/")
+  sed -i "s|$line|$new_line|" $UD
+  # 目标目录已经存在要么已经重命名过, 要么新建了同名目录
+  if [[ -e $HOME/$low_dir ]]; then
+    continue
+  fi
+  # 如果原本的目录已经被删除则创建新的目录
+  if [[ ! -e $HOME/$ori_dir ]]; then
+    mkdir $HOME/$low_dir
+    continue
+  fi
+  mv $HOME/$ori_dir $HOME/$low_dir
+done
