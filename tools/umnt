@@ -1,21 +1,5 @@
 #!/bin/bash
 
-# 在 umount 时自动删除 smnt 创建的目录
-
-# [ $UID -ne 0 ] && prefix=sudo || prefix=""
-#
-# mounton=$1
-# $prefix umount $mounton
-# if [ $? -ne 0 ];then
-# 	echo -e "\033[97;31munmount error\033[31m"
-# 	exit 1
-# else
-# 	echo -e "\033[97;32mumount success\033[0m"
-# 	lsblk
-# 	$prefix rmdir $mounton
-# fi
-#
-
 current_dir=$(dirname $(realpath $0))
 source $current_dir/mod.sh
 

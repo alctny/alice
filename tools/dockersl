@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# 功能: 保存所有 docker 镜像到本地或导入本地所有 tar 到 docker 镜像
+
+function save() {
+  docker images | awk 'NR > 1{print $1}' | while read img; do
+    img_tar="$(echo $img | sed 's|/|-|').tar"
+    docker save $img -o $img_tar
+  done
+}
+
+function load() {
+  for img in *.tar; do
+    docker load < $img
+  done
+}
+
+
+case $1 in
+  save)
+    save
+    ;;
+  load)
+    load
+    ;;
+  *)
+    cat << EOF
+usage: dockersl <save>/<load>
+  save: save docker image to tar
+  load: load docker image from tar
+
+careful: save while save to current path, and the load find tar from current
+EOF
+    ;;
+esac
+

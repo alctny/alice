@@ -33,8 +33,8 @@ workspace_auto_back_and_forth yes
 focus_on_window_activation    focus
 
 # start with power up
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -e -f -k -c f0f8ff -i /home/iEwzii/.local/share/wallpaper/saya_09.png &
-exec --no-startup-id xautolock -time 13 -locker 'rand-img-lock' &
+exec --no-startup-id xss-lock --transfer-sleep-lock $HOME/.config/i3/lock-bg-rand.sh &
+exec --no-startup-id xautolock -time 13 -locker '$HOME/.config/i3/lock-bg-rand.sh' &
 # exec --no-startup-id xss-lock --transfer-sleep-lock --nofork slock &
 # exec --no-startup-id xautolock -time 13 -locker slock &
 exec --no-startup-id nm-applet &
@@ -44,8 +44,8 @@ exec --no-startup-id picom &
 exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
 # exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
-exec_always --no-startup-id feh --bg-fill --randomize  ~/.local/share/wallpaper/* &
-exec_always --no-startup-id xrandr --output eDP-1 --primary --mode 2240x1400 &
+exec_always --no-startup-id $HOME/.conf/i3/bg-rand.sh
+exec_always --no-startup-id xrandr --output eDP --primary --mode 2240x1400 &
 
 # customer hotkey
 # bindsym F1 exec xfce4-terminal --drop-down
@@ -56,7 +56,7 @@ bindsym $mod+$Alt+Return exec st -e /bin/bash -l
 bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -show drun
 # bindsym Mod1+Ctrl+q exec rand-img-lock &
-bindsym Mod1+Ctrl+q exec i3lock -e -f -k -c f0f8ff -i /home/iEwzii/.local/share/wallpaper/saya_09.png
+bindsym Mod1+Ctrl+q exec $HOME/.config/i3/lock-bg-rand.sh
 # bindsym --release Mod1+Ctrl+q exec sh -c 'slock'
 
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）
@@ -93,34 +93,23 @@ bindsym $mod+Shift+Down  move down
 bindsym $mod+Shift+Up    move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-# bindsym $mod+h split h
+#i3 windows manager
+bindsym $mod+h split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-# kill focused window
 bindsym $mod+q kill
-# change container layout (stacked, tabbed, toggle split)
-# bindsym $mod+s layout stacking
+bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-# focus the parent container
 bindsym $mod+a focus parent
-# focus the child container
 bindsym $mod+d focus child
-# enter resize mode
 bindsym $mod+r mode "resize"
-# move window to clipboard, use $mod+minus to pase
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-# reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 session
 bindsym $mod+Shift+e exit
 
 # Define names for default workspaces for which we configure key bindings later on.
