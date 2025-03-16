@@ -4,7 +4,7 @@ cursor:
   vi_mode_style:
     shape: Block
 font:
-  size: 7
+  size: 6
   bold:
     family: FiraCode Nerd Font
     style: Regular
@@ -25,5 +25,5 @@ shell:
 window:
   opacity: 0.9
   dimensions:
-    columns: 155
-    lines: 45
+    columns: 190
+    lines: 60
