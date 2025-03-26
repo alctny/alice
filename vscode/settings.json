@@ -1,6 +1,6 @@
 {
   // VSCode 基础设置
-  "editor.fontFamily": "Recursive Mono Casual Static",            // 字体
+  "editor.fontFamily": "Recursive Mono Casual Static",        // 字体
   "editor.fontLigatures": true,                               // 启用连体字
   "editor.renderLineHighlight": "none",                       // 禁用高亮当前行
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
@@ -63,7 +63,7 @@
   // UI
   "workbench.startupEditor": "none",                      // 启动页面
   "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
-  "workbench.iconTheme": "vscode-jetbrains-icon-theme-2023-dark",                  // 主题
+  "workbench.iconTheme": "vscode-icons",                  // 主题
   // 语言
   "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 150}",   // C/C++ 代码格式
   "C_Cpp.formatting": "clangFormat",                                                // C/C++ 格式化引擎
@@ -99,4 +99,5 @@
     "workbench.action.tasks.runTask"
   ],
   "go.lintTool": "revive",
+  "vsicons.dontShowNewVersionMessage": true,
 }

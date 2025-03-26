@@ -44,7 +44,7 @@ exec --no-startup-id picom &
 exec --no-startup-id polybar -r alice &
 exec --no-startup-id fcitx5 &
 # exec --no-startup-id ~/.config/i3/scrip/battery-low-notify.sh &
-exec_always --no-startup-id $HOME/.conf/i3/bg-rand.sh
+exec_always --no-startup-id feh --bg-fill -z ~/.local/share/wallpaper &
 exec_always --no-startup-id xrandr --output eDP --primary --mode 2240x1400 &
 
 # customer hotkey
@@ -53,7 +53,7 @@ bindsym F1 exec $HOME/.config/i3/term_toggle.sh
 # bindsym $mod+Return exec st -e /bin/bash -lc 'tmux a || tmux'
 bindsym $mod+Return exec alacritty
 bindsym $mod+$Alt+Return exec st -e /bin/bash -l
-bindsym Print exec flameshot gui
+# bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -show drun
 # bindsym Mod1+Ctrl+q exec rand-img-lock &
 bindsym Mod1+Ctrl+q exec $HOME/.config/i3/lock-bg-rand.sh

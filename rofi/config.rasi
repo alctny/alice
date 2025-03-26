@@ -16,16 +16,20 @@ configuration {
   display-combi:   "c";
   display-keys:    "key";
 
-  kb-row-up:              "Control+p";
-  kb-row-down:            "Control+n";
-  kb-page-prev:           "Control+u";
-  kb-page-next:           "Control+d";
-  kb-mode-next:           "Tab";
-  kb-mode-previous:       "Shift+Tab";
-  kb-remove-char-back:    "BackSpace";
-  kb-remove-char-forward: "Delete";
-
-  kb-element-next: "";
-  kb-row-tab: "";
-  kb-remove-to-sol: "";
+  kb-row-up:                 "Control+p";
+  kb-row-down:               "Control+n";
+  kb-page-prev:              "Page_Up";
+  kb-page-next:              "Control+d,Page_Down";
+  kb-mode-next:              "Tab";
+  kb-mode-previous:          "Shift+Tab";
+  kb-remove-char-back:       "BackSpace";
+  kb-remove-char-forward:    "Delete";
+  kb-clear-line:             "Control+w";
+  kb-remove-to-eol:          "Control+k";
+  kb-remove-to-sol:          "Control+u";
+  kb-cancel:                 "Escape,Control+g,Control+bracketleft";
+  kb-row-select:             "Control+space";
+  kb-element-next:           "";
+  kb-row-tab:                "";
+  kb-remove-to-sol:          "";
 }
