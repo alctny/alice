@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # 失敗時輸出腳本名稱和行號
 trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
 

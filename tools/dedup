@@ -20,8 +20,9 @@ for i in ${idx[@]}; do
     rm "$line"
   done
 done
-unset i
+
+# 有些重复文件可能分布在不同文件夹,删除之后会出现空文件夹
+find . -empty -type d -delete
 
 rm $logf
-unset $logf
 
