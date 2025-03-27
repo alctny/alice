@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# 将当前目录下的文件按照文件类型进行整理
+
+source $(dirname $(realpath $0))/mod.sh
+
+DIR_PREFIX=${DIR_PREFIX:-"ori_mt_"}
+
+DOC=$(cat <<END
+command:
+  mime    | m  : 按照文件类型分类
+  submime | sm : 按照文件子没提类型分类
+  suffix  | s  : 按照文件后缀名分类
+END
+)
+
+# with_mime 按照文件的真实类型进行分类
+function with_mime () {
+  if ! command -v exiftool > /dev/null 2>&1; then
+    err "exiftool is require"
+  fi
+
+  fn="$*"
+  if [[ ! -s "$fn" ]]; then
+    echo "empt"
+    return
+  fi
+
+  exiftool -MimeType "$fn" | awk '{print $4}' | awk -F'/' '{print $1}'
+}
+
+# with_subfix 按照文件后缀名分类
+function with_suffix() {
+  fn="$*"
+  if [[ ! "$fn" == *.* ]]; then
+    echo "unknow"
+    return
+  fi
+  echo ${fn##*.}
+}
+
+
+# with_mime 按照文件的真实类型进行分类
+function with_submime () {
+  if ! command -v exiftool > /dev/null 2>&1; then
+    err "exiftool is require"
+  fi
+
+  fn="$*"
+  if [[ ! -s "$fn" ]]; then
+    echo "empt"
+    return
+  fi
+
+  exiftool -MimeType "$fn" | awk '{print $4}' | awk -F'/' '{print $2}'
+}
+
+get_mt=with_mime
+
+case $1 in
+  "mime" | "m")
+    get_mt=with_mime
+    ;;
+  "suffix" | "s")
+    get_mt=with_suffix
+    ;;
+  "submime" | "sm")
+    get_mt=with_submime
+    ;;
+  "help" | "h")
+    echo "$DOC"
+    exit 0
+    ;;
+  *)
+    get_mt=with_mime
+    ;;
+esac
+
+for fn in *; do
+  [[ ! -f "$fn" ]] && continue
+
+  mt=$($get_mt "$fn")
+  mt_dir="$DIR_PREFIX$mt"
+  if [[ -f "$mt_dir" ]]; then
+    mt_dir="$(cat /proc/sys/kernel/random/uuid)"
+    mkdir $mt_dir
+    echo "$mt type file while move to $mt_dir"
+  fi
+  mkdir -p "$mt_dir"
+  mv "$fn" "$mt_dir"
+done
+
+
+# TODO:
+# 2. 按照 mimetype 斜杠后的内容分类
