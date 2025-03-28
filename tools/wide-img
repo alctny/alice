@@ -9,13 +9,11 @@ uuid=$(cat /proc/sys/kernel/random/uuid)
 
 for f in *; do
   if [ ! -f "$f" ]; then
-    echo "skip: $f"
     continue
   fi
 
   mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
   if [ "$mime" != "image" ]; then
-    echo "skip: $f"
     continue
   fi
 
@@ -23,9 +21,7 @@ for f in *; do
   if (( $(echo "$prate < 1" | bc -l) )); then
     [ ! -d "$uuid" ] && mkdir "$uuid"
     mv "$f" "$uuid/"
-    echo "move: $f"
+    echo $f
     continue
   fi
-
-  echo "keep: $f"
 done

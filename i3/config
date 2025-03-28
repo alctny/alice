@@ -9,6 +9,8 @@
 # mod5        ISO_Level3_Shift (0x5c)
 set $Alt Mod1
 set $mod Mod4
+set $term alacritty
+set $float_term $HOME/.config/i3/term_toggle.sh
 
 floating_modifier $mod
 
@@ -51,8 +53,8 @@ exec_always --no-startup-id xrandr --output eDP --primary --mode 2240x1400 &
 # bindsym F1 exec xfce4-terminal --drop-down
 bindsym F1 exec $HOME/.config/i3/term_toggle.sh
 # bindsym $mod+Return exec st -e /bin/bash -lc 'tmux a || tmux'
-bindsym $mod+Return exec alacritty
-bindsym $mod+$Alt+Return exec st -e /bin/bash -l
+bindsym $mod+Return exec $term
+bindsym $mod+$Alt+Return exec $float_term
 # bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -show drun
 # bindsym Mod1+Ctrl+q exec rand-img-lock &
@@ -199,6 +201,6 @@ for_window [class="crx_.*"]            floating disable
 for_window [class="copyq"]             floating enable  move position center
 for_window [class="flameshot"]         floating enable  move position center
 for_window [class="Rustdesk"]          floating enable  move position center
-# for_window [class="Alacritty"]         floating enable  sticky enable move position center
-for_window [class="st-256color"]       floating enable  sticky enable move position center
+for_window [class="Alacritty"]                          move position center sticky enable  
+for_window [class="st-256color"]       floating enable  move position center sticky enable 
 
