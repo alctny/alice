@@ -1,0 +1,26 @@
+#!/bin/bash
+
+function menu() {
+  echo "connected"
+  echo "devices"
+  echo "scan"
+}
+
+
+case "$*" in
+  connected)
+    bluetoothctl devices Connected | sed 's/Device //'
+    ;;
+  devices)
+    bluetoothctl devices | sed 's/Device //'
+    ;;
+  scan)
+    echo "unreachable"
+    ;;
+  "")
+    menu
+    ;;
+  *)
+    exit 0
+    ;;
+esac

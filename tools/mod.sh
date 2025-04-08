@@ -6,8 +6,8 @@ set -e
 trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
 
 # 輸出錯誤信息並退出
-err() {
-  eeho -e "\033[1;90;31m$@\033[0m" >& 2
+function err() {
+  echo -e "\033[1;90;31m$@\033[0m" >& 2
   exit 1
 }
 
@@ -24,8 +24,3 @@ function progress_bar() {
   printf "\r\033[0;40;32m[%s%s] %d%% (%d / %d)\033[0m" "$filled_bar" "$empty_bar" "$(( progress * 100 / total_steps ))" "$progress" "$total_steps"
 }
 
-# 輸出錯誤信息並推出
-function err() {
-  echo "$*"
-  exit 1
-}

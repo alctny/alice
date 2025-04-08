@@ -1,0 +1,24 @@
+#!/bin/bash
+
+BG_PATH=~/.wallpaper
+pic="$*"
+
+case $pic in
+  "")
+    echo "random"
+    find $BG_PATH -type f
+    ;;
+  *)
+    if [[ -f $pic ]]; then
+      feh --bg-fill $pic
+    elif [[ -d $pic ]]; then
+      find $pic -type f
+    elif [[ $pic == "random" ]]; then
+      total=$(find $BG_PATH -type f | wc -l)
+      idx=$((RANDOM % $total + 1))
+      rp=$(find $BG_PATH -type f | sed -n "${idx}p")
+      feh --bg-fill $rp
+    fi
+    ;;
+esac
+

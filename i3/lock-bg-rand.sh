@@ -3,7 +3,7 @@
 # 随机使用一张图片作为 i3lock 的锁屏壁纸
 #
 
-dir="$HOME/.local/share/wallpaper"
+dir="$HOME/.wallpaper"
 
 cnt=$(ls $dir/*.png | wc -l)
 if [ $cnt -eq 0 ]; then

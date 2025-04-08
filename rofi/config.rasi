@@ -3,13 +3,12 @@
 @theme "theme"
 
 configuration {
-  combi-modes:     [drun,window];
-  modes :          "drun,window";
+  modi:            "drun,window";
   disable-history: false;
   yoffset :        -150;
 
   show-icons:      true;
-  display-drun:    "d";
+  display-drun:    "";
   display-window:  "w";
   display-run:     "r";
   display-ssh:     "s";

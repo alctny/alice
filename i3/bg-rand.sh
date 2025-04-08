@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly PIC_PATH="$HOME/.local/share/wallpaper"
+readonly PIC_PATH="$HOME/.wallpaper"
 screen_num=$(xrandr | grep ' connected' | wc -l)
 
 size=$(ls $PIC_PATH | wc -l)

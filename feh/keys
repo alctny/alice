@@ -8,11 +8,11 @@ scroll_down      K C-Down
 scroll_left      H C-Left
 scroll_right     L C-Right
 
-delete           Delete
+delete           d Delete
 zoom_in          k Up
 zoom_out         j Down
 zoom_default     z
 zoom_fit         f space
 next_img         l Right
 prev_img         h Left
-
+toggle_filenames D

@@ -1,0 +1,3 @@
+.mode table
+.headers on
+.prompt "SQLite> "  # 可选：修改提示符

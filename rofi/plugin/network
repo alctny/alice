@@ -1,0 +1,55 @@
+#!/bin/bash
+
+function list_conn() {
+  uuid=($( nmcli c show  | grep -oE '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' ))
+
+  for u in ${uuid[*]}; do
+    state=$( nmcli c show $u | grep 'GENERAL.STATE' | awk '{print $2}' )
+    id=$( nmcli c show $u | grep 'connection.id' | awk '{print $2}' )
+    ip=$( nmcli c show $u | grep 'ipv4.address' | awk '{print $2}' )
+    echo "$u ($state, $id, $ip)"
+  done
+}
+
+arg=$(echo "$*" | awk '{print $1}')
+uuid=$(echo "$*" | awk '{print $2}')
+
+case "$arg" in
+  "")
+    list_conn
+    ;;
+  delete)
+    nmcli c delete $uuid
+    if [[ $? -eq 0 ]]; then
+      dunstify "delete $( nmcli c show $uuid | grep 'connection.id' | awk '{print $2}' ) Successful"
+    else
+      dunstify "delete $( nmcli c show $uuid | grep 'connection.id' | awk '{print $2}' ) faild"
+    fi
+    ;;
+  up)
+    nmcli c up $uuid > /dev/null
+    if [[ $? -eq 0 ]]; then
+      dunstify "Connect to $( nmcli c show $uuid | grep 'connection.id' | awk '{print $2}' ) Successful"
+    else
+      dunstify "Connect to $( nmcli c show $uuid | grep 'connection.id' | awk '{print $2}' ) faild"
+    fi
+    ;;
+  down)
+    nmcli c down $uuid > /dev/null
+    if [[ $? -eq 0 ]]; then
+      dunstify "Disconnect to $( nmcli c show $uuid | grep 'connection.id' | awk '{print $2}' ) Successful"
+    else
+      dunstify "Disconnect to $( nmcli c show $uuid | grep 'connection.id' | awk '{print $2}' ) faild"
+    fi
+    ;;
+  *)
+    stat=$(nmcli c show $arg | grep 'GENERAL.STATE' | awk '{print $2}')
+    if [[ "$stat" == "activated" ]]; then
+      echo "down   $arg"
+    else
+      echo "up     $arg"
+    fi
+    echo "delete $arg"
+    ;;
+esac
+

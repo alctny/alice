@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function notify() {
+  dunstctl history | sed s'|\\n||' | jq -nr '[inputs | .data[][] | {id:.id.data, msg:.message.data} | "\( .id ) \( .msg )"] | .[]'
+}
+
+no=$( echo "$*" | awk '{print $1}' )
+
+case "$no" in
+  [0-9]*)
+    dunstctl history-pop $no
+    notify
+    ;;
+  clean)
+    dunstctl history-clean
+    exit 0
+    ;;
+  "")
+    notify
+    echo "clean"
+    ;;
+esac
+
+echo "$no"
