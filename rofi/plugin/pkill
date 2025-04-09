@@ -1,0 +1,11 @@
+#!/bin/bash
+
+case "$*" in
+  "")
+    pgrep -u iewzii -P 1 | while read pid ; do ps -p $pid --no-headers -o pid,cmd ; done
+    ;;
+  *)
+    pid=$(echo $* | awk '{print $1}')
+    kill -9 $pid
+    ;;
+esac

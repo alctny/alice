@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function menu() {
+    echo "reboot"
+    echo "shutdown"
+    echo "reload"
+    echo "logout"
+}
+
+case "$*" in
+  reboot)
+    reboot
+    ;;
+  shutdown)
+    shutdown
+    ;;
+  reload)
+    i3-msg restart > /dev/null
+    ;;
+  logout)
+    i3-msg exit
+    ;;
+  "")
+    menu
+    ;;
+  *)
+    echo "unreachable"
+    ;;
+esac
