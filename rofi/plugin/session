@@ -12,7 +12,7 @@ case "$*" in
     reboot
     ;;
   shutdown)
-    shutdown
+    shutdown now
     ;;
   reload)
     i3-msg restart > /dev/null

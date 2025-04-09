@@ -8,6 +8,13 @@ source $current_dir/mod.sh
 uuid=$(cat /proc/sys/kernel/random/uuid)
 
 for f in *; do
+  echo "$f"
+  if [ -d "$f" ]; then
+    cd "$f"
+    wide-img > /dev/null 2>&1 &
+    cd ..
+    continue
+  fi
   if [ ! -f "$f" ]; then
     continue
   fi
@@ -21,7 +28,10 @@ for f in *; do
   if (( $(echo "$prate < 1" | bc -l) )); then
     [ ! -d "$uuid" ] && mkdir "$uuid"
     mv "$f" "$uuid/"
-    echo $f
     continue
   fi
 done
+
+wait
+
+exit 0

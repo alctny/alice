@@ -29,10 +29,10 @@ reverse = false
 
 [preview]
 max_preview_size = 52428800
-preview_protocol = "halfblocks"
-preview_script = "~/.config/joshuto/script/preview_file" # make sure it's marked as executable
-preview_shown_hook_script = "~/.config/joshuto/script/on_preview_shown"
-preview_removed_hook_script = "~/.config/joshuto/script/on_preview_removed"
+# preview_protocol = "halfblocks"
+# preview_script = "~/.config/joshuto/script/preview_file" # make sure it's marked as executable
+# preview_shown_hook_script = "~/.config/joshuto/script/on_preview_shown"
+# preview_removed_hook_script = "~/.config/joshuto/script/on_preview_removed"
 
 [search]
 string_case_sensitivity = "insensitive"

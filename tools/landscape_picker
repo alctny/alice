@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# 寻找当前目录下长宽比大于 1 的图片(横向图片)
+#
+# 用法
+#   -r 递归查找
+#   -v 查找不满足条件的图片(纵向图片)
+#   -m 移动不满足条件的图片到 <UUID> 目录, 如果是递归查找则会移动到其所在目录的 <UUID> 下
+#   -k <n> 限制进程数量,默认使用 CPU 核心数的 1/2
+#   -R 删除找到的对象(如果有 -v 则删除纵向图片,否则删除横向图片)
+
+set -e
+
+# 失敗時輸出腳本名稱和行號
+trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
+
+# 輸出錯誤信息並退出
+function err() {
+  eeho -e "\033[1;90;31m$@\033[0m" >& 2
+  exit 1
+}
+
+
+uuid=$(cat /proc/sys/kernel/random/uuid)
+
+for f in *; do
+  if [ ! -f "$f" ]; then
+    continue
+  fi
+
+  mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
+  if [ "$mime" != "image" ]; then
+    continue
+  fi
+
+  prate=$(echo $(magick "$f" -ping -format "scale=2; %w / %h" info:)|bc)
+  if (( $(echo "$prate < 1" | bc -l) )); then
+    [ ! -d "$uuid" ] && mkdir "$uuid"
+    mv "$f" "$uuid/"
+    echo $f
+    continue
+  fi
+done
