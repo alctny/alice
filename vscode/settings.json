@@ -1,10 +1,10 @@
 {
   // VSCode 基础设置
-  "editor.fontFamily": "Recursive Mono Casual Static",        // 字体
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono",        // 字体
   "editor.fontLigatures": true,                               // 启用连体字
   "editor.renderLineHighlight": "none",                       // 禁用高亮当前行
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
-  "editor.fontSize": 14,                                      // 字体大小
+  "editor.fontSize": 13,                                      // 字体大小
   "editor.hover.sticky": false,                               // 悬浮代码提示
   "editor.insertSpaces": true,                                // tab 替换为空格
   "editor.renderLineHighlightOnlyWhenFocus": false,           // 禁用當前行高亮
@@ -100,8 +100,10 @@
   ],
   "go.lintTool": "revive",
   "vsicons.dontShowNewVersionMessage": true,
-  "github.copilot.chat.followUps": "always",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
 }

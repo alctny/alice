@@ -1,0 +1,35 @@
+// Place your key bindings in this file to override the defaults
+[
+  // move cursor like emacs
+  {
+    "key": "ctrl+n",
+    "command": "cursorDown",
+    "when": "editorTextFocus && vim.mode == 'Insert'"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "cursorUp",
+    "when": "editorTextFocus && vim.mode == 'Insert'"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "cursorLineStart",
+    "when": "editorTextFocus && vim.mode == 'Insert'"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "cursorLineEnd",
+    "when": "editorTextFocus && vim.mode == 'Insert'"
+  },
+  // workbench manager
+  {
+    "key": "cmd+o cmd+w",
+    "command": "workbench.action.closeOtherEditors"
+  },
+  // format document
+  {
+    "key": "ctrl+shift+i",
+    "command": "editor.action.formatDocument",
+    "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+  }
+]

@@ -1,13 +1,4 @@
 [
-    // 大小写转换
-    {
-        "key": "shift+l shift+l",
-        "command": "editor.action.transformToLowercase"
-    },
-    {
-        "key": "shift+u shift+u",
-        "command": "editor.action.transformToUppercase"
-    },
     // 标签页管理
     {
         "key": "ctrl+o ctrl+w",
@@ -142,5 +133,5 @@
     {
         "key": "ctrl+\\",
         "command": "workbench.action.toggleSidebarVisibility"
-    },
+    }
 ]

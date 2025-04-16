@@ -14,6 +14,9 @@ command:
 END
 )
 
+# macOS 获取文件 mime 类型方法: file --mime-type <file-name> | awk '{print $2}' | awk -F'/' '{print $1}'
+
+
 # with_mime 按照文件的真实类型进行分类
 function with_mime () {
   if ! command -v exiftool > /dev/null 2>&1; then

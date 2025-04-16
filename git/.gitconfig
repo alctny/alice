@@ -26,10 +26,10 @@
   defaultBranch = main
 
 [https]
-  proxy = http://127.0.0.1:7890
+  proxy = http://127.0.0.1:1087
 
 [http]
-  proxy = http://127.0.0.1:7890
+  proxy = http://127.0.0.1:1087
 
 [pull]
   rebase = true

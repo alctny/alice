@@ -31,21 +31,24 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code "$1"', orphan = true, desc = "Visual Studio Code", for = "linux" },
 ]
 
 open = [
+  { run = 'open "$1"', orphan = true, desc = "Finder", for = "macos" },
   { run = 'code "$1"', orphan = true, desc = "Visual Studio Code", for = "linux" },
   { run = 'Typora "$1"', orphan = true, desc = "Typoea", for = "linux" },
 ]
 
 img = [
-  { run = 'feh -Z --zoom-step 3 --image-bg "#416e74" --keep-zoom-vp "$@" .', orphan = true, desc = "feh", for = "linux" }
+  { run = 'feh -Z --zoom-step 3 --image-bg "#416e74" --keep-zoom-vp "$@" .', orphan = true, desc = "feh", for = "linux" },
+  { run = 'open "$1"', orphan = true, desc = "feh", for = "macos" }
 ]
 
 reveal = [
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "linux" },
+  { run = 'file "$1"', block = true, desc = "Show EXIF", for = "macos" }
 ]
 
 extract = [{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" }]
@@ -54,6 +57,7 @@ play = [
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
   { run = 'vlc "$@"', orphan = true, for = "unix" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+  { run = 'open "$@"', orphan = true, for = "macos" },
 ]
 
 md = [

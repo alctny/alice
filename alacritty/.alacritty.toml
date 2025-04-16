@@ -5,25 +5,25 @@ shape = "Block"
 shape = "Block"
 
 [font]
-size = 6
+size = 11
 
 [font.bold]
-family = "Recursive Mono Casual Static"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Bold"
 
 [font.italic]
-family = "Recursive Mono Casual Static"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Italic"
 
 [font.normal]
-family = "Recursive Mono Casual Static"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Regular"
 
 [selection]
 save_to_clipboard = true
 
 [terminal.shell]
-program = "/bin/bash"
+program = "/bin/zsh"
 args = [ 
   "-l",
   "-c", "tmux attach || tmux" 
@@ -36,17 +36,8 @@ opacity = 0.9
 columns = 210
 lines = 63
 
-[env]
-TERM = "alacritty-direct"
-
-# Dracula theme for Alacritty
-# https://draculatheme.com/alacritty
-#
-# Color palette
-# https://spec.draculatheme.com
-#
-# Instructions
-# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+# [env]
+# TERM = "alacritty-direct"
 
 [colors.primary]
 
@@ -72,13 +63,13 @@ background = "#44475a"
 [colors.normal]
 
 black = "#21222c"
-red = "#ff5555"
-green = "#50fa7b"
-yellow = "#f1fa8c"
-blue = "#bd93f9"
+red     = "#ff5555"
+green   = "#50fa7b"
+yellow  = "#f1fa8c"
+blue    = "#bd93f9"
 magenta = "#ff79c6"
-cyan = "#8be9fd"
-white = "#f8f8f2"
+cyan    = "#8be9fd"
+white   = "#f8f8f2"
 
 [colors.bright]
 
