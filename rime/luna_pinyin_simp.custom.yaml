@@ -12,7 +12,7 @@ patch:
       reset: 0
     - name: zh_simp
       # states: ["漢", "汉"]
-      reset: 1
+      reset: 0
     - name: ascii_punct
       # states: [ 。，, ．， ]
       reset: 1

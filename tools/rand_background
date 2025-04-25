@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+WALLPAPER_DIR=${WALLPAPER_DIR:-$HOME/.wallpaper}
+
+total=$( find $WALLPAPER_DIR -type f | wc -l )
+ridx=$(($RANDOM % $total + 1))
+rpic=$( find $WALLPAPER_DIR -type f | sed -n "${ridx}p" )
+osascript -e "$(printf 'tell application "System Events" to set picture of every desktop to "%s"' $rpic)"

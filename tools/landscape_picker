@@ -11,6 +11,8 @@
 
 set -e
 
+dir=${1:-.}
+
 # 失敗時輸出腳本名稱和行號
 trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
 
@@ -20,23 +22,37 @@ function err() {
   exit 1
 }
 
+# 计算图片宽高比
+#   $1: 图片路径
+function pic_ratio() {
+  w=$( sips -g pixelWidth "$1" | grep pixelWidth | awk '{print $2}' )
+  h=$( sips -g pixelHeight "$1" | grep pixelHeight | awk '{print $2}' )
+  echo "scale=2;$w/$h" | bc | sed 's/^\./0./'
+}
 
-uuid=$(cat /proc/sys/kernel/random/uuid)
+function file_mime() {
+  if [[ $(uanme -s) == "Darwin" ]]; then
+    file -b -I "$1" | awk -F'/' '{print $1}'
+  else
+    command -v exiftool > /dev/null 2>&1 && exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}'
+  fi
+}
 
-for f in *; do
+uuid=$(uuidgen)
+
+for f in "$dir"/*; do
   if [ ! -f "$f" ]; then
     continue
   fi
 
-  mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
-  if [ "$mime" != "image" ]; then
+  if [ "$(file_mime "$f")" != "image" ]; then
     continue
   fi
 
-  prate=$(echo $(magick "$f" -ping -format "scale=2; %w / %h" info:)|bc)
+  prate=$(pic_ratio "$f")
   if (( $(echo "$prate < 1" | bc -l) )); then
-    [ ! -d "$uuid" ] && mkdir "$uuid"
-    mv "$f" "$uuid/"
+    [[ ! -d "$dir/$uuid" ]] && mkdir "$dir/$uuid"
+    mv "$f" "$dir/$uuid/"
     echo $f
     continue
   fi

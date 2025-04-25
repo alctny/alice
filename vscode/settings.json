@@ -25,6 +25,7 @@
   "workbench.tree.enableStickyScroll": true,                  // 文件树粘性滚动
   "workbench.editor.enablePreview": false,                    // 禁用预览
   "editor.renderWhitespace": "all",                           // 显示空白字符 
+  "vsicons.dontShowNewVersionMessage": true,                  // 不顯示新版本信息
   // 文件管理
   "explorer.confirmDelete": false,                    // 删除不需要确认
   "explorer.confirmDragAndDrop": false,               // 文件拖拽不需要确认
@@ -38,19 +39,26 @@
     "**/__pycache__":true,
     "**/.venv":true
   },
+  "workbench.editorAssociations": { // 不同文件類型打開方式
+    "*.csv": "default"
+  },
   // 扩展
-  "extensions.ignoreRecommendations": true,               // 忽略插件推荐
-  "extensions.autoUpdate": false,                         // 插件自动更新
-  "extensions.autoCheckUpdates": false,                   // 插件自动检查更新
-  "highlightLine.borderColor": "#F0F8FF",                 // cliffordfajardo.highlight-line-vscode 颜色
-  "highlightLine.borderStyle": "groove",                  // cliffordfajardo.highlight-line-vscode 样式
-  "highlightLine.borderWidth": "1px",                     // cliffordfajardo.highlight-line-vscode 粗细
-  "go.toolsManagement.autoUpdate": false,                 // 禁用 go 工具链自动更新
-  "cmake.configureOnOpen": false,                         // 自动 cmake configure
-  "vim.useSystemClipboard": true,                         // vim 模式使用系统剪贴板
-  "cmake.showOptionsMovedNotification": false,            // cmake 提示
-  "github.copilot.chat.localeOverride": "zh-TW",          // github copilot 语言
-  "python.createEnvironment.trigger": "off",              // 禁止 Python 提示选择虚拟环境
+  "extensions.ignoreRecommendations": true,       // 忽略插件推荐
+  "extensions.autoUpdate": false,                 // 插件自动更新
+  "extensions.autoCheckUpdates": false,           // 插件自动检查更新
+  "highlightLine.borderColor": "#F0F8FF",         // cliffordfajardo.highlight-line-vscode 颜色
+  "highlightLine.borderStyle": "groove",          // cliffordfajardo.highlight-line-vscode 样式
+  "highlightLine.borderWidth": "1px",             // cliffordfajardo.highlight-line-vscode 粗细
+  "go.toolsManagement.autoUpdate": false,         // 禁用 go 工具链自动更新
+  "cmake.configureOnOpen": false,                 // 自动 cmake configure
+  "vim.useSystemClipboard": true,                 // vim 模式使用系统剪贴板
+  "cmake.showOptionsMovedNotification": false,    // cmake 提示
+  "github.copilot.chat.localeOverride": "zh-TW",  // github copilot 语言
+  "python.createEnvironment.trigger": "off",      // 禁止 Python 提示选择虚拟环境
+  "prettier.bracketSameLine": true,               // 自動斷句, 防止 < 單獨一行
+  "liveServer.settings.donotShowInfoMsg": true,   // 不顯示 live server 啓動信息
+  "fittencode.languagePreference.displayPreference": "zh-cn", // fitten code 顯示語言
+  "fittencode.languagePreference.commentPreference": "zh-cn", // fitten code 回答語言
   // 终端
   "terminal.integrated.cursorStyle": "block",                            // 光标样式为竖线
   "terminal.integrated.cursorBlinking": true,                            // 启用光标闪烁
@@ -79,31 +87,23 @@
     "--max-line-length=120",
     "--indent-size=2"
   ],
+  "go.lintTool": "revive",
   "[rust]": {
     "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.insertSpaces": true,
     "editor.tabSize": 2
   },
-  "workbench.editorAssociations": {
-    "*.csv": "default"
-  },
-
-
-  "liveServer.settings.donotShowInfoMsg": true,
   "cmake.showConfigureWithDebuggerNotification": false,
-  "fittencode.languagePreference.displayPreference": "zh-cn",
-  "fittencode.languagePreference.commentPreference": "zh-cn",
   "C_Cpp.intelliSenseEngine": "disabled",
   "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
     "workbench.action.tasks.runTask"
   ],
-  "go.lintTool": "revive",
-  "vsicons.dontShowNewVersionMessage": true,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  "atomicviz.installed": true,
 }
