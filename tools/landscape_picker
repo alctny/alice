@@ -31,7 +31,7 @@ function pic_ratio() {
 }
 
 function file_mime() {
-  if [[ $(uanme -s) == "Darwin" ]]; then
+  if [[ $(uname -s) == "Darwin" ]]; then
     file -b -I "$1" | awk -F'/' '{print $1}'
   else
     command -v exiftool > /dev/null 2>&1 && exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}'

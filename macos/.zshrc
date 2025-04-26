@@ -29,7 +29,7 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
 # 禁止生成緩存文件
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 
 # history 默认格式
 export HISTTIMEFORMAT='%F %T '
@@ -41,6 +41,7 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bott
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
 export GOPATH=$HOME/.go
+append_path $GOPATH/bin
 
 # npm 代理
 export NODE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/

@@ -1,9 +1,39 @@
 #!/bin/bash
 
-# 清空废纸篓 Command + Option + Shift + Backspace
-# 如果该目录为空 size 依旧会是 4k，但是影响不是很大，所以不做特别修正
-size=$(du -d 0 -h ~/.local/share/Trash | awk '{print $1}')
-rm -rf ~/.local/share/Trash/*
-if [[ $? -eq 0 ]]; then
-  echo "reclaimed: $size"
+function linux_clean() {
+  # 清空废纸篓 Command + Option + Shift + Backspace
+  # 如果该目录为空 size 依旧会是 4k，但是影响不是很大，所以不做特别修正
+  size=$(du -d 0 -h ~/.local/share/Trash | awk '{print $1}')
+  rm -rf ~/.local/share/Trash/*
+  if [[ $? -eq 0 ]]; then
+    echo "reclaimed: $size"
+  fi
+}
+
+function mac_clean() {
+  # 功能: macOS 使用 dot_calen 清理 HOME 目錄下的 .DS_* 和 ._* 文件
+  [[ $(uname -s) != "Darwin" ]] && echo "dot_clean only for macOS" && exit 1
+  logf=$(mktemp)
+
+  for d in ~/*; do
+    [[ -d "$d" ]] && dot_clean "$d" 2>>$logf && echo "OK $d"
+  done
+
+  find $HOME -type f -name ".DS_*" 2>/dev/null | while read f; do
+    rm "$f" 2>>$logf && echo "rm $f"
+  done
+
+  if [[ -s $logf ]]; then
+    echo "see more: 'cat $logf'"
+    exit 1
+  fi
+
+  echo $logf
+  rm $logf
+}
+
+if [[ $(uname -s) == "Darwin" ]]; then
+  mac_clean
+else
+  linux_clean
 fi
