@@ -1,3 +1,5 @@
+chcp 65001
+
 @echo off 
 title 计算机硬件信息查询
 color 0B

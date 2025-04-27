@@ -1,3 +1,12 @@
+ZSH_HOME=$HOME/.config/zsh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Append "$1" to $PATH when not already in.
 # This function API is accessible to scripts in /etc/profile.d
 function append_path () {
@@ -27,9 +36,10 @@ alias lsblk='diskutil list'
 # 自动补全忽略大小写
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-
-# 禁止生成緩存文件
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+# enable edit-command-line with editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
 
 # history 默认格式
 export HISTTIMEFORMAT='%F %T '
@@ -108,5 +118,21 @@ fi
 # other shell
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-history-substring-search.zsh
+
+# zsh plugin
+# install zinit
+ZINIT_HOME="${ZSH_HOME}/zinit.git"
+[[ ! -d $ZINIT_HOME ]] && mkdir -p "$(dirname $ZINIT_HOME)"
+[[ ! -d $ZINIT_HOME/.git ]] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+# zsh auto suggestion
+[[ ! -d $ZSH_HOME/zsh-autosuggestions/.git ]] && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_HOME}/zsh-autosuggestions
+source ${ZSH_HOME}/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh history substring
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit load zsh-users/zsh-history-substring-search
+zinit ice wait atload _history_substring_search_config
+# syntax hightlight
+zinit light zsh-users/zsh-syntax-highlighting
+# zsh completions document
+zinit light zsh-users/zsh-completions

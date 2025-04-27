@@ -5,8 +5,22 @@
 keymap = [
   { on = "<C-c>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
   { on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
-  { on = "Q",     run = "quit",               desc = "Exit the process" },
   { on = "q",     run = "quit --no-cwd-file", desc = "Exit the process without writing cwd-file" },
+
+  # tab manager
+  { on = "t", run = "tab_create --current",     desc = "Create a new tab with CWD" },
+  { on = "Q", run = "tab_close",                desc = "close current tab" },
+  { on = "1", run = "tab_switch 0",             desc = "Switch to first tab" },
+  { on = "2", run = "tab_switch 1",             desc = "Switch to second tab" },
+  { on = "3", run = "tab_switch 2",             desc = "Switch to third tab" },
+  { on = "4", run = "tab_switch 3",             desc = "Switch to fourth tab" },
+  { on = "5", run = "tab_switch 4",             desc = "Switch to fifth tab" },
+  { on = "6", run = "tab_switch 5",             desc = "Switch to sixth tab" },
+  { on = "7", run = "tab_switch 6",             desc = "Switch to seventh tab" },
+  { on = "8", run = "tab_switch 7",             desc = "Switch to eighth tab" },
+  { on = "9", run = "tab_switch 8",             desc = "Switch to ninth tab" },
+  { on = "[", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
+  { on = "]", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
 
   # Navigation
   { on = "j",            run = "arrow 1",         desc = "Move cursor down" },
