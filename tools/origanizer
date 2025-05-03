@@ -1,9 +1,19 @@
 #!/bin/bash
 
-# 将当前目录下的文件按照文件类型进行整理
+# 功能: 将当前目录下的文件按照文件类型进行整理
 
-source $(dirname $(realpath $0))/mod.sh
+dir=${1:-.}
 
+# 失敗時輸出腳本名稱和行號
+trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
+
+# 輸出錯誤信息並退出
+function err() {
+  eeho -e "\033[1;90;31m$@\033[0m" >& 2
+  exit 1
+}
+
+# 文件夾前綴
 DIR_PREFIX=${DIR_PREFIX:-"ori_mt_"}
 
 DOC=$(cat <<END
@@ -14,11 +24,15 @@ command:
 END
 )
 
-# macOS 获取文件 mime 类型方法: file --mime-type <file-name> | awk '{print $2}' | awk -F'/' '{print $1}'
-
-
 # with_mime 按照文件的真实类型进行分类
 function with_mime () {
+  # macOS
+  if [[ $(uname -s) == "Darwin" ]]; then
+    file -b -I "$1" | awk -F'/' '{print $1}'
+    return
+  fi
+
+  # Linux
   if ! command -v exiftool > /dev/null 2>&1; then
     err "exiftool is require"
   fi
@@ -43,8 +57,15 @@ function with_suffix() {
 }
 
 
-# with_mime 按照文件的真实类型进行分类
+# with_mime 按照文件的子类型进行分类
 function with_submime () {
+  # macOS
+  if [[ $(uname -s) == "Darwin" ]]; then
+    file -b -I "$1" | awk -F'/' '{print $2}'
+    return
+  fi
+
+  # Linux
   if ! command -v exiftool > /dev/null 2>&1; then
     err "exiftool is require"
   fi
@@ -93,6 +114,3 @@ for fn in *; do
   mv "$fn" "$mt_dir"
 done
 
-
-# TODO:
-# 2. 按照 mimetype 斜杠后的内容分类

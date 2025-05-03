@@ -63,8 +63,8 @@ export RUSTUP_DIST_SERVER="https://rsproxy.cn"
 export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup"
 
 # 命令行提示前綴
-export PROMPT='%~
-(^•ﻌ•^)'
+# export PROMPT='%~
+# (^•ﻌ•^)'
 
 # 禁止 tar 命令生成 ._文件
 export COPYFILE_DISABLE=1
@@ -78,15 +78,6 @@ export NO_PROXY="localhost,127.0.0.1,172.30.0.0,172.28.0.0"
 # 默認編輯器
 export EDITOR=nvim
 export VISUAL=nvim
-
-# user function and script, no sync
-if [[ -f $HOME/.function.416e74.sh ]]; then
-  source $HOME/.function.416e74.sh
-else
-  cat > $HOME/.function.416e74.sh << 'EOF'
-#!/bin/zsh
-EOF
-fi
 
 # user alias, no sync
 if [[ -f $HOME/.alias.416e74.sh ]]; then
@@ -119,20 +110,23 @@ fi
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# zsh plugin
-# install zinit
+# 插件管理器
 ZINIT_HOME="${ZSH_HOME}/zinit.git"
 [[ ! -d $ZINIT_HOME ]] && mkdir -p "$(dirname $ZINIT_HOME)"
 [[ ! -d $ZINIT_HOME/.git ]] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-# zsh auto suggestion
+# 補全建議
 [[ ! -d $ZSH_HOME/zsh-autosuggestions/.git ]] && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_HOME}/zsh-autosuggestions
 source ${ZSH_HOME}/zsh-autosuggestions/zsh-autosuggestions.zsh
-# zsh history substring
+# 歷史記錄補全
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit load zsh-users/zsh-history-substring-search
 zinit ice wait atload _history_substring_search_config
-# syntax hightlight
+# 語法高亮
 zinit light zsh-users/zsh-syntax-highlighting
-# zsh completions document
+# zsh 自動補全
 zinit light zsh-users/zsh-completions
+# p10k 主題
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
