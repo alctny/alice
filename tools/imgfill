@@ -3,6 +3,21 @@
 # TODO: 通过 exiftool 判断格式格式是否为图片，并且提供选项是直接覆盖还是重命名
 # TODO: 判断图片尺寸和屏幕尺寸比，选择更合适的比例，让转化之后图片能占满屏幕，不会有空白
 
+# with_mime 按照文件的真实类型进行分类
+function with_mime () {
+  fn="$*"
+
+  if [[ $(uname -s) == "Darwin" ]]; then
+    # macOS
+    mime=$( file -b -I "$fn" | awk -F'/' '{print $1}' )
+  else
+    # Linux
+    mime=$( exiftool -MimeType "$fn" | awk '{print $4}' | awk -F'/' '{print $1}' )
+  fi
+
+  [[ "$mime" == "image" ]]
+}
+
 cmd=""
 if command -v magick > /dev/null 2>&1; then
   cmd="magick"
@@ -38,6 +53,9 @@ echo "will convert to width: $width"
 echo "-----------------------------"
 
 for f in *; do
+  [[ ! -f "$f" ]] && continue
+  ! with_mime "$f" && continue
+
   sz="${width}x"
   prate=$(echo $(magick identify -format "scale=2; %w / %h" "$f") | bc)
   if (( $(echo "$prate > $rate" | bc -l) )); then

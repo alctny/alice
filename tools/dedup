@@ -3,7 +3,13 @@
 # de-duplicate
 # 刪除重複文件
 
-logf="dedup-$(cat /proc/sys/kernel/random/uuid)"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  uuid=$(uuidgen)
+else
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+fi
+
+logf="dedup-${uuid}"
 
 find . -type f -exec md5sum {} \; 2>/dev/null | tee $logf
 idx=$(awk '{print $1}' $logf | sort | uniq -d)
