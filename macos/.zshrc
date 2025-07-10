@@ -45,7 +45,8 @@ bindkey '^X^E' edit-command-line
 export HISTTIMEFORMAT='%F %T '
 
 # Homebrew
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/ #ckbrew
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # Golang
 export GO111MODULE=on
@@ -55,7 +56,7 @@ append_path $GOPATH/bin
 
 # npm 代理
 export NODE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/
-export NPM_CONFIG_PREFIX=/home/$USER/.local/lib/node-module
+export NPM_CONFIG_PREFIX=$HOME/.local/lib/node-module
 append_path $HOME/.local/lib/node-module/bin
 
 # Rust 代理

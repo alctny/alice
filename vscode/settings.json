@@ -1,6 +1,6 @@
 {
   // VSCode 基础设置
-  "editor.fontFamily": "JetBrainsMono Nerd Font Mono",        // 字体
+  "editor.fontFamily": "'UbuntuMono Nerd Font', 'PingFang TC'",        // 字体
   "editor.fontLigatures": true,                               // 启用连体字
   "editor.renderLineHighlight": "none",                       // 禁用高亮当前行
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
@@ -106,4 +106,7 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "atomicviz.installed": true,
+  "workbench.activityBar.location": "top",
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
 }
