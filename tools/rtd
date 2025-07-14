@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# rename to date
+
+for f in *; do
+  t=$( mdls -name kMDItemContentCreationDate  "$f" | awk '{gsub(":", "", $4); printf "%s-%s\n", $3, $4}' )
+  sub=${f##*.}
+  echo "$f  ->  $t.$sub"
+  mv "$f" "$t.$sub"
+done
