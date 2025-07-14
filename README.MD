@@ -10,3 +10,40 @@
 - Nerd Font: <https://www.nerdfonts.com/#home>
 - Dracula Theme: <https://draculatheme.com>
 - Emoji Pedia: <https://emojipedia.org/full-moon>
+
+## 工具推薦
+
+- go install
+
+gigno      gitignore 生成工具
+ik         TODO 管理工具
+
+goalng 函數調用關係圖
+- go-callvis
+- godepgraph
+
+golang bit torrent
+- bt
+
+
+```bash
+go install https://github.com/babarot/gomi@latest
+go install github.com/jesseduffield/lazygit@latest
+go install github.com/mgechev/revive@latest
+```
+
+
+
+- cargo
+
+bat
+dust
+exa
+fd
+lsd
+procs
+rg
+zoxide
+
+fzf
+yzzi
