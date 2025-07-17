@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# git push 之前必須 git pull
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+remote_name=$(git config --get branch."$current_branch".remote)
+if [ -z "$remote_name" ]; then
+  remote_name="origin"
+fi
+tracking_branch=$(git config --get branch."$current_branch".merge)
+tracking_branch=${tracking_branch##refs/heads/}
+
+if [ -z "$tracking_branch" ]; then
+  echo "Error: Current branch '$current_branch' does not have an upstream branch configured."
+  echo "You can set one with: git branch --set-upstream-to=$remote_name/<branch_name>"
+  exit 1
+fi
+
+echo "Checking if branch '$current_branch' is behind '$remote_name/$tracking_branch'..."
+
+git fetch "$remote_name" --quiet
+
+local_commit=$(git rev-parse "$current_branch")
+remote_commit=$(git rev-parse "$remote_name/$tracking_branch")
+
+if [ "$local_commit" = "$remote_commit" ]; then
+  echo "Your branch '$current_branch' is up to date with '$remote_name/$tracking_branch'."
+else
+  if git merge-base --is-ancestor "$local_commit" "$remote_commit"; then
+    behind_count=$(git rev-list --count "$current_branch".."$remote_name/$tracking_branch")
+    echo "Your branch '$current_branch' is behind '$remote_name/$tracking_branch' by $behind_count commit(s)." > 2
+    exit 1
+  else
+    echo "Your branch '$current_branch' has diverged from '$remote_name/$tracking_branch'."
+    echo "This means there are commits on both local and remote that are not on the other."
+  fi
+fi
+
+
+# 禁止 git push -f
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ -n "$remote_sha" ] && [ "$remote_sha" != "0000000000000000000000000000000000000000" ]; then
+    merge_base=$(git merge-base "$local_sha" "$remote_sha")
+    if [ "$merge_base" != "$remote_sha" ]; then
+      echo "************************************************************************"
+      echo "* DANGER: You are attempting a non-fast-forward push (git push -f)!"
+      echo "* This action can overwrite remote history and cause issues for others."
+      echo "* If you are absolutely sure you want to do this, please bypass this hook"
+      echo "* by running 'git push --no-verify' or configure a server-side hook."
+      echo "************************************************************************"
+      exit 1
+    fi
+  fi
+done
+

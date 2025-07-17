@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+function add() {
+  echo "add quick commad"
+}
+
+function remove() {
+  echo "remove quick command"
+}
+
+function main() {
+  echo "exec cmd quick with fzf"
+}
+
+main $@

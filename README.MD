@@ -18,32 +18,30 @@
 gigno      gitignore 生成工具
 ik         TODO 管理工具
 
-goalng 函數調用關係圖
-- go-callvis
-- godepgraph
-
-golang bit torrent
-- bt
-
 
 ```bash
-go install https://github.com/babarot/gomi@latest
-go install github.com/jesseduffield/lazygit@latest
-go install github.com/mgechev/revive@latest
+go install https://github.com/babarot/gomi@latest     # rm 替代品, 自動放置到回收站
+go install github.com/jesseduffield/lazygit@latest    # git 管理
+go install github.com/mgechev/revive@latest           # golang 靜態檢查工具
+go install github.com/ofabry/go-callvis@latest        # golang 函數調用關係分析工具
+go install github.com/kisielk/godepgraph@latest       # golang 函數調用關係分析工具
 ```
-
 
 
 - cargo
 
-bat
-dust
-exa
-fd
-lsd
-procs
-rg
-zoxide
+```bash
+cargo install --locked bat    # 彩色的 cat
+cargo install du-dust         # 更好看的 du
+cargo install exa             # 更好看的 ls
+cargo install fd-find         # 更好看的 find
+cargo install lsd             # 更好看的 ls
+cargo install ripgrep         # 更好看的 grep
+cargo install zoxide --locked # 更好用的 cd
+```
+
+## use binary
 
 fzf
 yzzi
+
