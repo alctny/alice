@@ -1,11 +1,11 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
-[manager]
+[mgr]
 keymap = [
   { on = "<C-c>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
   { on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
-  { on = "q",     run = "quit --no-cwd-file", desc = "Exit the process without writing cwd-file" },
+  { on = "q",     run = "quit --cwd-file", desc = "Exit the process without writing cwd-file" },
 
   # tab manager
   { on = "t", run = "tab_create --current",     desc = "Create a new tab with CWD" },
