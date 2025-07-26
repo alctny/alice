@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ! command -v fzf > /dev/null 2>&1; then
+  exit 0
+fi
+
+# fzf 配置
+export FZF_DEFAULT_OPTS='--border'
+eval "$(fzf --${SHELL##*/})"

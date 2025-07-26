@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+  command yazi --cwd-file="$tmp"
+  if [ -f "$tmp" ]; then
+    local cwd="$(cat "$tmp")"
+    rm -f "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && cd "$cwd"
+  fi
+}

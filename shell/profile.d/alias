@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if command -v exa > /dev/null 2>&1; then
+  alias ls='exa --icons'
+fi
+
+if command -v bat > /dev/null 2>&1; then
+  alias cat=bat
+fi
+
+if command -v gomi > /dev/null 2>&1; then
+  alias orm="$(command -v rm)"
+  alias rm=gomi
+fi
+
+if command -v gomi > /dev/null 2>&1; then
+  alias ps=procs
+fi
+
+
+alias grep='grep --color=auto'
+alias l='ls'
+alias la='ls -al'
+alias ll='ls -lh'
+alias lla='ls -alh'
+

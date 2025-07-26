@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# 清空系统代理
+function unsetproxy() {
+  unset HTTPS_PROXY
+  unset HTTP_PROXY
+  unset ALL_PROXY
+  unset NO_PROXY
+}
+
+# 查看系统代理
+function showproxy() {
+  echo -e "\033[1;92;32mHTTP_PROXY\033[0m  : $HTTP_PROXY"
+  echo -e "\033[1;92;32mHTTPS_PROXY\033[0m : $HTTPS_PROXY"
+  echo -e "\033[1;92;32mALL_PROXY\033[0m   : $ALL_PROXY"
+  echo -e "\033[1;92;32mNO_PROXY \033[0m   : $NO_PROXY"
+}
+
+# 创建 .gitignorecase
+function gi() { 
+  curl -sL https://www.toptal.com/developers/gitignore/api/$@
+}
+
+# 获取窗口 class
+function win_class() {
+  while true; do
+    xprop | grep WM_CLAS
+  done
+}
+

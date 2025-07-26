@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $(uname -s) == 'Darwin' ]]; then
+  export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+fi
+
+if ! command -v brew > /dev/null 2>&1; then
+  exit 0
+fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_INSTALL_CLEANUP=1

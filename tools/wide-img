@@ -2,10 +2,14 @@
 
 # 移動長寬比小於 1 的圖片到單獨目錄
 
-current_dir=$(dirname $(realpath $0))
-source $current_dir/mod.sh
+# current_dir=$(dirname $(realpath $0))
+# source $current_dir/mod.sh
 
-uuid=$(cat /proc/sys/kernel/random/uuid)
+if [[ $(uname -s) == "Darwin" ]]; then
+  uuid=$(uuidgen)
+else
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+fi
 
 for f in *; do
   echo "$f"
@@ -19,7 +23,11 @@ for f in *; do
     continue
   fi
 
-  mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
+  if [[ $(uname -s) == 'Darwin' ]]; then
+    mime=$(file --mime-type "$f" | awk  '{print $2}' | awk -F'/' '{print $1}')
+  else
+    mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
+  fi
   if [ "$mime" != "image" ]; then
     continue
   fi
