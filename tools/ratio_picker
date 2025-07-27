@@ -5,7 +5,12 @@
 declare -A ratio_count
 declare -A pic_ratio
 
-uuid=$(cat /proc/sys/kernel/random/uuid)
+if [[ $(uname -s) == "Darwin" ]]; then
+  uuid=$(uuidgen)
+else
+  uuid=$(cat /proc/sys/kernel/random/uuid)
+fi
+
 log="diff-aspectratio-info-$uuid"
 mvto="dar-pic-$uuid"
 
@@ -14,14 +19,18 @@ echo "---------------------------- calculation ratio ---------------------------
 for f in *; do
   [ ! -f "$f" ] && continue
 
-  mime=$(exiftool -MimeType "$f"  | awk '{print $4}' | awk -F'/' '{print $1}')
+  if [[ $(uname -s) == "Darwin" ]]; then
+    mime=$(file -b -I "$f" | awk -F'/' '{print $1}')
+  else
+    mime=$(exiftool -MimeType "$f"  | awk '{print $4}' | awk -F'/' '{print $1}')
+  fi
   [ "$mime" != 'image' ] && continue
 
 
 
 
   ratio=$(echo $(magick identify -format 'scale=1; %w / %h' $f) | bc | sed 's/^\./0./')
-  if [ ! -v ratio_count[$ratio] ]; then
+  if [[ ! -v ratio_count[$ratio] ]]; then
     ratio_count[$ratio]=1
   else
     ratio_count[$ratio]=$(( ${ratio_count[$ratio]} + 1 ))
@@ -29,6 +38,7 @@ for f in *; do
   pic_ratio["$f"]=$ratio
 
   printf "%3s %s\n" "$ratio" "$f" >> $log
+  printf "%-20s  %f\n" "$f" $ratio
 done
 
 echo "---------------------------- calculation detail ----------------------------"| tee -a $log

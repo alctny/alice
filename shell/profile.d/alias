@@ -8,12 +8,8 @@ if command -v bat > /dev/null 2>&1; then
   alias cat=bat
 fi
 
-if command -v gomi > /dev/null 2>&1; then
-  alias orm="$(command -v rm)"
-  alias rm=gomi
-fi
 
-if command -v gomi > /dev/null 2>&1; then
+if command -v procs > /dev/null 2>&1; then
   alias ps=procs
 fi
 

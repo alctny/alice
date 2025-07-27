@@ -51,7 +51,7 @@ export TERMINAL=alacritty
 case $SHELL in
   *zsh)
     # red blue green black white yellow magenta cyan
-    export PROMPT='%K{yellow}%F{black} %~ %K{cyan}%F{black} %n 
+    export PROMPT='%K{cyan}%F{black} %n %K{yellow}%F{black} %~ 
 %k%f🦚 '
     ;;
   *bash)

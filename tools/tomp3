@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+# 功能: 將當前目錄下的所有音頻文件轉化爲 mp3 格式(不會遞歸轉化)
+# 依賴:
+#   - ffmpeg: 用於音頻格式轉化的實際程序
+
+if [[ $(uname -s) != "Darwin" ]]; then
+  echo "This script is intended for macOS only."
+  exit 1
+fi
+
+if ! command -v ffmpeg; then
+  echo "not fond ffmpeg command, is required, you can install with brew: brew install ffmpeg"
+  exit 1
+fi
+
+for f in *; do
+  m=$(file -b -I "$f" | awk -F'/' '{print $1}')
+  if [[ $m != "audio" ]]; then
+    echo "skip $f, not audio file type ($m)"
+    continue
+  fi
+
+  nn="${f%.*}.mp3"
+  if [[ -f "$nn" ]]; then
+    echo "skip $f, file existed"
+    continue
+  fi
+  ffmpeg -i "$f" -ab 320k "$nn" > /dev/null 2>&1
+  if [[ $? -ne 0 ]]; then
+    echo "convert $f to mp3 error"
+    continue
+  fi
+  echo "convert $f to mp3 successful"
+done

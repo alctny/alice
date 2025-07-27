@@ -24,7 +24,7 @@ for f in *; do
   fi
 
   if [[ $(uname -s) == 'Darwin' ]]; then
-    mime=$(file --mime-type "$f" | awk  '{print $2}' | awk -F'/' '{print $1}')
+    mime=$(file -b -I "$f" | awk -F'/' '{print $1}')
   else
     mime=$(exiftool -MimeType "$f" | awk '{print $4}' | awk -F'/' '{print $1}')
   fi
