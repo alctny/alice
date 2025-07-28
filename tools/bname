@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# 功能: 支持對文件的一些列批量重命名功能
+# 參數:
+#   index: 使用序號爲文件重命名
+#     -p: 文件名前綴
+#     -i: 起始序號
+#     -l: 序號長度, 不滿長度使用 0 填充
+#   bulk:  使用默認編輯器編輯當前文件列表並重命名
+#     -f: 需要修改的文件列表, 默認當前目錄的所有文件
+#   date:  按照文件創建日期重命名文件爲: YYYY-mm-dd_HHMMSS
+
 # 功能: 將當前目錄下的所有文件（不包含隱藏文件）重命名爲“前綴+index” 的格式
 # 參數:
 #   -p: 文件名前綴，爲空時格式化之後的結果只有 index
@@ -98,6 +108,7 @@ function with_date() {
   done
 }
 
+# HELPER=$(cat )
 
 # main
 case $1 in
@@ -109,6 +120,21 @@ case $1 in
     ;;
   bulk)
     with_bulk ${@:2}
+    ;;
+  help)
+    # echo -n $HELPER
+   cat <<EOF
+功能: 一系列批量重命名方法
+使用方法 bname <index|bulk|date> [flags] [args]
+參數:
+  index: 使用序號爲文件重命名
+    -p: 文件名前綴
+    -i: 起始序號
+    -l: 序號長度, 不滿長度使用 0 填充
+  bulk:  使用默認編輯器編輯當前文件列表並重命名
+    -f: 需要修改的文件列表, 默認當前目錄的所有文件
+  date:  按照文件創建日期重命名文件爲: YYYY-mm-dd_HHMMSS
+EOF
     ;;
   *)
     echo "unknow subcommand $1" >& 2

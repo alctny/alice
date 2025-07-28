@@ -79,6 +79,14 @@ function with_submime () {
   exiftool -MimeType "$fn" | awk '{print $4}' | awk -F'/' '{print $2}'
 }
 
+function with_year() {
+  mdls -n kMDItemContentCreationDate "$1" | awk '{print $3}' | awk -F'-' '{print $1}'
+}
+
+function with_month() {
+  mdls -n kMDItemContentCreationDate "$1" | awk '{print $3}' | awk -F'-' '{printf "%04d-%02d", $1, $2}'
+}
+
 get_mt=with_mime
 
 case $1 in
@@ -95,10 +103,18 @@ case $1 in
     echo "$DOC"
     exit 0
     ;;
+  "year" | "y")
+    get_mt=with_year
+    ;;
+  "month" | "M")
+    get_mt=with_month
+    ;;
   *)
     get_mt=with_mime
     ;;
 esac
+
+echo "get_mt = $get_mt"
 
 for fn in *; do
   [[ ! -f "$fn" ]] && continue
