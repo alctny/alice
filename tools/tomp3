@@ -9,27 +9,57 @@ if [[ $(uname -s) != "Darwin" ]]; then
   exit 1
 fi
 
-if ! command -v ffmpeg; then
+if ! command -v ffmpeg > /dev/null 2>&1; then
   echo "not fond ffmpeg command, is required, you can install with brew: brew install ffmpeg"
   exit 1
 fi
 
-for f in *; do
-  m=$(file -b -I "$f" | awk -F'/' '{print $1}')
-  if [[ $m != "audio" ]]; then
-    echo "skip $f, not audio file type ($m)"
-    continue
-  fi
-
-  nn="${f%.*}.mp3"
-  if [[ -f "$nn" ]]; then
-    echo "skip $f, file existed"
-    continue
-  fi
-  ffmpeg -i "$f" -ab 320k "$nn" > /dev/null 2>&1
-  if [[ $? -ne 0 ]]; then
-    echo "convert $f to mp3 error"
-    continue
-  fi
-  echo "convert $f to mp3 successful"
+while getopts "r" opt; do
+  case $opt in
+    r)
+      recursion=1
+      ;;
+    *)
+      echo "unknow flag: $opt"
+      exit 1
+      ;;
+  esac
 done
+
+function conver_to_mp3() {
+  # 優先轉化當前目錄中的音頻文件然後遞歸處理子目錄中的文件
+  for f in "$1"/*; do
+    if [[ ! -f "$f" ]]; then
+      continue
+    fi
+    m=$(file -b -I "$f" | awk -F'/' '{print $1}')
+    if [[ $m != "audio" ]]; then
+      echo "skip $f, not audio file type ($m)"
+      continue
+    fi
+
+    nn="${f%.*}.mp3"
+    if [[ -f "$nn" ]]; then
+      echo "skip $f, file existed"
+      continue
+    fi
+    ffmpeg -i "$f" -ab 320k "$nn" > /dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+      echo -e "\033[31mfaile      $f\033[0m"
+      continue
+    fi
+    echo "successful $f"
+  done
+
+  # 遞歸處理子目錄
+  if [[ $recursion -ne 0 ]]; then
+    for d in "$1"/*; do
+      if [[ -d "$d" && ! -z $(ls -A "$d") ]]; then
+        echo "$d"
+        conver_to_mp3 "$d"
+      fi
+    done
+  fi
+}
+
+conver_to_mp3 .

@@ -52,9 +52,13 @@ function with_index() {
   for f in *; do
     surfix=${f##*.}
     idx_str=$(printf "%0${len}d" $index)
-    new_name="${p}${idx_str}.${surfix}"
-    echo  "${f} -> ${new_name}"
-    mv "${f}" "${new_name}"
+    nf="${prefix}${idx_str}.${surfix}"
+    echo  "${f} -> ${nf}"
+    if [[ -f $nf ]]; then
+      echo "skip: $f to $nf"
+      continue
+    fi
+    mv "${f}" "${nf}"
     index=$(( index + 1 ))
   done
 }
@@ -91,6 +95,12 @@ function with_bulk() {
     if [ -e "$nf" ]; then
       continue
     fi
+    if [[ -f $nf ]]; then
+      echo "skip: $f to $nf"
+      continue
+    fi
+
+    echo "$f -> $nf"
     mv "$f" "$nf"
   done < $bak
 }
@@ -103,8 +113,13 @@ function with_date() {
   for f in *; do
     t=$( mdls -name kMDItemContentCreationDate  "$f" | awk '{gsub(":", "", $4); printf "%s-%s\n", $3, $4}' )
     sub=${f##*.}
-    echo "$f  ->  $t.$sub"
-    mv "$f" "$t.$sub"
+    nf="$t.$sub"
+    if [[ -f $nf ]]; then
+      echo "skip $f to $nf"
+      continue
+    fi
+    echo "$f  ->  $nf"
+    mv "$f" "$nf"
   done
 }
 

@@ -1,11 +1,23 @@
 #!/bin/bash
 
+if ! command -v yazi > /dev/null 2>&1; then
+  exit 0
+fi
+
 function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-  command yazi --cwd-file="$tmp"
+  local tmp="$(mktemp -t "yazi-cwd")"
+  if [[ -d "$1" ]]; then
+    command yazi --cwd-file="$tmp" "$1"
+  else
+    command yazi --cwd-file="$tmp"
+  fi
+  rm -r ${TMPDIR}yazi-$UID
   if [ -f "$tmp" ]; then
     local cwd="$(cat "$tmp")"
     rm -f "$tmp"
     [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && cd "$cwd"
   fi
 }
+
+zle -N y
+bindkey '^Y' y
