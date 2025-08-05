@@ -1,0 +1,44 @@
+#compdef ik
+
+_ik () {
+  local -a subcmds
+  subcmds=(
+    'add:add a new todo task'
+    'list:list todo task'
+    'done:set task to done status'
+    'remove:remove todo task'
+    'clean:clean finished task'
+    'group:manager task group'
+    'delay:delay task'
+    'detail:get task detail'
+    'help:show help'
+  )
+
+  _arguments \
+    '1:subcmd:->subcmd' \
+    '(--config -f)-f[set config file]:' \
+    '(--help -h)-h[show help info]'
+
+  case $words[2] in
+    list | ls)
+      local -a flags
+      flags=(
+        '--all:list all task'
+        '--done:list done task'
+        '--todo:list todo task'
+        '--done:list finished task'
+        '--cancel:list canceled task'
+        '--expired:list expired task'
+        '--order:set order mode(id | name | status | deadline | create_at | finish_at)'
+        '--group:list task by for group'
+        '--help:show help info'
+      )
+      _describe 'bname list flags' flags
+      return
+      ;;
+  esac
+
+  _describe 'bname subcmd' subcmds
+}
+
+

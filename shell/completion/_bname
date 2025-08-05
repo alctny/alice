@@ -1,0 +1,37 @@
+#compdef bname
+
+_bname() {
+  local -a subcommands
+  subcommands=(
+    'index:使用自增索引重命名'
+    'date:按照創建日期重命名'
+    'bulk:使用默認編輯器手動批量重命名'
+  )
+
+  _arguments \
+    '1:子命令:->subcommand'
+
+  case $words[2] in
+    index)
+      flags=(
+        '-p:前綴'
+        '-l:前綴長度'
+        '-i:起始序號'
+      )
+      _describe 'bname flags' flags
+      return
+      ;;
+    bulk)
+      flags=(
+        '-f:需要重命名的文件列表'
+      )
+      _describe 'bname flags' flags
+      ;;
+    *)
+      _describe 'bname subcommand' subcommands
+      ;;
+  esac
+
+}
+
+

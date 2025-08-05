@@ -1,0 +1,27 @@
+#compdef imgutil
+
+function _imgutil () {
+  _arguments \
+    '1:subcmd:->subcmd'
+
+  local -a cmds
+  cmds=(
+    'fit:修改圖片尺寸適配當前屏幕分辨率'
+    'landscape:按圖片尺寸查找圖片'
+    'outlier:查詢長寬比離羣的圖'
+    'randbg:設計隨機壁紙'
+    'pexels:從 pexels.com 獲取一張隨機壁紙'
+    'unsplash:從 unsplash.com 獲取一張壁紙'
+  )
+
+  case ${words[2]} in
+    landscape)
+      cmds=(
+        '-r:遞歸'
+        '-v:反轉')
+      _describe 'imgutil subcmd' cmds
+      return 0
+  esac
+
+  _describe 'imgutil subcmd' cmds
+}

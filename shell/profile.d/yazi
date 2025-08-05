@@ -12,12 +12,24 @@ function y() {
     command yazi --cwd-file="$tmp"
   fi
   rm -r ${TMPDIR}yazi-$UID
-  if [ -f "$tmp" ]; then
+  if [[ -f "$tmp" ]]; then
     local cwd="$(cat "$tmp")"
     rm -f "$tmp"
-    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && cd "$cwd"
+    if [[ -n "$cwd" && "$cwd" != "$PWD" ]]; then
+      cd "$cwd" 
+    fi
   fi
 }
 
-zle -N y
-bindkey '^Y' y
+case $SHELL in
+  *zsh)
+    zle -N y
+    bindkey '^Y' y
+    ;;
+  *bash)
+    bind -m emacs-standard -x '"\C-e": y'
+    ;;
+  *)
+    echo "$0: unset yazi keybind, unknow shell type"
+    ;;
+esac

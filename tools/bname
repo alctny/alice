@@ -1,5 +1,7 @@
 #!/bin/bash
 
+recoverf=$(mktemp)
+
 # 功能: 支持對文件的一些列批量重命名功能
 # 參數:
 #   index: 使用序號爲文件重命名
@@ -138,7 +140,9 @@ case $1 in
     ;;
   help)
     # echo -n $HELPER
-   cat <<EOF
+    ;;
+  *)
+    cat <<EOF
 功能: 一系列批量重命名方法
 使用方法 bname <index|bulk|date> [flags] [args]
 參數:
@@ -151,7 +155,6 @@ case $1 in
   date:  按照文件創建日期重命名文件爲: YYYY-mm-dd_HHMMSS
 EOF
     ;;
-  *)
-    echo "unknow subcommand $1" >& 2
 esac
 
+rm $recoverf

@@ -1,0 +1,303 @@
+#!/usr/bin/env bash
+
+set -e
+
+# 失敗時輸出腳本名稱和行號
+trap 'echo -e "\033[;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
+
+# 功能: 判斷文件是否爲圖片
+# 參數:
+#   $1: 圖片名
+# 返回值:
+#   0: 該文件是圖片
+#   1: 該圖片非圖片
+# 依賴:
+#   exiftool: 讀取文件 mime
+function is_image () {
+  local fn="$*"
+  if [[ ! -f "$fn" ]]; then
+    return 1
+  fi
+
+  if [[ $(uname -s) == "Darwin" ]]; then
+    local mime=$( file -b -I "$fn" | awk -F'/' '{print $1}' )
+  else
+    local mime=$( exiftool -MimeType "$fn" | awk '{print $4}' | awk -F'/' '{print $1}' )
+  fi
+  [[ "$mime" == "image" ]]
+}
+
+# 功能: 將當前目錄下的所有圖片尺寸修改爲適配當前屏幕尺寸
+# 參數:
+#   $1: 圖片名
+# 依賴: 
+#   - magick: 負責修改圖片尺寸
+#   - exiftool: Linux 上讀取文件 mime 類型
+function fit_screen () {
+  if ! command -v magick > /dev/null 2>&1; then
+    echo "image magick not fond"
+    return 1
+  fi
+
+  # 獲取屏幕尺寸和比例
+  local width=1920
+  local height=1080
+  if [[ $(uname -s) == "Darwin" ]]; then
+    width=$(system_profiler SPDisplaysDataType | grep Resolution | awk '{print $2, $4}' | awk '{print $1}')
+    height=$(system_profiler SPDisplaysDataType | grep Resolution | awk '{print $2, $4}' | awk '{print $2}')
+  elif [ -f /sys/class/graphics/fb0/virtual_size ]; then
+    width=$(cat /sys/class/graphics/fb0/virtual_size | awk -F ',' '{print $1}')
+    height=$(cat /sys/class/graphics/fb0/virtual_size | awk -F ',' '{print $2}')
+  elif command -v xdpyinfo > /dev/null 2>&1; then
+    width=$(xdpyinfo | grep dimensions | awk '{print $2}' | awk -F 'x' '{print $1}')
+    height=$(xdpyinfo | grep dimensions | awk '{print $2}' | awk -F 'x' '{print $2}')
+  elif command -v xrandr > /dev/null 2>&1; then
+    width=$(xrandr | grep '*' | awk '{print $1}' | awk -F 'x' '{print $1}')
+    height=$(xrandr | grep '*' | awk '{print $1}' | awk -F 'x' '{print $2}')
+  fi
+  local rate=$(echo "scale=2; $width / $height" | bc)
+
+  echo "will convert to width: $width x $height"
+  echo "-----------------------------"
+
+  for f in *; do
+    ! is_image "$f" && continue
+
+    local sz="${width}x"
+    local prate=$(echo $(magick identify -format "scale=2; %w / %h" "$f") | bc)
+    if (( $(echo "$prate > $rate" | bc -l) )); then
+      sz="x${height}"
+    fi
+    magick "$f" -resize "$sz" "$f"
+    echo "$f -> $sz"
+  done
+}
+
+# 功能: 設定隨機壁紙
+# 環境變量:
+#   WALLPAPER_DIR: 壁紙存放目錄,默認 $HOME/.wallpaper
+function randbg () {
+  WALLPAPER_DIR=${WALLPAPER_DIR:-$HOME/.wallpaper}
+  if [[ ! -d "$WALLPAPER_DIR" ]]; then
+    echo "wallpaper directory is empty(WALLPAPER_DIR: $WALLPAPER_DIR)"
+    return 1
+  fi
+
+  local total=$( find $WALLPAPER_DIR -type f | wc -l )
+  local ridx=$(($RANDOM % $total + 1))
+  local rpic=$( find $WALLPAPER_DIR -type f | sed -n "${ridx}p" )
+  osascript -e "$(printf 'tell application "System Events" to set picture of every desktop to "%s"' $rpic)"
+
+  echo "$(date) update background: status=$? image=$rpic" >> $HOME/tmp/rand_background.log
+}
+
+# 功能: 從 pexels 隨機獲取一張壁紙
+# 參數:
+# 環境變量:
+#   DATA_DIR: 圖片保存目錄
+#   PEXELS_KEY: pexels 開發者 KEY
+# URL:
+#   获取精选图片: https://api.pexels.com/v1/curated
+#   搜索图片:     https://api.pexels.com/v1/search
+#   獲取 KEY:     https://www.pexels.com/api/key
+#   API 說明:     https://www.pexels.com/api/documentation
+function pexels () {
+  DATA_DIR=${DATA_DIR:-$HOME/picture/pexels}
+  local api="https://api.pexels.com/v1/search?orientation=landscape&query=wallpaper&size=large&per_page=1&page=%d"
+  local header="Authorization: $PEXELS_KEY"
+
+  # get random page
+  local resp=$(curl -s -H "$header" $(printf $api 1))
+  local total=$(echo $resp | jq -r '.total_results')
+  if [[ -z $total || $total == "null" ]]; then
+    echo "get total faild, response: $resp"
+    return 1
+  fi
+  local page=$((RANDOM % $total + 1))
+  resp=$(curl -s -H "$header" $(printf $api $page))
+  local id=$(echo $resp | jq -r ".photos[0].id")
+  if [[ -z $id || $id == "null" ]]; then
+    err "get photo id error, response is: $resp"
+    exit 1
+  fi
+  local ori_url=$(echo $resp | jq -r '.photos[0].src.original')
+  local suffix=${ori_url##*.}
+  [[ ! -d $DATA_DIR ]] && mkdir -p $DATA_DIR
+  local filename="${DATA_DIR}/${id}.${suffix}"
+  [[ -f $filename ]] && return 0
+
+  # download photo
+  curl -s -H "$header" -o $filename $ori_url
+  if [[ $? -ne 0 ]]; then
+    echo "get file error: $?"
+    return 1
+  fi
+  echo $filename
+}
+
+# 功能: 從 unsplash 獲取一張隨機壁紙
+# URL:
+#   API 文檔: https://unsplash.com/documentation#get-a-random-photo
+function unsplash () {
+  local api='https://api.unsplash.com/photos/random?orientation=landscape&collections=11649432'
+  local header="Authorization:Client-ID $ACCESS_KEY"
+  DOWNLOAD_DIR=${DOWNLOAD_DIR:-$HOME/picture/unsplash}
+
+  if [[ -z $ACCESS_KEY ]]; then
+    echo "not set UNSPLASH_KEY"
+    return 1
+  fi
+
+  [[ ! -d $DOWNLOAD_DIR ]] && mkdir -p $DOWNLOAD_DIR
+  local resp=$(curl -s -H "$header" $api)
+  id=$(echo $resp | jq -r ".id")
+  if [[ -z $id || $id == "null" ]]; then
+    echo "get random error, response: $resp"
+    return 1
+  fi
+
+  # get photo info
+  local trigger_url=$(echo $resp | jq -r ".links.download_location")
+  local down_url=$(curl -s -H "$header" $trigger_url | jq -r '.url')
+  local suffix=$(echo ${down_url#*\?} | grep -oE '(^|&)fm=[^&]*' | cut -d = -f 2)
+  local img_name="$DOWNLOAD_DIR/$id.$suffix"
+
+  # download phtot
+  curl -s -H "$header" -o $img_name $down_url
+  echo "saved file to $img_name"
+  if [[ -z $XAUTHORITY || -z $DISPLAY ]]; then
+    echo "not work in X, just download file ($XAUTHORITY,$DISPLAY)" 
+    return 1
+  fi
+}
+
+
+# 功能: 尋找寬高比不同的圖片
+# 參數:
+#   -t: T-score 偏差值, 允許與衆數寬高比偏差值
+# 依賴: 
+#   magick: 計算圖片分辨率
+function pick_outlier () {
+  while getopts 't:' opt; do
+    case $opt in
+      t)
+        local t=$OPTARG
+        ;;
+    esac
+  done
+  t=${v:-0.15}
+
+  declare -A local ratio_count
+  declare -A local pic_ratio
+
+  for f in *; do
+    ! is_image "$f" && continue
+    local ratio=$(echo $(magick identify -format 'scale=1; %w / %h' $f) | bc | sed 's/^\./0./')
+    ratio_count[$ratio]=$(( ${ratio_count[$ratio]} + 1 ))
+    pic_ratio["$f"]=$ratio
+  done
+
+  local max=0
+  for k in ${!ratio_count[@]}; do
+    if [[ "$max" -lt "${ratio_count[$k]}" ]]; then
+      local mode=$k
+      max=${ratio_count[$k]}
+    fi
+  done
+
+  for k in ${!pic_ratio[@]}; do
+    if (( $(echo "$(echo "${pic_ratio[$k]} - $mode" | bc | sed 's/^-//' | sed 's/^\./0./') > $t" | bc -l) )); then
+      echo "$k"
+    fi
+  done
+}
+
+# 功能: 查詢所有寬小於高的圖片
+# 參數:
+#   $1: 需要查詢的目錄
+# 環境變量:
+#   recursion: 是否遞歸查詢
+#   reversal: 反轉,查詢不滿足條件的圖片
+function pick_landscape () {
+  local dir=${1:-.}
+  # 優先處理當前目錄的下的圖片
+  for f in "$dir"/*; do
+    ! is_image "$f" && continue
+    local prate=$(echo $(magick identify -format "scale=2; %w / %h" "$f") | bc)
+    if [[ -z $reversal ]] && (( $(echo "$prate > 1" | bc -l) )); then
+      echo $f
+    elif [[ ! -z $reversal ]] && (( $(echo "$prate < 1" | bc -l) )); then
+      echo $f
+    fi
+  done
+
+  if [[ -z $recursion ]]; then
+    return 0
+  fi
+  for d in "$dir"/*; do
+    if [[ -d "$d" ]]; then
+      pick_landscape "$d"
+    fi
+  done
+}
+
+
+function main() {
+  case $1 in
+    fit)
+      fit_screen ${@:2}
+      ;;
+    landscape)
+      shift
+      while getopts 'rv' opt; do
+        case $opt in
+          r)
+            export recursion=true
+            ;;
+          v)
+            export reversal=true
+            ;;
+        esac
+      done
+      if [[ -d ${!#} ]]; then
+        pick_landscape "${!#}"
+      else
+        pick_landscape
+      fi
+      ;;
+    outlier)
+      pick_outlier ${@:2}
+      ;;
+    randbg)
+      randbg ${@:2}
+      ;;
+    pexels)
+      pexels ${@:2}
+      ;;
+    unsplash)
+      unsplash ${@:2}
+      ;;
+    *)
+      cat <<EOF
+fit:       修改圖片尺寸適配當前屏幕分辨率
+landscape: 查詢橫向或縱向圖片
+outlier:   查詢寬高比離羣圖片
+rangbg:    設置隨機壁紙
+pexels:    從 pexels 隨機獲取一張壁紙
+unsplash:  從 unsplash 隨機獲取一張壁紙
+EOF
+      ;;
+  esac
+}
+
+main $@
+
+
+unset -f is_image
+unset -f fit_screen
+unset -f pick_landscape
+unset -f pick_outlier
+unset -f randbg
+unset -f pexels
+unset -f unsplash
+unset -f main

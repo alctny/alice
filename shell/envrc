@@ -52,7 +52,7 @@ case $SHELL in
   *zsh)
     # red blue green black white yellow magenta cyan
     export PROMPT='%K{cyan}%F{black} %n %K{yellow}%F{black} %~ 
-%k%f🦚 '
+%k%f🦚'
     ;;
   *bash)
     export PS1="\033[7;97;36m \w \033[0m\033[0;47;100m \u \033[;34m\n🦚\033[0m "

@@ -1,0 +1,48 @@
+#compdef mdls
+
+[[ $(uname -s) -ne 'Darwin' ]] && exit 0
+
+function _mdls () {
+  local -a flag
+  flag=(
+    '-n:fetch specific attribute'
+    "-r:don't print attribute names before values"
+    '-m:substitute this string for null attributes in raw mode'
+    '-p:output attributes in XML format to file'
+    '-s:implies -attr _kMDItemSDBInfoexample'
+  )
+  _arguments -s -S : \
+    '*'{-n+,-name}'[restrict output to specified attribute]:attribute' \
+    '(-p -plist)-nullMarker[specify string used for null values]:string' \
+    '(-p -r -nullMarker -plist -raw)'{-p,-plist}'[output in XML plist format to specified file]:output file:_files' \
+    '(-p -r -plist -raw)'{-r,-raw}'[print raw (NUL-delimited) attribute data]' \
+    '*: :_files'
+
+  # _arguments \
+  #   '-n:[fetch specific attribute]' \
+  #   "-r:[don't print attribute names before values]" \
+  #   '-m:[substitute this string for null attributes in raw mode]' \
+  #   '-p:[output attributes in XML format to file]' \
+  #   '-s:[implies -attr _kMDItemSDBInfoexample]' \
+  #   '*:filename:_files'
+
+  echo $words[$CURRENT] >> ~/tmp/mdls.tmp
+  if [[ $words[$((CURRENT - 1))] == '-n' ]]; then
+    if [[ -f "$words[-1]" ]]; then
+      f=$words[-1]
+    elif [[ -f "$words[2]" ]]; then
+      f=$words[2]
+    else
+      break
+    fi
+
+    local -a attr
+    attr=($(mdls "$f" | awk '{print $1}'))
+    _describe 'mdls attr' attr
+    return
+  fi
+
+  _describe 'mdls flags' flag
+}
+
+compdef _mdls mdls
