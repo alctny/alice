@@ -5,11 +5,19 @@ if ! command -v fzf > /dev/null 2>&1; then
 fi
 
 # fzf 配置
-# export FZF_CTRL_T_COMMAND=ls       # 按下 C-t 時需要執行並將結果傳遞給 fzf 的命令
-export FZF_DEFAULT_OPTS='--border' # 默認選項
-export FZF_COMPLETION_TRIGGER='**' # 觸發模糊補全的字符序列
+export FZF_CTRL_T_COMMAND='ls' # 按下 C-t 時需要執行並將結果傳遞給 fzf 的命令
+export FZF_DEFAULT_OPTS='--border'  # 默認選項
+export FZF_COMPLETION_TRIGGER='  '  # 觸發模糊補全的字符序列
 # export FZF_COMPLETION_TRIGGER=1
 eval "$(fzf --${SHELL##*/})"
+
+# 只列出指定目錄下的目錄，不遞歸
+_fzf_compgen_path() {
+  find "$1" -maxdepth 1 -type f -o -type d | sed 's@^\./@@'
+}
+_fzf_compgen_dir() {
+  find "$1" -maxdepth 1 -type d | sed 's@^\./@@'
+}
 
 # case $SHELL in
 #   *zsh)

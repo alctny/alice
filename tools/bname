@@ -6,8 +6,11 @@ recoverf=$(mktemp)
 # 參數:
 #   index: 使用序號爲文件重命名
 #     -p: 文件名前綴
+#     -P: 使用父目錄名作爲前綴
 #     -i: 起始序號
 #     -l: 序號長度, 不滿長度使用 0 填充
+#     -d: 僅從命名目錄
+#     -f: 僅從命名文件
 #   bulk:  使用默認編輯器編輯當前文件列表並重命名
 #     -f: 需要修改的文件列表, 默認當前目錄的所有文件
 #   date:  按照文件創建日期重命名文件爲: YYYY-mm-dd_HHMMSS
@@ -17,11 +20,15 @@ recoverf=$(mktemp)
 #   -p: 文件名前綴，爲空時格式化之後的結果只有 index
 #   -i: 起始序號，默認從 0 開始，且會按照目錄下文件數量自動在前方添加 0
 #   -l: 序號長度
+#   -d: 僅從命名目錄
+#   -f: 僅從命名文件
+#   -p: 文件名前綴
 # 注意: 此函數不會修改文件的後綴名，但默認了文件的後綴只有一個 .，對於 .tar.gz 的文件會被認爲後綴是 .gz 而不是 .tar.gz
 function with_index() {
+  echo "argument: $* $(pwd)" >> ~/tmp/bname.log
   # 參數解析kkk
   index=0
-  while getopts "p:i:l:" opt; do
+  while getopts "p:i:l:fdP" opt; do
     case $opt in
       p)
         prefix="$OPTARG"
@@ -32,6 +39,15 @@ function with_index() {
       l)
         len=$OPTARG
         ;;
+      f)
+        fo=1
+        ;;
+      d)
+        do=1
+        ;;
+      P)
+        prefix="$(basename $(pwd))-"
+        ;;
       *)
         echo "unknow arg: $OPTARG"
         ;;
@@ -40,26 +56,29 @@ function with_index() {
 
   # 自適應序號長度
   if [[ -z $len ]]; then
-    fcnt=$(( ($(ls | wc -l) + index) / 10 ))
-    while true; do
-      len=$(( len + 1 ))
-      if [ $fcnt -eq 0 ]; then
-        break
-      fi
-      fcnt=$(( fcnt / 10 ))
-    done
+    fcnt=$(( ($(ls | wc -l) + index)))
+    len=${#fcnt}
   fi
 
   # 文件重命名
   for f in *; do
-    surfix=${f##*.}
+    if [[ -f "$f" && ! -z "$do" ]] || [[ -d "$f" && ! -z "$fo" ]]; then
+      continue
+    fi
+
     idx_str=$(printf "%0${len}d" $index)
-    nf="${prefix}${idx_str}.${surfix}"
+    if [[ -f "$f" ]]; then
+      surfix=${f##*.}
+      nf="${prefix}${idx_str}.${surfix}"
+    elif [[ -d "$f" ]]; then
+      nf="${prefix}${idx_str}"
+    fi
     echo  "${f} -> ${nf}"
     if [[ -f $nf ]]; then
       echo "skip: $f to $nf"
       continue
     fi
+    echo "$f -> $nf" | tee -a $recoverf
     mv "${f}" "${nf}"
     index=$(( index + 1 ))
   done
@@ -102,7 +121,7 @@ function with_bulk() {
       continue
     fi
 
-    echo "$f -> $nf"
+    echo "$f -> $nf" | tee -a $recoverf
     mv "$f" "$nf"
   done < $bak
 }
@@ -120,12 +139,27 @@ function with_date() {
       echo "skip $f to $nf"
       continue
     fi
-    echo "$f  ->  $nf"
+    echo "$f -> $nf" | tee -a $recoverf
     mv "$f" "$nf"
   done
 }
 
-# HELPER=$(cat )
+# 功能: 按照 $recoverf 中記錄的變化將文件從命名回原本的樣子
+# 參數:
+#   $1: $recoverf 文件名
+function recover () {
+  local rf="$1"
+  if [[ ! -f $rf ]]; then
+    echo "unset recover file"
+    return 1
+  fi
+  cat $rf | while read line; do
+    f=$(echo $line | awk -F' -> ' '{print $1}')
+    nf=$(echo $line | awk -F' -> ' '{print $2}')
+    echo "$nf -> $f" | tee -a $recoverf
+    mv $nf $f 
+  done
+}
 
 # main
 case $1 in
@@ -137,6 +171,9 @@ case $1 in
     ;;
   bulk)
     with_bulk ${@:2}
+    ;;
+  recover)
+    recover ${@:2}
     ;;
   help)
     # echo -n $HELPER
@@ -153,8 +190,10 @@ case $1 in
   bulk:  使用默認編輯器編輯當前文件列表並重命名
     -f: 需要修改的文件列表, 默認當前目錄的所有文件
   date:  按照文件創建日期重命名文件爲: YYYY-mm-dd_HHMMSS
+  recover: 恢復文件原本的名稱
+    $1 之前使用 bname 修改文件名時生成的記錄文件
 EOF
     ;;
 esac
 
-rm $recoverf
+echo $recoverf

@@ -6,6 +6,7 @@ _bname() {
     'index:使用自增索引重命名'
     'date:按照創建日期重命名'
     'bulk:使用默認編輯器手動批量重命名'
+    'recover:復原原本的文件名'
   )
 
   _arguments \

@@ -64,11 +64,11 @@ function fit_screen () {
     ! is_image "$f" && continue
 
     local sz="${width}x"
-    local prate=$(echo $(magick identify -format "scale=2; %w / %h" "$f") | bc)
+    local prate=$(echo $(magick identify -format "scale=2; %w / %h" -quiet "$f") | bc)
     if (( $(echo "$prate > $rate" | bc -l) )); then
       sz="x${height}"
     fi
-    magick "$f" -resize "$sz" "$f"
+    magick "$f" -resize "$sz" -quiet "$f"
     echo "$f -> $sz"
   done
 }
@@ -192,7 +192,7 @@ function pick_outlier () {
 
   for f in *; do
     ! is_image "$f" && continue
-    local ratio=$(echo $(magick identify -format 'scale=1; %w / %h' $f) | bc | sed 's/^\./0./')
+    local ratio=$(echo $(magick identify -format 'scale=1; %w / %h' -quiet $f) | bc | sed 's/^\./0./')
     ratio_count[$ratio]=$(( ${ratio_count[$ratio]} + 1 ))
     pic_ratio["$f"]=$ratio
   done
@@ -217,13 +217,13 @@ function pick_outlier () {
 #   $1: 需要查詢的目錄
 # 環境變量:
 #   recursion: 是否遞歸查詢
-#   reversal: 反轉,查詢不滿足條件的圖片
+#   reversal:  反轉,查詢不滿足條件的圖片
 function pick_landscape () {
   local dir=${1:-.}
   # 優先處理當前目錄的下的圖片
   for f in "$dir"/*; do
     ! is_image "$f" && continue
-    local prate=$(echo $(magick identify -format "scale=2; %w / %h" "$f") | bc)
+    local prate=$(echo $(magick identify -format "scale=2; %w / %h" -quiet "$f") | bc)
     if [[ -z $reversal ]] && (( $(echo "$prate > 1" | bc -l) )); then
       echo $f
     elif [[ ! -z $reversal ]] && (( $(echo "$prate < 1" | bc -l) )); then

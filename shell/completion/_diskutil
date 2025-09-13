@@ -57,6 +57,9 @@ function _diskutil() {
     'apfs:Perform additional verbs related to APFS'
     'image:Perform additional verbs related to DiskImage'
   )
+  _arguments -s -S : \
+    '1:cmds:->cmds' \
+    '*: :_files'
 
   case $words[2] in
     list)

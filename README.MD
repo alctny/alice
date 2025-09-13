@@ -25,6 +25,7 @@ go install github.com/jesseduffield/lazygit@latest    # git 管理
 go install github.com/mgechev/revive@latest           # golang 靜態檢查工具
 go install github.com/ofabry/go-callvis@latest        # golang 函數調用關係分析工具
 go install github.com/kisielk/godepgraph@latest       # golang 函數調用關係分析工具
+go install github.com/maaslalani/slides@latest        # 在終端通過 markdown 編寫和分享 PPT
 ```
 
 

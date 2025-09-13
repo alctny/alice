@@ -38,8 +38,9 @@ keymap = [
   { on = ["y", "d"], run = "copy dirname",          desc = "Copy the directory path" },
   { on = ["y", "n"], run = "copy filename",         desc = "Copy the filename" },
   { on = ["y", "e"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
-  { on = "d",        run = "yank --cut",            desc = "Yank selected files (cut)" },
-  { on = "D",        run = "remove",                desc = "Trash selected files" },
+  { on = ["d", "d"], run = "yank --cut",            desc = "Yank selected files (cut)" },
+  { on = ["d", "t"], run = "remove",                desc = "Trash selected files" },
+  { on = ["d", "D" ],run = "remove --permanently",  desc = "Permanently delete selected files" },
   { on = "p",        run = "paste",                 desc = "Paste the copied characters after the cursor" },
 
   # Selection
@@ -49,15 +50,16 @@ keymap = [
   { on = "<C-a>",   run = "toggle_all --state=true",            desc = "Select all files" },
 
   # Operation
-  { on = "o",       run = "open",                        desc = "Open selected files" },
-  { on = "O",       run = "open --interactive",          desc = "Open selected files interactively" },
-  { on = "<Enter>", run = "open",                        desc = "Open selected files" },
-  { on = "a",       run = "create",                      desc = "Create a file (ends with / for directories)" },
-  { on = ["c", "a"],run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
-  { on = ";",       run = "shell --interactive",         desc = "Run a shell command" },
-  { on = ":",       run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
-  { on = ".",       run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-  { on = "z",       run = "plugin zoxide",               desc = "Jump to a directory using zoxide" },
+  { on = "o",        run = "open",                        desc = "Open selected files" },
+  { on = "O",        run = "open --interactive",          desc = "Open selected files interactively" },
+  { on = "<Enter>",  run = "open",                        desc = "Open selected files" },
+  { on = "a",        run = "create",                      desc = "Create a file (ends with / for directories)" },
+  { on = ["c", "a"], run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
+  { on = ["c", "i"], run = "bname index",                 desc = "Execute bname index command" },
+  { on = ";",        run = "shell --interactive",         desc = "Run a shell command" },
+  { on = ":",        run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
+  { on = ".",        run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
+  { on = "z",        run = "plugin zoxide",               desc = "Jump to a directory using zoxide" },
 
   # Linemode
   { on = [ "m", "s" ], run = "linemode size",        desc = "Set linemode to size" },
@@ -70,8 +72,8 @@ keymap = [
   # Filter
   { on = ["f", "f"], run = "plugin fzf",            desc = "Jump to a directory or reveal a file using fzf" },
   { on = ["f", "s"], run = "filter --smart",        desc = "Filter files" },
-  { on = ["f", "m"], run = "find --smart",          desc = "Find next file" },
-  { on = "/",        run = "search fd",             desc = "Search files by name using fd" },
+  { on = ["f", "d"], run = "search fd",             desc = "Search files by name using fd" },
+  { on = ["/"],      run = "find --smart",          desc = "Find next file" },
   { on = "n",        run = "find_arrow",            desc = "Go to the next found" },
   { on = "N",        run = "find_arrow --previous", desc = "Go to the previous found" },
 
