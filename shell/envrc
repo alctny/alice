@@ -20,11 +20,13 @@ export GO111MODULE=on
 export GOPATH=$HOME/.go
 
 # 輸入法
+export XIM=fcitx5
+export XIM_PROGRAM=fcitx5
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
-export GLFW_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus # 如果使用 kitty 这里必须使用 ibus,即便輸入法是 fcitx5
 
 # 命令行歷史設置
 export HISTSIZE=4288116
