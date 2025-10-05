@@ -82,6 +82,9 @@ defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "false" && 
 # d MMM for day of the month and 3-letter month.
 defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
 
+# 按下一个字母的时候重复这个字母而不是显示其他重音写法
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 # 自动排列
 defaults write com.apple.dock "mru-spaces" -bool "true" && killall Dock
 # 按照应用分组
