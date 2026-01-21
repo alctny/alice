@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+f="$*"
+
+mime=$(file -b --mime-type "$f" | awk -F'/' '{print $1}')
+if [[ $mime != "audio" ]]; then
+  exit 1
+fi
+
+
+out=$( ffmpeg -v error -f null - -i "$f" 2>&1 > /dev/null )
+
+if [[ ! -z "$out" ]]; then
+  echo "$f"
+  exit 1
+fi

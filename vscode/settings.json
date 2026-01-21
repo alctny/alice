@@ -72,7 +72,11 @@
   // UI
   "workbench.startupEditor": "none",                      // 启动页面
   "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
+  "vsicons.presets.hideExplorerArrows": false,            // 隱藏左側文件管理頁面文件夾前面的箭頭符號
   "workbench.iconTheme": "vscode-icons",                  // 主题
+  "workbench.activityBar.location": "top",                // 活动栏位置
+  "workbench.layoutControl.enabled": false,               // 是否顯示佈局控制按鈕
+  "window.commandCenter": false,                          // 顯示命令輸入窗格
   // 语言
   "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 150}",   // C/C++ 代码格式
   "C_Cpp.formatting": "clangFormat",                                                // C/C++ 格式化引擎
@@ -107,7 +111,4 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "atomicviz.installed": true,
-  "workbench.activityBar.location": "top",
-  "window.commandCenter": false,
-  "workbench.layoutControl.enabled": false,
 }
