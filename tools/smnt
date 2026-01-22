@@ -20,8 +20,6 @@
 # fi
 #
 
-current_dir=$(dirname $(realpath $0))
-source $current_dir/mod.sh
 
 if [[ -z "$1" ]]; then
   err "usage: smnt <block-device>"

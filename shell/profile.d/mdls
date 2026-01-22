@@ -1,6 +1,6 @@
 #compdef mdls
 
-[[ $(uname -s) -ne 'Darwin' ]] && return 0
+[[ $(uname -s) != 'Darwin' ]] && return 0
 
 function _mdls () {
   local -a flag

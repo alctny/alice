@@ -44,5 +44,5 @@ cargo install zoxide --locked # 更好用的 cd
 ## use binary
 
 fzf
-yzzi
+yazi
 

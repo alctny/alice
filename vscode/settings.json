@@ -1,7 +1,6 @@
 {
   // VSCode 基础设置
-  // "editor.fontFamily": "'UbuntuMono Nerd Font', 'PingFang TC'",        // 字体
-  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'PingFang TC'",        // 字体
+  "editor.fontFamily": "'FiraCode Nerd Font', 'PingFang TC'", // 字体
   "editor.fontLigatures": true,                               // 启用连体字
   "editor.renderLineHighlight": "none",                       // 禁用高亮当前行
   "editor.lineNumbers": "relative",                           // 行号显示 relative 相对行号 off 不显示
@@ -21,12 +20,13 @@
   "update.mode": "none",                                      // 关闭自动更新
   "update.showReleaseNotes": false,                           // 不查看更新信息
   "security.workspace.trust.untrustedFiles": "open",          // 允许打开不信任文件
-  "workbench.colorTheme": "One Dark Pro Darker",                 // 主题
+  "workbench.colorTheme": "One Dark Pro Darker",              // 主题
   "debug.onTaskErrors": "abort",                              // debug 出现错误的时候中断 debug
   "workbench.tree.enableStickyScroll": true,                  // 文件树粘性滚动
   "workbench.editor.enablePreview": false,                    // 禁用预览
   "editor.renderWhitespace": "all",                           // 显示空白字符 
   "vsicons.dontShowNewVersionMessage": true,                  // 不顯示新版本信息
+
   // 文件管理
   "explorer.confirmDelete": false,                    // 删除不需要确认
   "explorer.confirmDragAndDrop": false,               // 文件拖拽不需要确认
@@ -43,6 +43,7 @@
   "workbench.editorAssociations": { // 不同文件類型打開方式
     "*.csv": "default"
   },
+
   // 扩展
   "extensions.ignoreRecommendations": true,       // 忽略插件推荐
   "extensions.autoUpdate": false,                 // 插件自动更新
@@ -60,6 +61,7 @@
   "liveServer.settings.donotShowInfoMsg": true,   // 不顯示 live server 啓動信息
   "fittencode.languagePreference.displayPreference": "zh-cn", // fitten code 顯示語言
   "fittencode.languagePreference.commentPreference": "zh-cn", // fitten code 回答語言
+
   // 终端
   "terminal.integrated.cursorStyle": "block",                            // 光标样式为竖线
   "terminal.integrated.cursorBlinking": true,                            // 启用光标闪烁
@@ -69,6 +71,7 @@
   "terminal.integrated.profiles.linux": {
     "bash": { "path": "bash", "icon": "terminal-bash", "args": ["-l"] }, // 以登錄狀態初始化 bash
   },
+
   // UI
   "workbench.startupEditor": "none",                      // 启动页面
   "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
@@ -77,6 +80,7 @@
   "workbench.activityBar.location": "top",                // 活动栏位置
   "workbench.layoutControl.enabled": false,               // 是否顯示佈局控制按鈕
   "window.commandCenter": false,                          // 顯示命令輸入窗格
+
   // 语言
   "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 150}",   // C/C++ 代码格式
   "C_Cpp.formatting": "clangFormat",                                                // C/C++ 格式化引擎

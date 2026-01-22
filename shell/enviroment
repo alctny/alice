@@ -1,0 +1,10 @@
+
+# 系統代理
+HTTP_PROXY=http://127.0.0.1:1087
+HTTPS_PROXY=http://127.0.0.1:1087
+ALL_PROXY=socks5://127.0.0.1:1080
+NO_PROXY="localhost,127.0.0.1,172.30.0.0,172.28.0.0"
+
+# 默認文本編輯器
+EDITOR=nvim
+VISUAL=nvim

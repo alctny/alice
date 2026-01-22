@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# windows toggle (hide / show)
+# 顯示或隱藏特定窗口
 
 readonly PID_FILE=$HOME/.config/i3/data/floting_term.pid
 

@@ -7,6 +7,7 @@
 # mod3        ISO_Level5_Shift (0xcb)
 # mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce),  Hyper_L (0xcf)
 # mod5        ISO_Level3_Shift (0x5c)
+
 set $Alt Mod1
 set $mod Mod4
 set $term alacritty
@@ -35,8 +36,8 @@ workspace_auto_back_and_forth yes
 focus_on_window_activation    focus
 
 # start with power up
-exec --no-startup-id xss-lock --transfer-sleep-lock $HOME/.config/i3/lock-bg-rand.sh &
-exec --no-startup-id xautolock -time 13 -locker '$HOME/.config/i3/lock-bg-rand.sh' &
+exec --no-startup-id xss-lock --transfer-sleep-lock $HOME/.config/i3/lock_screen &
+exec --no-startup-id xautolock -time 13 -locker '$HOME/.config/i3/lock_screen' &
 # exec --no-startup-id xss-lock --transfer-sleep-lock --nofork slock &
 # exec --no-startup-id xautolock -time 13 -locker slock &
 exec --no-startup-id nm-applet &
@@ -57,8 +58,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+$Alt+Return exec $float_term
 bindsym Print exec flameshot gui
 bindsym Mod1+space exec --no-startup-id rofi -no-lazy-grab -show drun
-# bindsym Mod1+Ctrl+q exec rand-img-lock &
-bindsym Mod1+Ctrl+q exec $HOME/.config/i3/lock-bg-rand.sh
+bindsym Mod1+Ctrl+q exec $HOME/.config/i3/lock_screen
 # bindsym --release Mod1+Ctrl+q exec sh -c 'slock'
 
 # 关闭内屏，显示外屏（仅扩展模式,不考虑一台电脑同时接了多显示器的状况）

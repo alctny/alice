@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# 設置隨機桌面背景
 
 readonly PIC_PATH="$HOME/.wallpaper"
 screen_num=$(xrandr | grep ' connected' | wc -l)
