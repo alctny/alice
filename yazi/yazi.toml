@@ -73,13 +73,13 @@ browser = [
 
 [open]
 rules = [
-  { name = "*.md",   use = "md" },
-  { name = "*.pdf",  use = "browser" },
-  { name = "*.json", use = ["edit", "open", "reveal"] },
-  { name = "*.html", use = ["edit", "browser"] },
-  { name = "*.mp3",  use = "play" },
+  { url = "*.md",   use = "md" },
+  { url = "*.pdf",  use = "browser" },
+  { url = "*.json", use = ["edit", "open", "reveal"] },
+  { url = "*.html", use = ["edit", "browser"] },
+  { url = "*.mp3",  use = "play" },
   # Folder
-  { name = "*/", use = ["edit", "open", "reveal"] },
+  { url = "*/", use = ["edit", "open", "reveal"] },
   # Text
   { mime = "text/*", use = ["edit", "reveal"] },
   # Image
@@ -95,7 +95,7 @@ rules = [
   # Empty file
   { mime = "inode/x-empty", use = ["edit", "reveal"] },
   # Fallback
-  { name = "*", use = ["open", "reveal"] },
+  { url = "*", use = ["open", "reveal"] },
 ]
 
 [tasks]
@@ -109,7 +109,8 @@ suppress_preload = false
 [plugin]
 fetchers = [
   # Mimetype
-  { id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
+  { id = "mime", url = "*", run = "mime.local", if = "!mime", prio = "high" },
+  { id = "mime", url = "*/", run = "mime.dir", prio = "high" },
 ]
 
 preloaders = [
@@ -126,7 +127,7 @@ preloaders = [
 ]
 
 previewers = [
-  { name = "*/", run = "folder", sync = true },
+  { url = "*/", run = "folder", sync = true },
   # Code
   { mime = "text/*", run = "code" },
   { mime = "*/{xml,javascript,x-wine-extension-ini}", run = "code" },
@@ -148,7 +149,7 @@ previewers = [
   # Empty file
   { mime = "inode/x-empty", run = "empty" },
   # Fallback
-  { name = "*", run = "file" },
+  { url = "*", run = "file" },
 ]
 
 [input]
@@ -164,10 +165,10 @@ create_title = ["Create:", "Create (dir):"]
 create_origin = "top-center"
 create_offset = [0, 2, 50, 3]
 
-# rename
-rename_title  = "Rename:"
-rename_origin = "hovered"
-rename_offset = [0, 1, 50, 3]
+# reurl
+reurl_title  = "Rename:"
+reurl_origin = "hovered"
+reurl_offset = [0, 1, 50, 3]
 
 # filter
 filter_title  = "Filter:"
