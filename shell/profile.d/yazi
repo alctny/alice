@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! command -v yazi > /dev/null 2>&1; then
+if ! command -v yazi >/dev/null 2>&1; then
   return 0
 fi
 
@@ -11,25 +11,25 @@ function y() {
   else
     command yazi --cwd-file="$tmp"
   fi
-  rm -r ${TMPDIR}yazi-$UID
+  yazi --clear-cache >/dev/null 2>&1
   if [[ -f "$tmp" ]]; then
     local cwd="$(cat "$tmp")"
     rm -f "$tmp"
     if [[ -n "$cwd" && "$cwd" != "$PWD" ]]; then
-      cd "$cwd" 
+      cd "$cwd"
     fi
   fi
 }
 
 case $SHELL in
-  *zsh)
-    zle -N y
-    bindkey '^Y' y
-    ;;
-  *bash)
-    bind -m emacs-standard -x '"\C-e": y'
-    ;;
-  *)
-    echo "$0: unset yazi keybind, unknow shell type"
-    ;;
+*zsh)
+  zle -N y
+  bindkey '^Y' y
+  ;;
+*bash)
+  bind -m emacs-standard -x '"\C-y": y'
+  ;;
+*)
+  echo "$0: unset yazi keybind, unknow shell type"
+  ;;
 esac
