@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# 是否忽略大小写
+icase=false
+
+while getopts 'i' opt; do
+  case "$opt" in
+  i)
+    icase=true
+    ;;
+  *)
+    echo "未知参数"
+    ;;
+  esac
+done
+
+if $icase; then
+  find . -type f | sed -n 's/.*\.//p' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr
+else
+  find . -type f | sed -n 's/.*\.//p' | sort | uniq -c | sort -nr
+fi

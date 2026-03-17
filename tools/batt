@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# 功能: 查看當前電腦電池信息，包括：當前電量、健康狀態、充電狀態
+#   僅當當充電狀態會包含如下信息: 充電電流、充電電壓、充電功率、充電握手功率
+#
+# ioreg -n AppleSmartBattery 命令輸出含義:
+#   IsCharging 是否處於充電狀態
+#   ExternalConnected 是否鏈接電源適配器
+#   CurrentCapacity 當前電量（百分比）
+#   MaxCapacity 最大電池容量（電池健康）
+#
+
+charging=$(ioreg -n AppleSmartBattery -r | grep -E "IsCharging" | awk -F'=' '{print $2}' | tr -d '[:space:]')
+extrenal_connected=$(ioreg -n AppleSmartBattery -r | grep -E '"ExternalConnected" ' | awk -F'=' '{print $2}' | tr -d '[:space:]')
+capacity=$(ioreg -n AppleSmartBattery -r | grep -E '"CurrentCapacity" ' | awk -F'=' '{print $2}' | tr -d '[:space:]')
+max_capacity=$(ioreg -n AppleSmartBattery -r | grep -E '"MaxCapacity" ' | awk -F'=' '{print $2}' | tr -d '[:space:]')
+health=$(ioreg -rn AppleSmartBattery | awk '/AppleRawMaxCapacity/{raw=$NF} /DesignCapacity/{design=$NF} END{printf "%.1f%%\n", raw/design*100}')
+cycle_count=$(ioreg -rn AppleSmartBattery | grep '"CycleCount" ' | awk -F'=' '{print $2}' | tr -d '[:space:]')
+
+echo "IsCharging        $charging"
+echo "ExternalConnected $extrenal_connected"
+echo "Capacity          $capacity"
+echo "MaxCapacity       $max_capacity"
+echo "Health            $health"
+echo "Cycle Count       $cycle_count"
+
+if [[ $charging != "Yes" ]]; then
+  exit 0
+fi
+
+hander_wattage=$(pmset -g ac | grep Wattage | awk -F'=' '{print $2}' | tr -d ' ')
+amp=$(ioreg -r -c "AppleSmartBattery" | grep '"Amperage"' | awk -F'=' '{print $2}' | tr -d '[:space:]')
+vol=$(ioreg -r -c "AppleSmartBattery" | grep '"Voltage" ' | awk -F'=' '{print $2}' | tr -d '[:space:]')
+reality_wattage=$(bc <<<"scale=2; $amp * $vol / 1000000")
+
+echo "Wattage           $hander_wattage"
+echo "Amperage          ${amp}mA"
+echo "Voltage           ${vol}mV"
+echo "Reality Wattage   ${reality_wattage}W"

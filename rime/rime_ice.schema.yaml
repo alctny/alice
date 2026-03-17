@@ -23,14 +23,14 @@ schema:
 # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
 switches:
   - name: ascii_mode   # 中英文切換
-    states: [ "En", 中 ]
+    states: [ 中, En ]
     reset: 1
   - name: ascii_punct  # 中英标点
     states: [ ¥, $ ]
     reset: 1
   - name: traditionalization # 繁簡切換
     states: [ 简, 繁 ]
-    reset: 0
+    reset: 1
   - name: full_shape
     states: [ F, H ] # 全/半角切換
     reset: 0
