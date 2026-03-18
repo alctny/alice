@@ -115,4 +115,7 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "atomicviz.installed": true,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }

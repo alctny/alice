@@ -1,16 +1,150 @@
-#TabsToolbar {
-    visibility: collapse;
+/* ---------- 1. 全局變量與基礎配置 ---------- */
 
+/* 頂部工具列彈性布局優化 */
+#navigator-toolbox {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
 }
 
+/* ---------- 2. 佈局核心：地址欄與標籤頁同列 ---------- */
+
+/* 地址欄容器 (左側) */
+#nav-bar {
+  order: 1 !important;
+  width: var(--uc-urlbar-width) !important;
+  min-height: var(--uc-toolbar-height) !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 標籤列容器 (右側) */
 #titlebar {
-    visibility: collapse;
-}
-
-#sidebar-header {
-    visibility: collapse !important;
+  order: 2 !important;
+  width: calc(100vw - var(--uc-urlbar-width)) !important;
 }
 
 #TabsToolbar {
-    visibility: collapse;
+  min-height: var(--uc-toolbar-height) !important;
+}
+
+/* 隱藏標籤列多餘空間與工具列分隔線 */
+.titlebar-spacer,
+#navigator-toolbox::after {
+  display: none !important;
+}
+
+/* 書籤列自動換行 */
+#PersonalToolbar {
+  order: 3 !important;
+  width: 100% !important;
+}
+
+/* ---------- 3. 元素精簡：隱藏所有不必要的按鈕 ---------- */
+
+/* 1. 導航與地址欄基礎按鈕 */
+#urlbar-searchmode-switcher,
+#back-button,
+#forward-button,
+#reload-button,
+#stop-button,
+#identity-box,
+#tracking-protection-icon-container,
+#page-action-buttons,
+#star-button-box,
+#reader-mode-button,
+#picture-in-picture-button,
+.urlbar-history-dropmarker,
+#PanelUI-menu-button {
+  display: none !important;
+}
+
+/* 2. 徹底消滅右側殘留的「>>」或「拼圖」溢出按鈕 */
+#nav-bar-overflow-button, /* 導航欄溢出按鈕 */
+#alltabs-button {
+  /* 標籤頁列表按鈕 */
+  display: none !important;
+}
+
+/* 3. 移除佈局佔位符 */
+#urlbar-background,
+.titlebar-spacer,
+#fixed-protocol-handler-import-delta {
+  display: none !important;
+}
+
+/* ---------- 4. 地址信息：居中與域名顯示邏輯 ---------- */
+
+#urlbar-input-container {
+  padding: 0 4px !important;
+  justify-content: center !important;
+}
+
+#urlbar-input {
+  text-align: center !important;
+  width: 100% !important;
+  /* 漸變裁剪優化：適配極窄寬度 */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  ) !important;
+}
+
+/* 非聚焦狀態：強制裁剪，只留域名視覺中心 */
+#urlbar:not([focused]) #urlbar-input {
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+}
+
+/* 設定地址欄輸入無背景 */
+.urlbar-background {
+  border: none !important;
+}
+
+#urlbar-input::placeholder {
+  text-align: center !important;
+}
+
+/* 隱藏所有標籤頁的關閉按鈕 */
+.tab-close-button {
+  display: none !important;
+}
+
+/* -------------------- 設定標籤頁背景色與 titlebar 一致 -------------------- */
+/* 讓未選中的標籤頁背景透明，直接顯示窗口底色 */
+.tabbrowser-tab:not([selected="true"]) .tab-background {
+  background-color: transparent !important;
+}
+
+/* 讓選中的標籤頁背景與窗口標題欄顏色一致 */
+:root {
+  --tab-selected-bgcolor: var(--lwt-accent-color) !important;
+}
+
+.tabbrowser-tab[selected="true"] .tab-background {
+  background-color: var(--lwt-accent-color) !important;
+  background-image: none !important;
+  box-shadow: none !important; /* 移除選中標籤的陰影以達到扁平化 */
+}
+
+/* 移除標籤頁之間的分割線 */
+.tabbrowser-tab {
+  border: none !important;
+}
+
+/* 隱藏標籤頂部的亮色條 (如果有的話) */
+.tab-line {
+  display: none !important;
+}
+
+/* 為了更好的視覺融合，調整工具欄背景為透明或一致 */
+#nav-bar {
+  background-color: var(--lwt-accent-color) !important;
+  box-shadow: none !important;
+  border-top: none !important;
 }
