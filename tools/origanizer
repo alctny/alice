@@ -9,23 +9,27 @@ trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
 
 # 輸出錯誤信息並退出
 function err() {
-  eeho -e "\033[1;90;31m$@\033[0m" >& 2
+  eeho -e "\033[1;90;31m$@\033[0m" >&2
   exit 1
 }
 
 # 文件夾前綴
 DIR_PREFIX=${DIR_PREFIX:-"ori_mt_"}
 
-DOC=$(cat <<END
+DOC=$(
+  cat <<END
 command:
   mime    | m  : 按照文件类型分类
   submime | sm : 按照文件子没提类型分类
   suffix  | s  : 按照文件后缀名分类
+  year    | y  : 按照创建年份分类
+  month   | M  : 按照创建月份分类
+  help    | h  : 查看帮助文档
 END
 )
 
 # with_mime 按照文件的真实类型进行分类
-function with_mime () {
+function with_mime() {
   # macOS
   if [[ $(uname -s) == "Darwin" ]]; then
     file -b -I "$1" | awk -F'/' '{print $1}'
@@ -33,7 +37,7 @@ function with_mime () {
   fi
 
   # Linux
-  if ! command -v exiftool > /dev/null 2>&1; then
+  if ! command -v exiftool >/dev/null 2>&1; then
     err "exiftool is require"
   fi
 
@@ -56,9 +60,8 @@ function with_suffix() {
   echo ${fn##*.}
 }
 
-
 # with_mime 按照文件的子类型进行分类
-function with_submime () {
+function with_submime() {
   # macOS
   if [[ $(uname -s) == "Darwin" ]]; then
     file -b -I "$1" | awk -F'/' '{print $2}'
@@ -66,7 +69,7 @@ function with_submime () {
   fi
 
   # Linux
-  if ! command -v exiftool > /dev/null 2>&1; then
+  if ! command -v exiftool >/dev/null 2>&1; then
     err "exiftool is require"
   fi
 
@@ -90,28 +93,29 @@ function with_month() {
 get_mt=with_mime
 
 case $1 in
-  "mime" | "m")
-    get_mt=with_mime
-    ;;
-  "suffix" | "s")
-    get_mt=with_suffix
-    ;;
-  "submime" | "sm")
-    get_mt=with_submime
-    ;;
-  "help" | "h")
-    echo "$DOC"
-    exit 0
-    ;;
-  "year" | "y")
-    get_mt=with_year
-    ;;
-  "month" | "M")
-    get_mt=with_month
-    ;;
-  *)
-    get_mt=with_mime
-    ;;
+"mime" | "m")
+  get_mt=with_mime
+  ;;
+"suffix" | "s")
+  get_mt=with_suffix
+  ;;
+"submime" | "sm")
+  get_mt=with_submime
+  ;;
+"help" | "h")
+  echo "$DOC"
+  exit 0
+  ;;
+"year" | "y")
+  get_mt=with_year
+  ;;
+"month" | "M")
+  get_mt=with_month
+  ;;
+*)
+  echo "$DOC"
+  exit 0
+  ;;
 esac
 
 echo "get_mt = $get_mt"
@@ -129,4 +133,3 @@ for fn in *; do
   mkdir -p "$mt_dir"
   mv "$fn" "$mt_dir"
 done
-

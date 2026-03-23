@@ -22,7 +22,7 @@
 /* 標籤列容器 (右側) */
 #titlebar {
   order: 2 !important;
-  width: calc(100vw - var(--uc-urlbar-width)) !important;
+  /* width: calc(100vw - var(--uc-urlbar-width)) !important; */
 }
 
 #TabsToolbar {
@@ -52,11 +52,9 @@
 #identity-box,
 #tracking-protection-icon-container,
 #page-action-buttons,
-#star-button-box,
 #reader-mode-button,
 #picture-in-picture-button,
-.urlbar-history-dropmarker,
-#PanelUI-menu-button {
+.urlbar-history-dropmarker {
   display: none !important;
 }
 
@@ -111,40 +109,63 @@
 }
 
 /* 隱藏所有標籤頁的關閉按鈕 */
+/* 1. 將關閉按鈕移至左側 */
+.tab-content {
+  direction: ltr; /* 確保內容流向 */
+}
+
 .tab-close-button {
+  -moz-box-ordinal-group: 0 !important; /* 將按鈕排序權重設為最低，使其靠左 */
+  order: -1 !important; /* 現代 Flex 佈局兼容 */
+  margin-inline-start: -2px !important;
+  margin-inline-end: 4px !important;
+}
+
+/* 2. 默認隱藏關閉按鈕 (包括當前標籤) */
+.tabbrowser-tab .tab-close-button {
   display: none !important;
 }
 
-/* -------------------- 設定標籤頁背景色與 titlebar 一致 -------------------- */
-/* 讓未選中的標籤頁背景透明，直接顯示窗口底色 */
-.tabbrowser-tab:not([selected="true"]) .tab-background {
-  background-color: transparent !important;
+/* 3. 僅在鼠標懸浮標籤頁時顯示 */
+.tabbrowser-tab:hover .tab-close-button {
+  display: block !important;
 }
 
-/* 讓選中的標籤頁背景與窗口標題欄顏色一致 */
-:root {
-  --tab-selected-bgcolor: var(--lwt-accent-color) !important;
+/* 可選：調整網站圖標（Favicon）與按鈕的間距，避免重疊 */
+.tabbrowser-tab:hover .tab-icon-stack {
+  display: none !important; /* 懸浮時隱藏圖標，讓位給關閉按鈕 */
 }
 
-.tabbrowser-tab[selected="true"] .tab-background {
-  background-color: var(--lwt-accent-color) !important;
-  background-image: none !important;
-  box-shadow: none !important; /* 移除選中標籤的陰影以達到扁平化 */
-}
-
-/* 移除標籤頁之間的分割線 */
-.tabbrowser-tab {
-  border: none !important;
-}
-
-/* 隱藏標籤頂部的亮色條 (如果有的話) */
-.tab-line {
-  display: none !important;
-}
-
-/* 為了更好的視覺融合，調整工具欄背景為透明或一致 */
-#nav-bar {
-  background-color: var(--lwt-accent-color) !important;
-  box-shadow: none !important;
-  border-top: none !important;
-}
+/* /* -------------------- 設定標籤頁背景色與 titlebar 一致 -------------------- */ */
+/* /* 讓未選中的標籤頁背景透明，直接顯示窗口底色 */ */
+/* .tabbrowser-tab:not([selected="true"]) .tab-background { */
+/*   background-color: transparent !important; */
+/* } */
+/**/
+/* /* 讓選中的標籤頁背景與窗口標題欄顏色一致 */ */
+/* :root { */
+/*   --tab-selected-bgcolor: var(--lwt-accent-color) !important; */
+/* } */
+/**/
+/* .tabbrowser-tab[selected="true"] .tab-background { */
+/*   background-color: var(--lwt-accent-color) !important; */
+/*   background-image: none !important; */
+/*   box-shadow: none !important; /* 移除選中標籤的陰影以達到扁平化 */ */
+/* } */
+/**/
+/* /* 移除標籤頁之間的分割線 */ */
+/* .tabbrowser-tab { */
+/*   border: none !important; */
+/* } */
+/**/
+/* /* 隱藏標籤頂部的亮色條 (如果有的話) */ */
+/* .tab-line { */
+/*   display: none !important; */
+/* } */
+/**/
+/* /* 為了更好的視覺融合，調整工具欄背景為透明或一致 */ */
+/* #nav-bar { */
+/*   background-color: var(--lwt-accent-color) !important; */
+/*   box-shadow: none !important; */
+/*   border-top: none !important; */
+/* } */

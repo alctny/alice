@@ -59,12 +59,12 @@ body {
 }
 
 #write {
-  max-width: 1350px;
+  max-width: 75%;
   padding-top: 20px;
 }
 
 #typora-source .CodeMirror-lines {
-  max-width: 70%;
+  max-width: 75%;
 }
 
 html,
@@ -359,7 +359,7 @@ kbd {
 }
 
 table {
-  max-width: 100%;
+  max-width: 75%;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
@@ -695,7 +695,7 @@ footer {
   color: inherit;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 75%) {
   footer {
     border-top: none;
   }

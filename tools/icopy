@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+f="$*"
+
+if [[ -z "$f" ]]; then
+  p="$(pwd)"
+  echo -n "$p" | pbcopy
+  echo "copyed '$p'"
+  exit 0
+fi
+
+if [[ ! -e "$f" ]]; then
+  echo "$f: No such file or directory (os error 2)"
+  exit 2
+fi
+
+p=$(realpath "$f")
+echo -n "$p" | pbcopy
+echo "copyed '$p'"

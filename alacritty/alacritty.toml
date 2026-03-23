@@ -31,6 +31,12 @@ args = [
 
 [window]
 opacity = 0.7
+# none:        完全不显示,无法通过鼠标移动窗口
+# transparent: 隐藏标题栏,但保留窗口控制按钮
+# buttonless:  同时隐藏标题栏和窗口控制按钮
+# 后两个选项在 macOS 上隐藏标题栏之后依旧可以通过顶部拖拽移动窗口
+# 但是只要隐藏了标题栏就无法创建 tab 页
+decorations = "buttonless"
 
 [window.dimensions]
 columns = 210
