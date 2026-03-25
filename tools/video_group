@@ -1,0 +1,114 @@
+#!/bin/bash
+
+set -e
+
+# 存放视频文件列表的临时文件
+tmp=$(mktemp)
+# 分组数量
+num=0
+# 默認的文件名分隔符
+fchar='.'
+# 用於存儲視頻總時長的累計值
+dura=0
+
+# --- 幫助信息函數 ---
+function usage() {
+  echo "作用: 將當前目錄下(不包含子目錄)的音視頻文件按一定規則分組"
+  echo "用法: $0 [選項]"
+  echo "選項:"
+  echo "  -n <num>          按照個數進行分組 (建立複本)"
+  echo "  -t -n <num>       按照時間等分將視頻分為 num 組"
+  echo "  -F <c>            按照分隔符 c 切割文件名，取第一部分分組"
+  exit 1
+}
+
+# --- 檢查是否為音視頻文件 ---
+function is_av() {
+  local f="$*"
+  [[ ! -f "$f" ]] && return 1
+  local mime=$(file --mime-type -b "$f" | awk -F'/' '{print $1}')
+  [[ "$mime" != "video" ]] && return 1
+  return 0
+}
+
+# --- 模式 A: 根據文件名分隔符分組 ---
+function by_chapter() {
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    dir=$(echo "$line" | awk -F"$fchar" '{print $1}')
+    [[ ! -d "$dir" ]] && mkdir -p "$dir"
+    mv "$line" "$dir"
+  done <"$tmp"
+}
+
+# --- 模式 B: 根據時長等分分組 ---
+function by_dura() {
+  local avg=$((dura / num))
+  echo "total duration: $dura"
+  echo "avg   duration: $avg"
+  eval mkdir -p {0..$((num - 1))}
+  local sum=0
+  local dir=0
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    f=${line% *}
+    t=${line##* }
+    mv "$f" "$dir"
+    sum=$((sum + t))
+    [[ $sum -ge $avg ]] && sum=0 && dir=$((dir + 1))
+  done <"$tmp"
+
+}
+
+# --- 模式 C: 按照文件數量平均分組 (默認模式) ---
+function by_num() {
+  local total=$(wc -l <$tmp)
+  local avg=$((total / num))
+  eval mkdir -p {0..$num}
+  local i=0
+  local j=0
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    mv "$line" "$i"
+    j=$((j + 1))
+    [[ $j -eq $avg ]] && j=0 && i=$((i + 1))
+  done <"$tmp"
+}
+
+# --- 獲取視頻時長 (秒) ---
+function av_durn() {
+  ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$*" | awk -F'.' '{print $1}'
+}
+
+# --- 解析命令行參數 ---
+while getopts "tn:F:" o; do
+  case $o in
+  t)
+    action=by_dura
+    ;;
+  n)
+    num=$OPTARG
+    ;;
+  F)
+    action=by_chapter
+    ;;
+  *)
+    usage
+    ;;
+  esac
+done
+
+action=${action:-by_num}
+echo "$action"
+
+for f in *; do
+  [[ ! -f "$f" ]] || ! is_av "$f" && continue
+  if [[ $action == by_dura ]]; then
+    d=$(av_durn "$f")
+    dura=$((dura + d))
+    echo "${f} ${d}" >>$tmp
+  else
+    echo "$f" >>$tmp
+  fi
+done
+
+$action
+
+rm $tmp
