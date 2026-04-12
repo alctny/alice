@@ -9,6 +9,8 @@
 > `userContent.css` 用於控制網頁樣式
 
 
+browser.translations.automaticallyPopup
+
 ## 外部資源
 
 - [Fire Fox 主題商店](https://firefoxcss-store.github.io/)

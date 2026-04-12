@@ -120,4 +120,6 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "chat.viewSessions.orientation": "stacked",
+  "atomicviz.features.lastNotified": "3.5.3",
 }

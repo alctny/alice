@@ -46,7 +46,6 @@ style:
   # 拼音或词句是否显示在键入位置
   inline_preedit: true            # true | false  键入码显示位置
   inline_candidate: false         # true | false  选中词显示位置
-
   memorize_size: true             # true | false  候选窗口吸附到屏幕边缘，以减少位置跳动
   mutual_exclusive: false         # true | false  半透明颜色进行叠加计算
   translucency: false             # true | false  磨砂背景，仅在背景颜色为透明时可见
@@ -88,6 +87,4 @@ preset_color_schemes:
     hilited_text_color: 0x705B58                 # 高亮拼音 (需要开启内嵌编码) Surface2
     hilited_comment_text_color: 0x443231         # 注解文字高亮 Surface0
     comment_text_color: 0x705B58                 # 拼音等提示文字颜色 Surface2
-
-
 

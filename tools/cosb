@@ -16,10 +16,8 @@ function linux_clean() {
 function mac_clean() {
   [[ -d $HOME/.local/share/Trash ]] && rm -rf $HOME/.local/share/Trash
   find . -type f -name '.DS_Store' -delete
-
-  for d in ~/*; do
-    [[ -d "$d" ]] && dot_clean "$d"
-  done
+  find . -type f -name '._*' -delete
+  dot_clean .
 }
 
 if [[ $(uname -s) == "Darwin" ]]; then
