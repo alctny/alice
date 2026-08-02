@@ -19,15 +19,24 @@
   "debug.console.fontSize": 16,                               // 控制台字体大小
   "update.mode": "none",                                      // 关闭自动更新
   "update.showReleaseNotes": false,                           // 不查看更新信息
-  "security.workspace.trust.untrustedFiles": "open",          // 允许打开不信任文件
-  "workbench.colorTheme": "One Dark Pro Darker",              // 主题
+  "workbench.colorTheme": "One Dark Pro",                     // 主题
   "debug.onTaskErrors": "abort",                              // debug 出现错误的时候中断 debug
   "workbench.tree.enableStickyScroll": true,                  // 文件树粘性滚动
   "workbench.editor.enablePreview": false,                    // 禁用预览
   "editor.renderWhitespace": "all",                           // 显示空白字符 
   "vsicons.dontShowNewVersionMessage": true,                  // 不顯示新版本信息
-  "window.customTitleBarVisibility": "never",                 // 隐藏标题栏,爲 never 的時候只有在 window.titleBarStyle=native 的時候有效
-  "window.titleBarStyle": "native",                           // 使用系統原生 titleBar
+
+  // UI
+  "workbench.startupEditor": "none",           // 启动页面
+  "vsicons.presets.hideExplorerArrows": false, // 隱藏左側文件管理頁面文件夾前面的箭頭符號
+  "workbench.iconTheme": "vscode-icons",       // 主题
+  "workbench.activityBar.location": "top",     // 活动栏位置
+  "workbench.layoutControl.enabled": false,    // 是否顯示佈局控制按鈕
+  "window.commandCenter": false,               // 顯示命令輸入窗格
+  "window.customTitleBarVisibility": "never",  // 隐藏标题栏,爲 never 的時候只有在 window.titleBarStyle=native 的時候有效
+  "window.titleBarStyle": "custom",            // 只有設置爲 native,在全屏時可以隱藏
+  "window.menuStyle": "native",                // 按鈕樣式?
+  "window.menuBarVisibility": "hidden",        // 隐藏标题栏,只對非 macOS 系統有效
 
   // 文件管理
   "explorer.confirmDelete": false,                    // 删除不需要确认
@@ -63,6 +72,15 @@
   "liveServer.settings.donotShowInfoMsg": true,   // 不顯示 live server 啓動信息
   "fittencode.languagePreference.displayPreference": "zh-cn", // fitten code 顯示語言
   "fittencode.languagePreference.commentPreference": "zh-cn", // fitten code 回答語言
+  "chat.viewSessions.orientation": "stacked",
+  "chat.tips.enabled": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "codingcopilot.enableNextEditSuggestions": false,
 
   // 终端
   "terminal.integrated.cursorStyle": "block",                            // 光标样式为竖线
@@ -74,23 +92,32 @@
     "bash": { "path": "bash", "icon": "terminal-bash", "args": ["-l"] }, // 以登錄狀態初始化 bash
   },
 
-  // UI
-  "workbench.startupEditor": "none",                      // 启动页面
-  "window.menuBarVisibility": "hidden",                   // 隐藏标题栏
-  "vsicons.presets.hideExplorerArrows": false,            // 隱藏左側文件管理頁面文件夾前面的箭頭符號
-  "workbench.iconTheme": "vscode-icons",                  // 主题
-  "workbench.activityBar.location": "top",                // 活动栏位置
-  "workbench.layoutControl.enabled": false,               // 是否顯示佈局控制按鈕
-  "window.commandCenter": false,                          // 顯示命令輸入窗格
-
   // 语言
-  "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 150}",   // C/C++ 代码格式
-  "C_Cpp.formatting": "clangFormat",                                                // C/C++ 格式化引擎
-  "git.openRepositoryInParentFolders": "never",                                     // 是否加载父级目录中的 .git
   "[python]": {
-      "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": true
   },
+  "[rust]": {
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.openRepositoryInParentFolders": "never",                                     // 是否加载父级目录中的 .git
   "autopep8.args": [
+    "-a",
+    "-a",
     "--indent-size=2",
     "--max-line-length=120"
   ],
@@ -99,27 +126,14 @@
     "--indent-size=2"
   ],
   "go.lintTool": "revive",
-  "[rust]": {
-    "editor.inlayHints.enabled": "offUnlessPressed",
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2
-  },
+  // C/C++
   "cmake.showConfigureWithDebuggerNotification": false,
   "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: google, ColumnLimit: 150}",   // C/C++ 代码格式
+  "C_Cpp.formatting": "clangFormat",                                                // C/C++ 格式化引擎
   "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
     "workbench.action.tasks.runTask"
   ],
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "atomicviz.installed": true,
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "chat.viewSessions.orientation": "stacked",
-  "atomicviz.features.lastNotified": "3.5.3",
+  "security.workspace.trust.untrustedFiles": "open",
 }

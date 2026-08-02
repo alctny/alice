@@ -37,4 +37,10 @@
     "command": "workbench.action.navigateForward",
     "when": "canNavigateForward"
   },
+  // 屏蔽的快捷鍵
+  {
+    "key": "shift+cmd+i",
+    "command": "-workbench.action.chat.openagent",
+    "when": "config.chat.agent.enabled && !chatSetupDisabledInWorkspace && !chatSetupHidden"
+  },
 ]

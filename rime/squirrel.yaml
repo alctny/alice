@@ -43,6 +43,7 @@ style:
   # 候选框与文字的排列方式
   candidate_list_layout: stacked  # stacked | linear       皮肤横竖排显示是调整这个
   text_orientation: horizontal    # horizontal | vertical  文字方向
+
   # 拼音或词句是否显示在键入位置
   inline_preedit: true            # true | false  键入码显示位置
   inline_candidate: false         # true | false  选中词显示位置
