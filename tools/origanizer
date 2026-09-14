@@ -9,7 +9,7 @@ trap 'echo -e "\033[1;90;31m$BASH_SOURCE:$LINENO $BASH_COMMAND\033[0m"' ERR
 
 # 輸出錯誤信息並退出
 function err() {
-  eeho -e "\033[1;90;31m$@\033[0m" >&2
+  echo -e "\033[1;90;31m$@\033[0m" >&2
   exit 1
 }
 

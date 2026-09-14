@@ -1,6 +1,7 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+#:schema = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
 ratio          = [1, 2, 2]
@@ -31,7 +32,8 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  # { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = "${EDITOR:-nvim} %s", desc = "$EDITOR",      for = "unix", block = true },
   { run = 'code "$1"', orphan = true, desc = "Visual Studio Code", for = "linux" },
 ]
 
@@ -109,8 +111,8 @@ suppress_preload = false
 [plugin]
 fetchers = [
   # Mimetype
-  { id = "mime", url = "*", run = "mime.local", if = "!mime", prio = "high" },
-  { id = "mime", url = "*/", run = "mime.dir", prio = "high" },
+  { group = "mime", url = "*", run = "mime.local", if = "!mime", prio = "high" },
+  { group = "mime", url = "*/", run = "mime.dir", prio = "high" },
 ]
 
 preloaders = [
