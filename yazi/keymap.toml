@@ -37,6 +37,7 @@ keymap = [
   # Copy/Yank/Delete/Move
   { on = ["y", "y"], run = "yank",                  desc = "Copy the selected characters" },
   { on = ["y", "f"], run = "copy path",             desc = "Copy the file path" },
+  { on = ["y", "F"], run = "plugin system-copy",    desc = "Copy files to system clipboard"},
   { on = ["y", "d"], run = "copy dirname",          desc = "Copy the directory path" },
   { on = ["y", "n"], run = "copy filename",         desc = "Copy the filename" },
   { on = ["y", "e"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
@@ -181,17 +182,15 @@ keymap = [
   { on = "<A-d>", run = "kill forward",  desc = "Kill forwards to the end of the current word" },
 
   # Cut/Yank/Paste
-  { on = "p",         run = "paste",                             desc = "Paste yanked files" },
-  { on = "P",         run = "paste --force",                     desc = "Paste yanked files (overwrite if the destination exists)" },
-  { on = "c", run = "delete --cut --insert",                     desc = "Cut the selected characters, and enter insert mode" },
-  { on = "C", run = [ "delete --cut --insert", "move 999" ],     desc = "Cut until the EOL, and enter insert mode" },
-  { on = ["d", "D"], run = [ "delete --cut", "move 999" ],              desc = "Cut until the EOL" },
-  { on = [ "y", "f" ], run = "copy path",             desc = "Copy the file path" },
-  { on = [ "y", "d" ], run = "copy dirname",          desc = "Copy the directory path" },
-  { on = [ "y", "n" ], run = "copy filename",         desc = "Copy the filename" },
-
-
-
+  { on = "p",          run = "paste",                                 desc = "Paste yanked files" },
+  { on = "P",          run = "paste --force",                         desc = "Paste yanked files (overwrite if the destination exists)" },
+  { on = "c",          run = "delete --cut --insert",                 desc = "Cut the selected characters, and enter insert mode" },
+  { on = "C",          run = [ "delete --cut --insert", "move 999" ], desc = "Cut until the EOL, and enter insert mode" },
+  { on = ["d", "D"],   run = [ "delete --cut", "move 999" ],          desc = "Cut until the EOL" },
+  { on = [ "y", "f" ], run = "copy path",                             desc = "Copy the file path" },
+  { on = [ "y", "d" ], run = "copy dirname",                          desc = "Copy the directory path" },
+  { on = [ "y", "n" ], run = "copy filename",                         desc = "Copy the filename" },
+ 
   # Undo/Redo
   { on = "u",     run = "undo", desc = "Undo the last operation" },
   { on = "<C-r>", run = "redo", desc = "Redo the last operation" },
