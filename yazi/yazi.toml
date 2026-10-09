@@ -20,8 +20,8 @@ title_format   = ""
 [preview]
 wrap            = "yes"
 tab_size        = 2
-max_width       = 600
-max_height      = 900
+max_width       = 3000
+max_height      = 3000
 cache_dir       = ""
 image_delay     = 30
 image_filter    = "triangle"
@@ -32,45 +32,44 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  # { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = "${EDITOR:-nvim} %s", desc = "$EDITOR",      for = "unix", block = true },
-  { run = 'code "$1"', orphan = true, desc = "Visual Studio Code", for = "linux" },
+  { run = 'code %s', orphan = true, desc = "Visual Studio Code", for = "linux" },
 ]
 
 open = [
-  { run = 'open "$1"', orphan = true, desc = "Finder", for = "macos" },
-  { run = 'code "$1"', orphan = true, desc = "Visual Studio Code", for = "linux" },
-  { run = 'Typora "$1"', orphan = true, desc = "Typoea", for = "linux" },
+  { run = 'open %s', orphan = true, desc = "Finder", for = "macos" },
+  { run = 'code %s', orphan = true, desc = "Visual Studio Code", for = "linux" },
+  { run = 'Typora %s', orphan = true, desc = "Typoea", for = "linux" },
 ]
 
 img = [
-  { run = 'feh -Z --zoom-step 3 --image-bg "#416e74" --keep-zoom-vp "$@" .', orphan = true, desc = "feh", for = "linux" },
-  { run = 'open "$1"', orphan = true, desc = "feh", for = "macos" }
+  { run = 'feh -Z --zoom-step 3 --image-bg "#416e74" --keep-zoom-vp %s .', orphan = true, desc = "feh", for = "linux" },
+  { run = 'open %s', orphan = true, desc = "feh", for = "macos" }
 ]
 
 reveal = [
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "linux" },
-  { run = 'file "$1"', block = true, desc = "Show EXIF", for = "macos" }
+  { run = '''exiftool %s; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "linux" },
+  { run = 'file %s', block = true, desc = "Show EXIF", for = "macos" }
 ]
 
-extract = [{ run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" }]
+extract = [{ run = 'ya pub extract --list %s', desc = "Extract here", for = "unix" }]
 
 play = [
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-  { run = 'vlc "$@"', orphan = true, for = "unix" },
-  { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
-  { run = 'open "$@"', orphan = true, for = "macos" },
+  { run = 'mpv --force-window %s', orphan = true, for = "unix" },
+  { run = 'vlc %s',                orphan = true, for = "unix" },
+  { run = 'open %s',               orphan = true, for = "macos" },
+  { run = '''mediainfo %s; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 
 md = [
-  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'code "$1"', orphan = true, desc = "Visual Studio Code", for = "linux" },
-  { run = 'Typora "$1"', orphan = true, desc = "Typoea", for = "linux" },
+  { run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'code %s', orphan = true, desc = "Visual Studio Code", for = "linux" },
+  { run = 'Typora %s', orphan = true, desc = "Typoea", for = "linux" },
 ]
 
 browser = [
-  { run = 'google-chrome "$1"', orphan = true, desc = "Google Chrome", for = "linux" },
-  { run = 'firefox "$1"', orphan = true, desc = "Fira Code", for = "linux" },
+  { run = 'google-chrome %s', orphan = true, desc = "Google Chrome", for = "linux" },
+  { run = 'firefox %s',       orphan = true, desc = "FireFox",       for = "linux" },
 ]
 
 [open]
@@ -150,8 +149,30 @@ previewers = [
   { mime = "application/vnd.ms-opentype", run = "font" },
   # Empty file
   { mime = "inode/x-empty", run = "empty" },
+
+  # plugin: yazi-rs/plugins:piper
+  { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -s=dark "$1"' },
+  { url = "*",    run = 'piper -- echo "$1"' },
+  { url = "*/",   run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'},
+
   # Fallback
   { url = "*", run = "file" },
+]
+
+prepend_preloaders = [
+  # plugin: ENEmyr/center-media
+  { mime = "video/*", run  = "center-media --no-preview" },
+  { mime = "{audio,video,image}/*",                                                         run = "center-media" },
+  { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "center-media" },
+  { url = "*.{ai,eps,ait}",                                                                 run = "center-media" },
+]
+
+prepend_previewers = [
+  # plugin: ENEmyr/center-media
+  { mime = "video/*", run  = "center-media --no-preview" },
+  { mime = "{audio,video,image}/*",                                                         run = "center-media" },
+  { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "center-media" },
+  { url = "*.{ai,eps,ait}",                                                                 run = "center-media" },
 ]
 
 [input]
@@ -228,3 +249,4 @@ sort_translit  = false
 
 [log]
 enabled = false
+

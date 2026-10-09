@@ -37,8 +37,8 @@ keymap = [
   # Copy/Yank/Delete/Move
   { on = ["y", "y"], run = "yank",                  desc = "Copy the selected characters" },
   { on = ["y", "f"], run = "copy path",             desc = "Copy the file path" },
-  { on = ["y", "F"], run = "plugin system-copy",    desc = "Copy files to system clipboard"},
-  { on = ["y", "d"], run = "copy dirname",          desc = "Copy the directory path" },
+  { on = ["y", "u"], run = "copy url",              desc = "Copy the file URL" },
+  { on = ["y", "d"], run = "copy dirpath",          desc = "Copy the directory path" },
   { on = ["y", "n"], run = "copy filename",         desc = "Copy the filename" },
   { on = ["y", "e"], run = "copy name_without_ext", desc = "Copy the filename without extension" },
   { on = ["d", "d"], run = "yank --cut",            desc = "Yank selected files (cut)" },
@@ -75,7 +75,7 @@ keymap = [
   # Filter
   { on = ["f", "f"], run = "plugin fzf",            desc = "Jump to a directory or reveal a file using fzf" },
   { on = ["f", "s"], run = "filter --smart",        desc = "Filter files" },
-  { on = ["f", "d"], run = "search fd",             desc = "Search files by name using fd" },
+  { on = ["f", "d"], run = "plugin fd",             desc = "Search files by name using fd" },
   { on = ["/"],      run = "find --smart",          desc = "Find next file" },
   { on = "n",        run = "find_arrow",            desc = "Go to the next found" },
   { on = "N",        run = "find_arrow --previous", desc = "Go to the previous found" },
@@ -106,6 +106,21 @@ keymap = [
 
   # Help
   { on = "?",    run = "help", desc = "Open help" },
+
+
+  # plugin yazi-rs/plugins:toggle-pane
+  { on   = "T", run  = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+  { on   = "F", run  = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane"},
+]
+
+prepend_keymap = [
+  # plugin AnirudhG07/plugins-yazi:copy-file-contents
+  { on = [ "y", "c" ], run = ["plugin copy-file-contents -- plain"], desc = "Copy contents of file(s)" },
+  { on = [ "y", "C" ], run = ["plugin copy-file-contents -- multi"], desc = "Copy contents of file(s) with filename + code fence" },
+  # plugin XYenon/clipboard
+  { on  = [ "y", "F" ], run = [ "yank", 'plugin clipboard -- --action=copy'], desc = "Yank selected files (copy)" },
+  { on  = [ "y", "X" ], run = [ "yank --cut", 'plugin clipboard -- --action=copy' ], desc = "Yank selected files (cut)" },
+  { on  = "P",          run = [ 'plugin clipboard -- --action=paste' ], desc = "Paste yanked system clipboard files" },
 ]
 
 [tasks]
@@ -188,7 +203,7 @@ keymap = [
   { on = "C",          run = [ "delete --cut --insert", "move 999" ], desc = "Cut until the EOL, and enter insert mode" },
   { on = ["d", "D"],   run = [ "delete --cut", "move 999" ],          desc = "Cut until the EOL" },
   { on = [ "y", "f" ], run = "copy path",                             desc = "Copy the file path" },
-  { on = [ "y", "d" ], run = "copy dirname",                          desc = "Copy the directory path" },
+  { on = [ "y", "d" ], run = "copy dirpath",                          desc = "Copy the directory path" },
   { on = [ "y", "n" ], run = "copy filename",                         desc = "Copy the filename" },
  
   # Undo/Redo
@@ -243,3 +258,4 @@ keymap = [
   # Filtering
   { on = "f", run = "filter", desc = "Apply a filter for the help items" },
 ]
+

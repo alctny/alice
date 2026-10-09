@@ -1,0 +1,27 @@
+[[plugin.deps]]
+use = "XYenon/clipboard"
+rev = "b25ec96"
+hash = "9f07d7de37a430833ef33b92c0bcf8cb"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "6229767"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "6229767"
+hash = "d1e0499cae5f3aeb628c267616d4b682"
+
+[[plugin.deps]]
+use = "ENEmyr/center-media"
+rev = "3fca3a5"
+hash = "bb567d35068b64c80569c1d86f1a053a"
+
+[[plugin.deps]]
+use = "AnirudhG07/plugins-yazi:copy-file-contents"
+rev = "3f4f1a3"
+hash = "421263a8558fbd2fdb07a75f074cc6e3"
+
+[flavor]
+deps = []
