@@ -40,7 +40,7 @@ opt.writebackup = false
 opt.swapfile = false
 opt.updatetime = 50
 -- undo and redo
--- opt.undofile = true
+opt.undofile = false
 -- opt.undodir = vim.fn.expand("$HOME/.local/share/nvim/undo")
 -- 使用系统剪贴板
 opt.clipboard = "unnamedplus"
@@ -98,4 +98,3 @@ buf.tabstop = 2
 -- " ███    ███    ███ ███ ▄█▄ ███ ███▄     ▄█ ███  ███  ",
 -- " █▀     ██████████  ▀███▀███▀   ▀████████▀ █▀   █▀   ",
 -- "                                                     ",
-

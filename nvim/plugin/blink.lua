@@ -1,12 +1,10 @@
+-- 自動補全快
+
 return {
-  {
-    "saghen/blink.cmp",
-    opts = {
-      keymap = {
-        preset = "default",
-        ["<Tab>"] = { "select_and_accept", "fallback" },
-        ["<CR>"] = { "fallback" },
-      },
-    },
-  },
+	{
+		"saghen/blink.cmp",
+		opts = {
+			keymap = { preset = "default", ["<Tab>"] = { "select_and_accept", "fallback" }, ["<CR>"] = { "fallback" } },
+		},
+	},
 }
