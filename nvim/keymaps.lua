@@ -1,4 +1,42 @@
--- 快捷键绑定
+-- ---------- 快捷键绑定 ----------
+-- 一些特殊鍵在 Neovim 中的名稱
+--
+-- Modifier Keys (裝飾鍵)
+-- Ctrl        <C>
+-- Shift       <S>
+-- Alt         <M>
+-- Option      <M>
+-- Meta        <M>
+-- Command     <D>
+-- Super       <D>/<M>
+-- Windows     <D>/<M>
+--
+-- 控制按鍵
+-- Escape    <Esc>
+-- Enter     <CR>
+-- Tab       <Tab>
+-- Space     <Space>
+-- Backspace <BS>
+-- Delete    <Del>
+--
+-- 導航鍵
+-- ↑                 <Up>
+-- ↓                 <Down>
+-- ←                 <Left>
+-- →                 <Right>
+-- Home              <Home>
+-- End               <End>
+-- PageUp            <PageUp>
+-- PageDown          <PageDown>
+-- Insert            <Insert>
+-- Delete            <Del>
+-- Backspace         <BS>
+-- Help              <Help>
+-- Undo（部分鍵盤）  <Undo>
+-- Clear（部分鍵盤） <Clear>
+--
+-- F1~F12 在 Neovim 中的表示就是 <F1>~<F12> 本身
+-- --------------------------------
 local opt = { noremap = true, silent = true }
 local map = vim.keymap.set
 
@@ -86,3 +124,9 @@ map("i", "<C-v>", "<Esc>pa", opt)
 
 -- 自动复制到系统剪贴板
 map({ "v", "n" }, "<leader>y", '"+y', opt)
+
+-- 將 Laynvim 部分默認插件快捷鍵恢復默認
+map({ "n" }, "s", "s", opt)
+
+-- for macOS only
+map({ "n", "i", "v", "s", "x" }, "<D-s>", "<cmd>w<cr>", { desc = "Save File", silent = true })

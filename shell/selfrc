@@ -1,3 +1,45 @@
 #!/usr/bin/env bash
 
+function append_path() {
+  case ":$PATH:" in
+  *:"$1":*) ;;
+  *)
+    PATH="${PATH:+$PATH:}$1"
+    ;;
+  esac
+}
+
+function imotd() {
+  local -a logo
+  logo=(
+    '                                                   '
+    ' ▄█     ▄████████  ▄█     █▄   ▄███████▄   ▄█   ▄█ '
+    '███    ███    ███ ███     ███ ██▀     ▄██ ███  ███ '
+    '███▌   ███    █▀  ███     ███       ▄███▀ ███▌ ███▌'
+    '███▌  ▄███▄▄▄     ███     ███  ▀█▀▄███▀▄▄ ███▌ ███▌'
+    '███▌ ▀▀███▀▀▀     ███     ███   ▄███▀   ▀ ███▌ ███▌'
+    '███    ███    █▄  ███     ███ ▄███▀       ███  ███ '
+    '███    ███    ███ ███ ▄█▄ ███ ███▄     ▄█ ███  ███ '
+    '█▀     ██████████  ▀███▀███▀   ▀████████▀ █▀   █▀  '
+    '                                                   '
+  )
+
+  local width=${COLUMNS:-$(tput cols 2>/dev/null || echo 80)}
+  local line padding
+
+  for line in "${logo[@]}"; do
+    padding=$(((width - ${#line}) / 2))
+    ((padding < 0)) && padding=0
+    printf '%*s%s\n' "$padding" '' "$line"
+  done
+}
+
 alias cime="find . -type f | sed -n 's/.*\.//p' | sort | uniq -c | sort -nr"
+alias dedup='rmlint'
+alias rm=gomi
+
+if command -v xclip; then
+  alias xcopy='xclip -selection clipboard'
+elif command -v; then
+  alias xcopy='pbcopy'
+fi

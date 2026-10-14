@@ -9,6 +9,14 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
+# C-g open lazygit
+function lazygit-widget() {
+  lazygit
+  zle reset-prompt
+}
+zle -N lazygit-widget
+bindkey '^G' lazygit-widget
+
 if [[ -f $HOME/.profile ]]; then
   source $HOME/.profile
 fi
@@ -17,3 +25,4 @@ if [[ -d $HOME/.completion ]]; then
   fpath=($HOME/.completion $fpath)
   compinit
 fi
+

@@ -1,0 +1,6 @@
+lazygit-widget() {
+  lazygit
+  printf '\n'
+}
+
+bind -x '"\C-G": lazygit-widget'

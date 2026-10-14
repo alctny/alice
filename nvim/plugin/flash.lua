@@ -19,8 +19,6 @@ return {
 				mode = { "n", "x", "o" },
 				desc = "Flash",
 			},
-			{ "s", mode = { "n", "x", "o" }, false },
-			{ "S", mode = { "n", "x", "o" }, false },
 		},
 	},
 }

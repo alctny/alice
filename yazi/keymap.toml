@@ -5,8 +5,8 @@
 
 [mgr]
 keymap = [
-  { on = "<C-c>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
-  { on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
+  { on = "<C-c>", run = "escape",          desc = "Exit visual mode, clear selected, or cancel search" },
+  { on = "<Esc>", run = "escape",          desc = "Exit visual mode, clear selected, or cancel search" },
   { on = "q",     run = "quit --cwd-file", desc = "Exit the process without writing cwd-file" },
 
   # tab manager
@@ -109,7 +109,8 @@ keymap = [
 
 
   # plugin yazi-rs/plugins:toggle-pane
-  { on   = "T", run  = "plugin toggle-pane min-preview", desc = "Show or hide the preview pane" },
+  # min-parent max-parent min-current max-current min-preview max-preview reset
+  { on   = "T", run  = "plugin toggle-pane min-parent",  desc = "Show or hide the preview pane" },
   { on   = "F", run  = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane"},
 ]
 
@@ -118,9 +119,9 @@ prepend_keymap = [
   { on = [ "y", "c" ], run = ["plugin copy-file-contents -- plain"], desc = "Copy contents of file(s)" },
   { on = [ "y", "C" ], run = ["plugin copy-file-contents -- multi"], desc = "Copy contents of file(s) with filename + code fence" },
   # plugin XYenon/clipboard
-  { on  = [ "y", "F" ], run = [ "yank", 'plugin clipboard -- --action=copy'], desc = "Yank selected files (copy)" },
+  { on  = [ "y", "F" ], run = [ "yank", 'plugin clipboard -- --action=copy'],        desc = "Yank selected files (copy)" },
   { on  = [ "y", "X" ], run = [ "yank --cut", 'plugin clipboard -- --action=copy' ], desc = "Yank selected files (cut)" },
-  { on  = "P",          run = [ 'plugin clipboard -- --action=paste' ], desc = "Paste yanked system clipboard files" },
+  { on  = "P",          run = [ 'plugin clipboard -- --action=paste' ],              desc = "Paste yanked system clipboard files" },
 ]
 
 [tasks]
@@ -217,10 +218,10 @@ keymap = [
 [confirm]
 keymap = [
   { on = "<C-c>",   run = "close",          desc = "Cancel the confirm" },
-  { on = "y", run = "close --submit", desc = "Submit the confirm" },
-  { on = "n", run = "close",          desc = "Cancel the confirm" },
-  { on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
-  { on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
+  { on = "y",       run = "close --submit", desc = "Submit the confirm" },
+  { on = "n",       run = "close",          desc = "Cancel the confirm" },
+  { on = "<C-p>",   run = "arrow -1",       desc = "Move cursor up" },
+  { on = "<C-n>",   run = "arrow 1",        desc = "Move cursor down" },
 
   # Help
   { on = "?",    run = "help", desc = "Open help" },
@@ -231,12 +232,12 @@ keymap = [
   { on = "<C-c>",   run = "close",                                      desc = "Cancel completion" },
   { on = "<Tab>",   run = "close --submit",                             desc = "Submit the completion" },
   { on = "<Enter>", run = [ "close --submit", "close_input --submit" ], desc = "Submit the completion and input" },
-  { on = "<A-k>", run = "arrow -1", desc = "Move cursor up" },
-  { on = "<A-j>", run = "arrow 1",  desc = "Move cursor down" },
-  { on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
-  { on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
-  { on = "<C-p>", run = "arrow -1", desc = "Move cursor up" },
-  { on = "<C-n>", run = "arrow 1",  desc = "Move cursor down" },
+  { on = "<A-k>",   run = "arrow -1",                                   desc = "Move cursor up" },
+  { on = "<A-j>",   run = "arrow 1",                                    desc = "Move cursor down" },
+  { on = "<Up>",    run = "arrow -1",                                   desc = "Move cursor up" },
+  { on = "<Down>",  run = "arrow 1",                                    desc = "Move cursor down" },
+  { on = "<C-p>",   run = "arrow -1",                                   desc = "Move cursor up" },
+  { on = "<C-n>",   run = "arrow 1",                                    desc = "Move cursor down" },
 
   # Help
   { on = "?",    run = "help", desc = "Open help" },
@@ -250,8 +251,8 @@ keymap = [
   { on = "<C-c>", run = "close",  desc = "Hide the help" },
 
   # Navigation
-  { on = "k", run = "arrow -1", desc = "Move cursor up" },
-  { on = "j", run = "arrow 1",  desc = "Move cursor down" },
+  { on = "k",      run = "arrow -1", desc = "Move cursor up" },
+  { on = "j",      run = "arrow 1",  desc = "Move cursor down" },
   { on = "<Up>",   run = "arrow -1", desc = "Move cursor up" },
   { on = "<Down>", run = "arrow 1",  desc = "Move cursor down" },
 

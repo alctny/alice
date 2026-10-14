@@ -7,14 +7,14 @@ rcs=(
   $HOME/.selfrc
 )
 
-for f in ${rcs[*]}; do 
+for f in ${rcs[*]}; do
   [[ -f "$f" ]] && source $f
 done
 
-
 if [[ -d $HOME/.profile.d ]]; then
-  for f in $HOME/.profile.d/*; do 
+  for f in $HOME/.profile.d/*; do
     source $f
   done
 fi
 
+mesg n 2>/dev/null || true
