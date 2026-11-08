@@ -1,4 +1,5 @@
 -- 對多行按照特定字符或字符串進行對其
+
 local function setup()
 	local opt = function(desc)
 		return { noremap = true, silent = true, desc = desc }

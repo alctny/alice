@@ -33,3 +33,5 @@
 
 [pull]
   rebase = true
+[push]
+  followTags = true

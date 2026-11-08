@@ -21,7 +21,12 @@ return {
 				enabled = true,
 				preset = {
 					header = header,
-					keys = { { key = "q", action = ":qa", hidden = true } },
+					keys = {
+						{ key = "q", action = ":qa", hidden = true },
+						{ key = "n", action = ":ene | startinsert", hidden = true },
+						{ key = "x", action = ":LazyExtras", hidden = true },
+						{ key = "l", action = ":Lazy", hidden = true },
+					},
 				},
 			},
 		},

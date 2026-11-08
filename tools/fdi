@@ -1,0 +1,284 @@
+#!/usr/bin/env python3
+"""在目前工作目錄中尋找 dHash 相似的圖片。"""
+
+import sys
+
+
+def check_python():
+    if sys.version_info >= (3, 9):
+        return
+    print("fdi 需要 Python 3.9 或以上版本。", file=sys.stderr)
+    if sys.platform == "darwin":
+        print("macOS（已安裝 Homebrew）：brew install python", file=sys.stderr)
+    elif sys.platform == "win32":
+        print("請從 https://www.python.org/downloads/ 安裝 Python。", file=sys.stderr)
+    else:
+        print("Ubuntu / Debian：sudo apt install python3 python3-venv", file=sys.stderr)
+        print("Fedora：sudo dnf install python3", file=sys.stderr)
+    sys.exit(2)
+
+
+check_python()
+
+import argparse
+from datetime import datetime
+from itertools import combinations
+import json
+from pathlib import Path
+import shlex
+import subprocess
+
+
+EXTENSIONS = {
+    ".jpg", ".jpeg", ".jpe", ".jfif", ".png", ".webp", ".bmp",
+    ".gif", ".tif", ".tiff", ".ico", ".ppm", ".pgm", ".pbm", ".pnm",
+}
+
+
+def threshold(value):
+    number = int(value)
+    if not 0 <= number <= 64:
+        raise argparse.ArgumentTypeError("門檻必須介於 0–64。")
+    return number
+
+
+def load_pillow():
+    try:
+        from PIL import Image, ImageOps
+        if not hasattr(Image, "Resampling"):
+            raise ImportError("需要 Pillow 9.1 或以上版本")
+    except ImportError as exc:
+        command = [sys.executable, "-m", "pip", "install", "--upgrade", "Pillow>=9.1"]
+        command_text = subprocess.list2cmdline(command) if sys.platform == "win32" else shlex.join(command)
+        print("無法載入 Pillow：{}".format(exc), file=sys.stderr)
+        print("請執行：{}".format(command_text), file=sys.stderr)
+        return None
+    return Image, ImageOps
+
+
+def dhash(path, Image, ImageOps):
+    with Image.open(path) as source:
+        source.seek(0)
+        oriented = ImageOps.exif_transpose(source)
+        rgba = oriented.convert("RGBA")
+        background = Image.new("RGBA", rgba.size, "white")
+        background.alpha_composite(rgba)
+        gray = background.convert("L").resize((9, 8), Image.Resampling.LANCZOS)
+        # 舊版 Pillow 的 L 模式可直接讀取每個像素的位元組。
+        pixels = gray.get_flattened_data() if hasattr(gray, "get_flattened_data") else gray.tobytes()
+        result = 0
+        for y in range(8):
+            for x in range(8):
+                offset = y * 9 + x
+                result = (result << 1) | (pixels[offset] > pixels[offset + 1])
+        return result
+
+
+def show_scan_progress(processed, total):
+    width = 24
+    filled = processed * width // total if total else width
+    percent = processed * 100 // total if total else 100
+    bar = "#" * filled + "-" * (width - filled)
+    print("\r掃描圖片 [{}] {:3d}% {}/{}".format(bar, percent, processed, total),
+          end="\n" if processed == total else "", file=sys.stderr, flush=True)
+
+
+def similar_groups(hashes, limit):
+    neighbors = [set() for _ in hashes]
+    for left, right in combinations(range(len(hashes)), 2):
+        if bin(hashes[left][1] ^ hashes[right][1]).count("1") <= limit:
+            neighbors[left].add(right)
+            neighbors[right].add(left)
+
+    groups = []
+
+    def visit(group, candidates, excluded):
+        # 只輸出無法再加入其他成員的群組，且組內任兩張都相似。
+        if not candidates and not excluded:
+            if len(group) >= 2:
+                groups.append(sorted(group))
+            return
+        pivot = max(candidates | excluded, key=lambda item: len(candidates & neighbors[item]))
+        for item in sorted(candidates - neighbors[pivot]):
+            visit(group + [item], candidates & neighbors[item], excluded & neighbors[item])
+            candidates.remove(item)
+            excluded.add(item)
+
+    visit([], {item for item, links in enumerate(neighbors) if links}, set())
+    for group in sorted(groups):
+        distance = max(bin(hashes[left][1] ^ hashes[right][1]).count("1")
+                       for left, right in combinations(group, 2))
+        yield distance, [str(hashes[item][0]) for item in group]
+
+
+def image_details(root, names, Image):
+    details = {}
+    for name in sorted(names):
+        path = root / name
+        stat = path.stat()
+        with Image.open(path) as source:
+            width, height = source.size
+        details[name] = (stat.st_mtime_ns, width * height, stat.st_size, width, height)
+    return details
+
+
+def automatic_plan(groups, details, mode):
+    neighbors = {name: set() for _, names in groups for name in names}
+    for _, names in groups:
+        for name in names:
+            neighbors[name].update(other for other in names if other != name)
+    field, direction = {"do": (0, 1), "dn": (0, -1), "sb": (1, -1),
+                        "ss": (1, 1), "fb": (2, -1), "fs": (2, 1)}[mode]
+    order = sorted(neighbors, key=lambda name: (direction * details[name][field], name))
+    remaining = set(order)
+    plan = []
+    for keeper in order:
+        if keeper not in remaining:
+            continue
+        removed = sorted(neighbors[keeper] & remaining)
+        remaining.difference_update(removed)
+        remaining.remove(keeper)
+        if removed:
+            plan.append(([keeper], removed))
+    return plan
+
+
+def interactive_plan(groups, details):
+    plan, removed, protected = [], set(), set()
+    for group_number, (_, names) in enumerate(groups, 1):
+        available = [name for name in names if name not in removed]
+        if len(available) < 2:
+            continue
+        print("\n群組 {}/{}：".format(group_number, len(groups)), file=sys.stderr)
+        for index, name in enumerate(available, 1):
+            mtime, _, size, width, height = details[name]
+            timestamp = datetime.fromtimestamp(mtime / 1_000_000_000).isoformat(sep=" ", timespec="seconds")
+            print("  {}. {!r}  {}×{}  {} bytes  {}{}".format(
+                index, name, width, height, size, timestamp,
+                " [已保留]" if name in protected else ""), file=sys.stderr)
+        while True:
+            print("輸入要保留的編號（多個以空白或逗號分隔；s 跳過；q 取消全部刪除）：",
+                  end="", file=sys.stderr, flush=True)
+            try:
+                answer = input().strip().lower()
+            except (EOFError, KeyboardInterrupt):
+                print(file=sys.stderr)
+                return None
+            if answer == "q":
+                return None
+            if answer == "s":
+                protected.update(available)
+                break
+            try:
+                indices = {int(value) for value in answer.replace(",", " ").split()}
+                if not indices or not all(1 <= index <= len(available) for index in indices):
+                    raise ValueError
+            except ValueError:
+                print("請輸入有效的編號、s 或 q。", file=sys.stderr)
+                continue
+            keep = [name for index, name in enumerate(available, 1) if index in indices]
+            if not (protected & set(available)).issubset(keep):
+                print("請包含標記為 [已保留] 的圖片。", file=sys.stderr)
+                continue
+            discard = [name for name in available if name not in keep]
+            protected.update(keep)
+            removed.update(discard)
+            if discard:
+                plan.append((keep, discard))
+            break
+    return plan
+
+
+def delete_similar(root, groups, mode, dry_run, Image):
+    links = {name for _, names in groups for name in names if (root / name).is_symlink()}
+    for name in sorted(links):
+        print("不參與刪除：符號連結 {!r}".format(name), file=sys.stderr)
+    groups = [(distance, [name for name in names if name not in links]) for distance, names in groups]
+    groups = [(distance, names) for distance, names in groups if len(names) >= 2]
+    try:
+        details = image_details(root, {name for _, names in groups for name in names}, Image)
+    except (OSError, ValueError, Image.DecompressionBombError) as exc:
+        print("無法讀取刪除所需的圖片資訊，未刪除任何檔案：{}".format(exc), file=sys.stderr)
+        return 2
+    plan = interactive_plan(groups, details) if mode == "i" else automatic_plan(groups, details, mode)
+    if plan is None:
+        print("已取消，未刪除任何檔案。", file=sys.stderr)
+        return 0
+    deleted, failed = 0, 0
+    for keep, discard in plan:
+        for name in keep:
+            print("保留：{!r}".format(name), file=sys.stderr)
+        if not all((root / name).is_file() for name in keep):
+            print("保留圖片已不存在，跳過對應刪除。", file=sys.stderr)
+            failed += len(discard)
+            continue
+        for name in discard:
+            if dry_run:
+                print("預計刪除：{!r}".format(name), file=sys.stderr)
+                deleted += 1
+                continue
+            try:
+                (root / name).unlink()
+            except OSError as exc:
+                failed += 1
+                print("刪除失敗 {!r}：{}".format(name, exc), file=sys.stderr)
+            else:
+                deleted += 1
+                print("已刪除：{!r}".format(name), file=sys.stderr)
+    print("{} {} 張圖片，失敗 {} 張。".format("預計刪除" if dry_run else "已刪除", deleted, failed),
+          file=sys.stderr)
+    return 1 if failed else 0
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(prog="fdi", description=__doc__)
+    parser.add_argument("-r", "--recursive", action="store_true", help="包含子目錄")
+    parser.add_argument("-t", "--threshold", type=threshold, default=5, help="相似度門檻 0–64（預設：5）")
+    parser.add_argument("--format", choices=("tsv", "jsonl"), default="tsv", help="輸出格式（預設：無表頭 TSV）")
+    parser.add_argument("-d", "--delete", choices=("i", "do", "dn", "sb", "ss", "fb", "fs"),
+                        help="掃描後永久刪除相似圖片：i 交互選擇；do/dn 保留修改時間最早/最晚；"
+                             "sb/ss 保留像素數最大/最小；fb/fs 保留檔案位元組最大/最小")
+    parser.add_argument("--dry-run", action="store_true", help="搭配 -d 預覽保留及刪除清單，不刪除檔案")
+    args = parser.parse_args(argv)
+    if args.dry_run and args.delete is None:
+        parser.error("--dry-run 必須搭配 -d / --delete。")
+    pillow = load_pillow()
+    if pillow is None:
+        return 2
+    Image, ImageOps = pillow
+    root = Path.cwd()
+    candidates = root.rglob("*") if args.recursive else root.iterdir()
+    hashes = []
+    skipped = 0
+    try:
+        paths = sorted(path for path in candidates if path.suffix.lower() in EXTENSIONS and path.is_file())
+    except OSError as exc:
+        print("無法掃描目錄：{}".format(exc), file=sys.stderr)
+        return 2
+    show_progress = sys.stderr.isatty()
+    if show_progress:
+        show_scan_progress(0, len(paths))
+    for processed, path in enumerate(paths, 1):
+        try:
+            hashes.append((path.relative_to(root), dhash(path, Image, ImageOps)))
+        except (OSError, ValueError, Image.DecompressionBombError) as exc:
+            skipped += 1
+            if show_progress:
+                print(file=sys.stderr)
+            print("跳過 {}：{}".format(path.relative_to(root), exc), file=sys.stderr)
+        if show_progress:
+            show_scan_progress(processed, len(paths))
+    groups = list(similar_groups(hashes, args.threshold))
+    for distance, paths in groups:
+        if args.format == "jsonl":
+            print(json.dumps({"distance": distance, "paths": paths}, ensure_ascii=False))
+        else:
+            print("\t".join([str(distance)] + paths))
+    print("已讀取 {} 張圖片，跳過 {} 張，找到 {} 組相似圖片。".format(len(hashes), skipped, len(groups)), file=sys.stderr)
+    if args.delete:
+        return delete_similar(root, groups, args.delete, args.dry_run, Image)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

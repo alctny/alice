@@ -1,0 +1,44 @@
+# 外部配置,主要在於 Linux 和 Mac 上對 Supper 鍵的作用不同
+config-file = keybinds.conf
+theme = catppuccin-mocha.conf
+
+# 禁用自動檢查更新
+auto-update = "off"
+
+# 設置背景透明度 (0.0 到 1.0，0 為完全透明，1 為不透明)
+background-opacity = 0.8
+
+# 隱藏標題欄 (Window Decorations)
+# 不管是使用 false 還是 none 都會使得j ghostty
+# 無法創建 tab 頁,與 Alacritty 相同j
+window-decoration = none
+
+# 隱藏滾動條
+scrollbar = never
+
+# 光標
+cursor-style = block
+cursor-style-blink = true
+
+# 選中既複製
+copy-on-select = true
+
+right-click-action = ignore
+
+bell-features = no-audio
+
+# 模糊效果
+background-blur = true
+
+# 字體
+font-family = FiraCode Nerd Font Regular
+font-family-bold = FiraCode Nerd Font Bold
+font-family-italic = FiraCode Nerd Font Italic
+font-size = 12
+font-feature = "calt"
+
+# 關閉視窗時不退出背景服務（確保能繼續用 F1 喚出）
+# macOS-icon-frame = true
+quick-terminal-position = center
+quick-terminal-size = 85%,85%
+

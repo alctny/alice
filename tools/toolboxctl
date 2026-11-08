@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+service="local.mcp.toolbox"
+target="gui/$(id -u)/$service"
+plist="$HOME/Library/LaunchAgents/$service.plist"
+
+case "$1" in
+start)
+  launchctl bootstrap "gui/$(id -u)" "$plist"
+  ;;
+stop)
+  launchctl bootout "$target"
+  ;;
+restart)
+  if launchctl print "$target" &>/dev/null; then
+    launchctl kickstart -k "$target"
+  else
+    launchctl bootstrap "gui/$(id -u)" "$plist"
+  fi
+  ;;
+status)
+  launchctl print "$target"
+  ;;
+logs)
+  tail -f "$HOME/.local/state/toolbox/stderr.log"
+  ;;
+*)
+  echo "Usage: toolboxctl {start|stop|restart|status|logs}"
+  return 1
+  ;;
+esac

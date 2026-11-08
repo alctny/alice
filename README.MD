@@ -27,27 +27,48 @@
 
 
 ```bash
-go install https://github.com/babarot/gomi@latest     # rm 替代品, 自動放置到回收站
-go install github.com/jesseduffield/lazygit@latest    # git 管理
-go install github.com/boyter/scc/v3@latest            # 代碼統計工具,比 cloc 更好用
-go install github.com/charmbracelet/glow/v2@latest    # markdown 閱讀工具
-go install github.com/maaslalani/slides@latest        # 在終端通過 markdown 編寫和分享 PPT
-go install github.com/schollz/croc/v10@latest         # 終端文件傳輸工具，但是需要雙方都安裝了 croc
-go install github.com/mgechev/revive@latest           # golang 靜態檢查工具
-go install github.com/ofabry/go-callvis@latest        # golang 函數調用關係分析工具
-go install github.com/kisielk/godepgraph@latest       # golang 函數調用關係分析工具
+# 個人工具
+go install github.com/itchyny/bed@latest            # 二進制文本編輯器
+go install github.com/schollz/croc/v10@latest       # 局域網文件傳輸工具
+go install github.com/muesli/duf@latest             # du 命令的可視化版本
+go install github.com/charmbracelet/glow@latest     # 更好的 markdown 預覽
+go install github.com/b4b4r07/gomi@latest           # 具備回收站功能的 rm
+go install github.com/charmbracelet/gum@latest      # 爲 shell 提供更好的交互效果
+go install github.com/jesseduffield/lazygit@latest  # Lazygit 無須多言
+go install github.com/gokcehan/lf@latest            # 終端文件管理工具
+go install github.com/boyter/scc/v3@latest          # 代碼統計工具,比 cloc 更加人性化一些
+go install github.com/maaslalani/slides@latest      # 終端演示工具(terminal 中演示PPT)
+go install github.com/schachmat/wego@latest         # 獲取天氣
+
+# 開發
+go install github.com/go-delve/delve/cmd/dlv@latest # Golang debug 工具
+go install github.com/ondrajz/go-callvis@latest     # 生成 Golang 函數調用關係圖
+go install github.com/kisielk/godepgraph@latest           # 生成 Go 包依赖关系图, Graphviz 依賴
+go install github.com/fatih/gomodifytags@latest           # 批量修改结构体字段的标签
+go install github.com/haya14busa/goplay/cmd/goplay@latest # Go Playground 的命令行客户端
+go install golang.org/x/tools/gopls@latest                # Go 官方语言服务器
+go install github.com/cweill/gotests@latest               # 自动生成表驱动测试
+go install github.com/josharian/impl@latest               # 生成接口实现的方法存根
+go install github.com/mgechev/revive@latest               # 快速、可配置的 Go 代码检查器（linter）
+go install honnef.co/go/tools/cmd/staticcheck@latest      # 高级静态分析工具
+go install golang.org/x/tools/cmd/goimports@latest        # 自动导入工具
+
+
+# go install github.com/chmln/sd@latest
+go install github.com/taigrr/spank@latest # 讓 MacBook 發出令人面紅耳赤的呻吟
 ```
 
 ### cargo install
 
 ```bash
-cargo install du-dust         # 更好看的 du
-cargo install exa             # 更好看的 ls
-cargo install fd-find         # 更好看的 find
-cargo install ripgrep         # 更好看的 grep
-cargo install gping           # 可視化的 ping
-cargo install zoxide --locked # 更好用的 cd
-cargo install bat    --locked # 彩色的 cat
+cargo install du-dust           # 更好看的 du
+cargo install exa               # 更好看的 ls
+cargo install fd-find           # 更好看的 find
+cargo install ripgrep           # 更好看的 grep
+cargo install gping             # 可視化的 ping
+cargo install zoxide --locked   # 更好用的 cd
+cargo install bat    --locked   # 彩色的 cat
+cargo install --locked omnidiff # 更強大的對比工具
 ```
 
 ### manual
@@ -63,3 +84,15 @@ cargo install bat    --locked # 彩色的 cat
 | [Poppler](https://gitlab.freedesktop.org/poppler/poppler)    | PDF 預覽工具，主要配合 yazi 使用                             |
 | [resvg](https://github.com/linebender/resvg/releases)        | SVG 預覽工具，主要配合 yazi 使用                             |
 | [httpie](https://httpie.io/cli)                              | 命令行 HTTP Client 工具，比 cutl 更好用 |
+| [unar](https://theunarchiver.com/command-line)               | 自動編碼檢測的解壓命令行解壓軟件,可以避免中文解壓亂碼 |
+
+```bash
+brew install poppler
+brew install p7zip
+brew install unar
+brew install ffmpeg
+brew install jq
+brew install resvg
+brew install imagemagick
+brew install fzf
+```

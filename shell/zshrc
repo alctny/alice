@@ -17,6 +17,14 @@ function lazygit-widget() {
 zle -N lazygit-widget
 bindkey '^G' lazygit-widget
 
+# C-d deactivate Pythone venv or exit shell
+function ctrl_d() {
+    deactivate 2>/dev/null || exit
+    zle reset-prompt
+}
+zle -N ctrl_d
+bindkey '^D' ctrl_d
+
 if [[ -f $HOME/.profile ]]; then
   source $HOME/.profile
 fi

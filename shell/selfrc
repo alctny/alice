@@ -9,29 +9,8 @@ function append_path() {
   esac
 }
 
-function imotd() {
-  local -a logo
-  logo=(
-    '                                                   '
-    ' ▄█     ▄████████  ▄█     █▄   ▄███████▄   ▄█   ▄█ '
-    '███    ███    ███ ███     ███ ██▀     ▄██ ███  ███ '
-    '███▌   ███    █▀  ███     ███       ▄███▀ ███▌ ███▌'
-    '███▌  ▄███▄▄▄     ███     ███  ▀█▀▄███▀▄▄ ███▌ ███▌'
-    '███▌ ▀▀███▀▀▀     ███     ███   ▄███▀   ▀ ███▌ ███▌'
-    '███    ███    █▄  ███     ███ ▄███▀       ███  ███ '
-    '███    ███    ███ ███ ▄█▄ ███ ███▄     ▄█ ███  ███ '
-    '█▀     ██████████  ▀███▀███▀   ▀████████▀ █▀   █▀  '
-    '                                                   '
-  )
-
-  local width=${COLUMNS:-$(tput cols 2>/dev/null || echo 80)}
-  local line padding
-
-  for line in "${logo[@]}"; do
-    padding=$(((width - ${#line}) / 2))
-    ((padding < 0)) && padding=0
-    printf '%*s%s\n' "$padding" '' "$line"
-  done
+function wcw() {
+  find . -type f -iname '*.md' -exec cat {} + | python3 -c 'import sys,re; s=sys.stdin.read(); print(len(re.findall(r"[\u4e00-\u9fff]|[A-Za-z]+|\d+",s)))'
 }
 
 alias cime="find . -type f | sed -n 's/.*\.//p' | sort | uniq -c | sort -nr"
@@ -42,4 +21,25 @@ if command -v xclip; then
   alias xcopy='xclip -selection clipboard'
 elif command -v; then
   alias xcopy='pbcopy'
+fi
+
+# '                                                   '
+# ' ▄█     ▄████████  ▄█     █▄   ▄███████▄   ▄█   ▄█ '
+# '███    ███    ███ ███     ███ ██▀     ▄██ ███  ███ '
+# '███▌   ███    █▀  ███     ███       ▄███▀ ███▌ ███▌'
+# '███▌  ▄███▄▄▄     ███     ███  ▀█▀▄███▀▄▄ ███▌ ███▌'
+# '███▌ ▀▀███▀▀▀     ███     ███   ▄███▀   ▀ ███▌ ███▌'
+# '███    ███    █▄  ███     ███ ▄███▀       ███  ███ '
+# '███    ███    ███ ███ ▄█▄ ███ ███▄     ▄█ ███  ███ '
+# '█▀     ██████████  ▀███▀███▀   ▀████████▀ █▀   █▀  '
+# '                                                   '
+
+# 輸出歡迎 Logo
+if [[ -f $HOME/.motd ]] && command -v lolcat >/dev/null 2>&1; then
+  width=${COLUMNS:-$(tput cols 2>/dev/null || echo 80)}
+  cat $HOME/.motd | while read line; do
+    padding=$(((width - ${#line}) / 2))
+    ((padding < 0)) && padding=0
+    printf '%*s%s\n' "$padding" '' "$line" | lolcat
+  done
 fi
